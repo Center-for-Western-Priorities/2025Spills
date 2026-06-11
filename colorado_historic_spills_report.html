@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colorado Historic Oil &amp; Gas Spills — CWP Analysis</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #f7f6f3;
+    color: #1a1a18;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 48px 32px 80px;
+  }
+
+  /* Header */
+  .report-header {
+    border-bottom: 2px solid #1a1a18;
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+  .report-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  .report-title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .report-subtitle {
+    font-size: 16px;
+    color: #555;
+    max-width: 640px;
+  }
+  .report-meta {
+    margin-top: 16px;
+    font-size: 13px;
+    color: #999;
+  }
+
+  /* Metric cards */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .metric-card {
+    background: #fff;
+    border: 1px solid #e8e6e0;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .metric-card .label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #999;
+    margin-bottom: 6px;
+  }
+  .metric-card .value {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a18;
+    line-height: 1.1;
+  }
+  .metric-card .sub {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 4px;
+  }
+
+  /* Sections */
+  .section {
+    margin-bottom: 52px;
+  }
+  .section-heading {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #1a1a18;
+  }
+  .section-body {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.75;
+    max-width: 720px;
+    margin-bottom: 24px;
+  }
+  .section-body p + p { margin-top: 12px; }
+
+  /* Charts */
+  .chart-wrap {
+    background: #fff;
+    border: 1px solid #e8e6e0;
+    border-radius: 10px;
+    padding: 24px;
+    margin-top: 16px;
+  }
+  .chart-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 4px;
+  }
+  .chart-note {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 16px;
+  }
+  .chart-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 14px;
+    font-size: 12px;
+    color: #666;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .legend-swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Discovery reasons list */
+  .reasons-list {
+    list-style: none;
+    margin: 20px 0;
+  }
+  .reasons-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid #eeece8;
+    font-size: 15px;
+    color: #333;
+  }
+  .reasons-list li:last-child { border-bottom: none; }
+  .reason-pct {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a18;
+    min-width: 52px;
+    line-height: 1.2;
+  }
+  .reason-desc strong {
+    display: block;
+    font-weight: 600;
+    color: #1a1a18;
+    margin-bottom: 2px;
+  }
+  .reason-desc span {
+    font-size: 13px;
+    color: #777;
+  }
+
+  /* Callout box */
+  .callout {
+    background: #fff8e7;
+    border-left: 4px solid #e6a817;
+    border-radius: 0 8px 8px 0;
+    padding: 18px 20px;
+    margin: 20px 0;
+    font-size: 15px;
+    color: #5a3e0a;
+    line-height: 1.65;
+  }
+  .callout strong { color: #3d2a06; }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid #e0ddd8;
+    margin: 48px 0;
+  }
+
+  /* Footer */
+  .report-footer {
+    border-top: 1px solid #e0ddd8;
+    padding-top: 24px;
+    font-size: 13px;
+    color: #aaa;
+  }
+
+  @media (max-width: 640px) {
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .page { padding: 32px 20px 60px; }
+    .report-title { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Header -->
+  <header class="report-header">
+    <p class="report-label">Center for Western Priorities</p>
+    <h1 class="report-title">Colorado Historic Oil &amp; Gas Spills</h1>
+    <p class="report-subtitle">An analysis of 6,767 unique historical spill records from Colorado's ECMC database, deduplicated by tracking number.</p>
+    <p class="report-meta">Data source: ColoradoSpills.xlsm (COGCC / ECMC) &nbsp;·&nbsp; Spill type: Historical &nbsp;·&nbsp; Analysis prepared June 2026</p>
+  </header>
+
+  <!-- Metrics -->
+  <div class="metrics">
+    <div class="metric-card">
+      <div class="label">Unique spills</div>
+      <div class="value">6,767</div>
+      <div class="sub">deduplicated by tracking #</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">Peak year</div>
+      <div class="value">2024</div>
+      <div class="sub">1,374 unique spills</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">Top county</div>
+      <div class="value">Weld</div>
+      <div class="sub">88% of all spills</div>
+    </div>
+    <div class="metric-card">
+      <div class="label">Top operator</div>
+      <div class="value">Noble</div>
+      <div class="sub">2,585 spills on record</div>
+    </div>
+  </div>
+
+  <!-- Spills over time -->
+  <section class="section">
+    <p class="section-heading">Trend</p>
+    <h2 class="section-title">Spill counts have risen sharply since 2021</h2>
+    <p class="section-body">The number of historical spill records filed each year was relatively flat from 2016 through 2020, then accelerated dramatically. From 2020 to 2024 filings increased more than tenfold — from 125 to 1,374 unique spills per year. This reflects a wave of decommissioning activity across Colorado's aging DJ Basin well fleet, as older wells reach end of life and operators are required to plug, cap, and remediate sites before closure.</p>
+
+    <div class="chart-wrap">
+      <p class="chart-title">Unique historical spills filed per year, 2016–2024</p>
+      <p class="chart-note">Each bar represents unique spills by date of discovery, deduplicated by tracking number. 2025–2026 are excluded as partial years with data entry still in progress.</p>
+      <div class="chart-container" style="height:240px;">
+        <canvas id="yearChart" role="img" aria-label="Bar chart showing unique historical spill counts rising from 104 in 2016 to 1,374 in 2024.">2016: 104, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374.</canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Geography -->
+  <section class="section">
+    <p class="section-heading">Geography</p>
+    <h2 class="section-title">Weld County accounts for 88% of all historical spills</h2>
+    <p class="section-body">The geographic distribution is highly concentrated. Weld County — the heart of Colorado's Denver-Julesburg Basin — has 5,924 of the 6,767 total historical spill records. The next largest county, Adams, has just 200. This reflects both the density of oil and gas development in the DJ Basin and the scale of ongoing abandonment and reclamation activity there.</p>
+
+    <div class="chart-wrap">
+      <p class="chart-title">Top 10 counties by unique historical spill count</p>
+      <div class="chart-container" style="height:340px;">
+        <canvas id="countyChart" role="img" aria-label="Horizontal bar chart. Weld County has 5,924 spills, far exceeding all others.">Weld: 5924, Adams: 200, Rio Blanco: 104, Garfield: 90, Boulder: 87, Larimer: 39, Cheyenne: 39, Arapahoe: 33, Broomfield: 29, Moffat: 21.</canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Operators -->
+  <section class="section">
+    <p class="section-heading">Operators</p>
+    <h2 class="section-title">Three operators account for 76% of historical spill records</h2>
+    <p class="section-body">Noble Energy (2,585), Kerr McGee Oil &amp; Gas (1,831), and PDC Energy (779) together account for nearly three-quarters of all historical spill records on file. All three are major DJ Basin operators with large legacy well inventories. Notably, Noble Energy was acquired by Chevron in 2020, and Kerr McGee's assets were absorbed into Crestone Peak Resources and then Civitas Resources — meaning many of these historical liabilities now sit with successor companies.</p>
+
+    <div class="chart-wrap">
+      <p class="chart-title">Top 10 operators by unique historical spill count</p>
+      <div class="chart-container" style="height:340px;">
+        <canvas id="opChart" role="img" aria-label="Horizontal bar chart. Noble Energy leads with 2,585 spills, followed by Kerr McGee at 1,831 and PDC Energy at 779.">Noble Energy: 2585, Kerr McGee: 1831, PDC Energy: 779, Crestone Peak: 306, Extraction O&G: 168, Bonanza Creek: 118, Caerus Piceance: 86, KP Kauffman: 57, Highpoint: 51, Great Western: 39.</canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Facility + Owner -->
+  <section class="section">
+    <p class="section-heading">Infrastructure &amp; Land</p>
+    <h2 class="section-title">Tank batteries and wells are the most common failure points</h2>
+    <p class="section-body">Tank batteries (32%) and wells (30%) together account for nearly two-thirds of historical spill sites, with flowline systems contributing another 20%. Almost all historical spills — 96% — occurred on private land, with federal and state lands representing a small fraction. This has implications for landowner notification and long-term remediation obligations.</p>
+
+    <div class="two-col">
+      <div class="chart-wrap">
+        <p class="chart-title">Spills by facility type</p>
+        <div class="chart-container" style="height:220px;">
+          <canvas id="facilityChart" role="img" aria-label="Donut chart. Tank battery 32%, well 30%, flowline system 20%, well site 6%, other 12%.">Tank battery: 2178, Well: 2034, Flowline system: 1355, Well site: 410, Other: 790.</canvas>
+        </div>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-swatch" style="background:#7F77DD;"></span>Tank battery (32%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#AFA9EC;"></span>Well (30%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#534AB7;"></span>Flowline (20%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#CECBF6;"></span>Well site (6%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#3C3489;"></span>Other (12%)</span>
+        </div>
+      </div>
+      <div class="chart-wrap">
+        <p class="chart-title">Spills by surface owner</p>
+        <div class="chart-container" style="height:220px;">
+          <canvas id="ownerChart" role="img" aria-label="Donut chart. Private land accounts for 96% of historical spills.">Private: 6490, Federal: 127, Other: 117, State: 31, Tribal: 2.</canvas>
+        </div>
+        <div class="legend">
+          <span class="legend-item"><span class="legend-swatch" style="background:#378ADD;"></span>Private (96%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#185FA5;"></span>Federal (2%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#B5D4F4;"></span>Other (2%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#85B7EB;"></span>State (&lt;1%)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seasonality -->
+  <section class="section">
+    <p class="section-heading">Seasonality</p>
+    <h2 class="section-title">Spring and fall see the most spill discoveries</h2>
+    <p class="section-body">April is the peak month for historical spill discoveries, likely reflecting both spring construction season starting up and spring thaw exposing contamination that was frozen or buried under snow. October is a secondary peak, coinciding with fall site work before winter shutdowns. The summer months are notably quieter in relative terms, despite being peak field activity season.</p>
+
+    <div class="chart-wrap">
+      <p class="chart-title">Unique spills by month of discovery</p>
+      <div class="chart-container" style="height:200px;">
+        <canvas id="monthChart" role="img" aria-label="Bar chart of spills by discovery month. April peaks at 754, November is lowest at 472.">Jan: 580, Feb: 542, Mar: 667, Apr: 754, May: 521, Jun: 545, Jul: 522, Aug: 493, Sep: 523, Oct: 591, Nov: 472, Dec: 557.</canvas>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Discovery reasons -->
+  <section class="section">
+    <p class="section-heading">Key finding</p>
+    <h2 class="section-title">Why are historical spills being discovered now?</h2>
+
+    <div class="section-body">
+      <p>Analysis of the spill description field across all 6,767 records reveals a striking pattern: <strong>nearly every historical spill was found not when it happened, but years or decades later — when someone dug up the ground.</strong> Active leak detection during operations accounts for less than 1% of discoveries. The vast majority are uncovered by construction, decommissioning, or regulatory cleanup work.</p>
+    </div>
+
+    <div class="callout">
+      <strong>The core finding:</strong> Colorado's historical spill record is largely a paper trail of contamination that sat silently underground — sometimes for decades — until decommissioning work forced it into the open. These are not spills being caught and reported in real time. They are legacy contamination events that regulatory site closure requirements are finally surfacing.
+    </div>
+
+    <ul class="reasons-list">
+      <li>
+        <div class="reason-pct">56%</div>
+        <div class="reason-desc">
+          <strong>Deconstruction / tank removal</strong>
+          <span>Workers deconstructing a tank battery find contaminated soil beneath produced water vaults, dump lines, or tanks. The language is nearly formulaic across thousands of filings: "while deconstructing the [location] tank battery, soil with historical petroleum hydrocarbon impacts were encountered beneath the [vessel/vault/dumpline]." The contamination is almost always described as pre-existing with no active leak at the time of discovery.</span>
+        </div>
+      </li>
+      <li>
+        <div class="reason-pct">~20%</div>
+        <div class="reason-desc">
+          <strong>Plugging, abandonment &amp; cut-and-cap operations</strong>
+          <span>A well is being formally plugged and shut in — or subject to a COGCC-mandated "cut and cap" wellhead closure procedure — and impacted soil is found beneath the wellhead, separator, or vault. The contamination is typically described as historical with unknown volume, and remediation is scheduled as a follow-on activity. This category also includes wellhead abandonment during operator decommissioning programs.</span>
+        </div>
+      </li>
+      <li>
+        <div class="reason-pct">4%</div>
+        <div class="reason-desc">
+          <strong>Construction &amp; excavation activities</strong>
+          <span>Routine construction work — new pipelines, surface upgrades, road grading — unexpectedly turns up hydrocarbon-impacted soil. These are typically incidental discoveries rather than targeted investigations.</span>
+        </div>
+      </li>
+      <li>
+        <div class="reason-pct">1%</div>
+        <div class="reason-desc">
+          <strong>Pressure testing &amp; integrity testing</strong>
+          <span>Flowline pressure tests or vault integrity tests reveal a failed component, which upon excavation exposes a historical release in the surrounding soil or groundwater.</span>
+        </div>
+      </li>
+      <li>
+        <div class="reason-pct">1%</div>
+        <div class="reason-desc">
+          <strong>Site reclamation, pit closure &amp; emissions upgrades</strong>
+          <span>Closing an old production pit, conducting a Form 27 remediation project, or performing an emissions control upgrade triggers excavation that exposes legacy contamination not previously on record.</span>
+        </div>
+      </li>
+      <li>
+        <div class="reason-pct">&lt;1%</div>
+        <div class="reason-desc">
+          <strong>COGCC field inspection</strong>
+          <span>A state field inspector spots pooled fluids or stained soil during a routine site visit and initiates a report. These represent a very small share of discoveries, suggesting inspection capacity is not the primary driver of detection.</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Uptick explanation -->
+  <section class="section">
+    <p class="section-heading">Explaining the trend</p>
+    <h2 class="section-title">Why the sharp uptick in filings from 2021 onward?</h2>
+
+    <div class="section-body">
+      <p>The more-than-tenfold increase in historical spill filings between 2020 and 2024 is not primarily a sign that more spills are happening — it reflects several converging forces that are accelerating how quickly legacy contamination gets documented.</p>
+    </div>
+
+    <div class="chart-wrap" style="margin-bottom:24px;">
+      <p class="chart-title">Unique historical spills per year — the recent acceleration</p>
+      <div class="chart-container" style="height:200px;">
+        <canvas id="uptickChart" role="img" aria-label="Line chart showing historical spill filings rising sharply from 125 in 2020 to 1,374 in 2024.">2016: 104, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374.</canvas>
+      </div>
+    </div>
+
+    <div class="section-body">
+      <p><strong>1. An aging well fleet entering mass decommissioning.</strong> The DJ Basin saw a major drilling boom in the 2010s. Many of those wells — and the older legacy wells predating the boom — are now reaching end of productive life. When an operator plugs and abandons a well or deconstructs a tank battery, COGCC rules require environmental assessment of the site. As the volume of P&amp;A activity has climbed sharply since 2021, so has the volume of historical releases being uncovered and documented.</p>
+
+      <p><strong>2. Stricter COGCC rules after SB 181 (2019).</strong> Colorado's landmark 2019 oil and gas reform law directed the COGCC to prioritize public health and environmental protection and led to a comprehensive rewrite of state rules. Enhanced site assessment requirements, stronger Form 27 closure protocols, and tighter remediation standards all mean that activities which might previously have closed out with minimal investigation now trigger more thorough soil and groundwater sampling — and more historical releases being identified and reported.</p>
+
+      <p><strong>3. Cut-and-cap program scaling up.</strong> COGCC's "cut and cap" rule requires operators to physically cut and cap wellheads at decommissioned sites. As this program has ramped up across Weld County's large inventory of older wells, each site assessment creates another opportunity to find — and report — soil contamination that has been present for years.</p>
+
+      <p><strong>4. Operator consolidation surfacing inherited liabilities.</strong> Several large acquisitions in the DJ Basin (notably Chevron's purchase of Noble Energy in 2020 and Civitas Resources' consolidation of Kerr McGee/Crestone legacy assets) brought new scrutiny to inherited well portfolios. Post-acquisition due diligence and accelerated decommissioning programs have pushed large backlogs of legacy contamination into the COGCC reporting system.</p>
+    </div>
+
+    <div class="callout">
+      <strong>What the trend tells us:</strong> The uptick in historical spill filings is largely good news from a regulatory standpoint — it means the decommissioning and remediation pipeline is working. But it also underscores how much historic contamination was never caught in real time, and how much legacy liability remains embedded in Colorado's oil and gas landscape — most of it on private land, and most of it concentrated in Weld County.
+    </div>
+  </section>
+
+  <footer class="report-footer">
+    <p>Center for Western Priorities &nbsp;·&nbsp; Data: Colorado ECMC / COGCC (ColoradoSpills.xlsm) &nbsp;·&nbsp; Analysis: June 2026 &nbsp;·&nbsp; 6,767 unique historical spill records deduplicated by COGCC tracking number</p>
+  </footer>
+
+</div>
+
+<script>
+const gridColor = 'rgba(0,0,0,0.06)';
+const textColor = '#999';
+const tooltipCount = ctx => ' ' + (ctx.parsed.x ?? ctx.parsed.y).toLocaleString() + ' spills';
+
+/* Year chart */
+new Chart(document.getElementById('yearChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+    datasets: [{
+      data: [104,181,201,188,125,466,667,830,1374],
+      backgroundColor: (ctx) => ctx.dataIndex === 8 ? '#185FA5' : '#378ADD',
+      borderRadius: 4,
+      borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' spills' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: textColor, font: { size: 12 }, autoSkip: false } },
+      y: { grid: { color: gridColor }, border: { display: false }, ticks: { color: textColor, font: { size: 12 } } }
+    }
+  }
+});
+
+/* County chart */
+new Chart(document.getElementById('countyChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Weld','Adams','Rio Blanco','Garfield','Boulder','Larimer','Cheyenne','Arapahoe','Broomfield','Moffat'],
+    datasets: [{
+      data: [5924,200,104,90,87,39,39,33,29,21],
+      backgroundColor: (ctx) => ctx.dataIndex === 0 ? '#0F6E56' : '#1D9E75',
+      borderRadius: 4, borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: tooltipCount } } },
+    scales: {
+      x: { grid: { color: gridColor }, border: { display: false }, ticks: { color: textColor, font: { size: 12 }, callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v } },
+      y: { grid: { display: false }, ticks: { color: textColor, font: { size: 12 } } }
+    }
+  }
+});
+
+/* Operator chart */
+new Chart(document.getElementById('opChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Noble Energy','Kerr McGee','PDC Energy','Crestone Peak','Extraction O&G','Bonanza Creek','Caerus Piceance','KP Kauffman','Highpoint','Great Western'],
+    datasets: [{
+      data: [2585,1831,779,306,168,118,86,57,51,39],
+      backgroundColor: (ctx) => ctx.dataIndex < 3 ? '#993C1D' : '#D85A30',
+      borderRadius: 4, borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: tooltipCount } } },
+    scales: {
+      x: { grid: { color: gridColor }, border: { display: false }, ticks: { color: textColor, font: { size: 12 }, callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v } },
+      y: { grid: { display: false }, ticks: { color: textColor, font: { size: 12 } } }
+    }
+  }
+});
+
+/* Facility donut */
+new Chart(document.getElementById('facilityChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Tank battery','Well','Flowline system','Well site','Other'],
+    datasets: [{ data: [2178,2034,1355,410,790], backgroundColor: ['#7F77DD','#AFA9EC','#534AB7','#CECBF6','#3C3489'], borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, cutout: '60%' }
+});
+
+/* Owner donut */
+new Chart(document.getElementById('ownerChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Private','Federal','Other','State','Tribal'],
+    datasets: [{ data: [6490,127,117,31,2], backgroundColor: ['#378ADD','#185FA5','#B5D4F4','#85B7EB','#042C53'], borderWidth: 2, borderColor: '#fff' }]
+  },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, cutout: '60%' }
+});
+
+/* Monthly chart */
+const monthVals = [580,542,667,754,521,545,522,493,523,591,472,557];
+const maxM = Math.max(...monthVals);
+new Chart(document.getElementById('monthChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    datasets: [{
+      data: monthVals,
+      backgroundColor: monthVals.map(v => v === maxM ? '#185FA5' : '#378ADD'),
+      borderRadius: 4, borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' spills' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: textColor, font: { size: 12 }, autoSkip: false } },
+      y: { grid: { color: gridColor }, border: { display: false }, ticks: { color: textColor, font: { size: 12 } } }
+    }
+  }
+});
+
+/* Uptick line chart */
+new Chart(document.getElementById('uptickChart'), {
+  type: 'line',
+  data: {
+    labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+    datasets: [{
+      data: [104,181,201,188,125,466,667,830,1374],
+      borderColor: '#185FA5',
+      backgroundColor: 'rgba(55,138,221,0.08)',
+      borderWidth: 2.5,
+      pointBackgroundColor: '#185FA5',
+      pointRadius: 4,
+      pointHoverRadius: 6,
+      fill: true,
+      tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' spills' } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: textColor, font: { size: 12 }, autoSkip: false } },
+      y: { grid: { color: gridColor }, border: { display: false }, ticks: { color: textColor, font: { size: 12 } } }
+    }
+  }
+});
+</script>
+</body>
+</html>
