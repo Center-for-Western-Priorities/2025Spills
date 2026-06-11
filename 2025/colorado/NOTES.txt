@@ -1,0 +1,54 @@
+﻿Historic data is filtered out by co-lab notebook 
+
+
+Volume data generally bad but somewhat useful when comparing operators 
+
+
+No duplicate operators in dataset 
+
+
+QB Energy Operating – massive spill volume & uptick in spills year over year due to merger 
+
+
+LLC is a Denver-based oil and gas exploration and production company formed in 2024 to acquire the assets of Caerus Oil and Gas. Backed by Quantum Capital Group, they primarily develop natural gas resources in Western Colorado’s Piceance Basin.
+
+
+
+
+TEP Rocky Mountain – massive uptick year-over-year due to merger 
+
+
+LLC is an oil and gas exploration and production company, formerly operated by Terra Energy Partners, which owns and develops natural gas assets primarily in the Piceance Basin of northwestern Colorado
+
+
+Co-lab couldnt print final results due to NA error 
+
+
+
+
+TO DO 
+
+
+Try rerunning CO section of notebook to see if it will work 
+
+
+Try throwing whole raw dataset into Claude and asking it to create a dashboard - see what it comes up with 
+
+
+
+
+6/10
+
+
+Questions:
+Is “recovered” data legitimate or is it an estimate? What does that mean? Worth including?
+
+
+Next steps:
+* Check on what claude is doing - eg, is it combining companies that have merged?
+* Find out how to check claude’s work against our own data - ask it to reproduce 2024 data and see if it’s the same as ours
+* What is it using for volume, is it using ranges?
+* Pull a separate historic spills report for CO, and explain what it means
+* For state by state write ups - have claude draft comparisons on reporting requirements, penalties, etc - have rachael review and revise?
+* Decide what we’re doing with volume data - useful to show but be clear it’s a minimum
+* Tell claude to take each tracking number, and make sure it’s showing the total volume, not duplicating

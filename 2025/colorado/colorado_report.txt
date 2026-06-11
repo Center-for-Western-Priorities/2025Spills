@@ -1,0 +1,167 @@
+---------------
+COLORADO 2025 SPILLS REPORT
+---------------
+
+---------------
+BY SIZE OF OIL SPILL
+---------------
+Total oil spills: Tracking #    155
+dtype: int64
+                  Tracking #
+Oil Spill Volume            
+>0 and <1                 30
+>=1 and <5                32
+>=100                      1
+>=5 and <100              35
+Unknown                   57
+
+---------------
+BY SIZE OF PRODUCED WATER SPILL
+---------------
+Total produced water spills: Tracking #    256
+dtype: int64
+                             Tracking #
+Produced Water Spill Volume            
+>0 and <1                            16
+>=1 and <5                           47
+>=100                                13
+>=5 and <100                         74
+Unknown                             106
+
+---------------
+BY OPERATOR
+---------------
+Total spills: 342
+The top 5 operators were responsible for 45% percent of all spills.
+
+Top 5 operators:
+QB ENERGY OPERATING LLC          46
+KERR MCGEE                       35
+PDC ENERGY INC                   30
+NOBLE                            29
+TEP ROCKY MOUNTAIN LLC           15
+OTHER                           187
+
+---------------
+BY SURFACE OWNER
+---------------
+Total spills: 340
+
+Private               276
+Federal                33
+Other                  23
+State                   7
+TRIBAL                  1
+
+---------------
+BY COUNTY
+---------------
+Total spills: 338
+
+ADAMS               20
+ARAPAHOE             3
+CHEYENNE             6
+ELBERT               1
+GARFIELD            61
+GUNNISON             1
+JACKSON              9
+KIOWA                2
+LA PLATA            11
+LARIMER              1
+LAS ANIMAS           8
+LOGAN                2
+MESA                 7
+MOFFAT               4
+MONTEZUMA            2
+PHILLIPS             1
+RIO BLANCO          19
+SAN MIGUEL           1
+WASHINGTON           2
+WELD               170
+YUMA                 7
+
+---------------
+BY MONTH
+---------------
+Total spills: 338
+
+January            48
+February           35
+March              28
+April              31
+May                20
+June               27
+July               27
+August             28
+September          22
+October            22
+November           29
+December           21
+
+---------------
+Spills per year
+---------------
+2014           2
+2016         248
+2017         437
+2018         400
+2019         455
+2020         349
+2021         409
+2022         457
+2023         419
+2024         378
+2025         338
+
+Total spills since 2014: 3,892---------------
+Volume spilled per year (gallons)
+---------------
+2021     723,744
+2022   1,460,340
+2023   1,050,714
+2024     436,128
+2025     794,472
+
+Total gallons spilled, 2021-2025: 4,465,398---------------
+5 biggest spillers of 2025
+(Gallons)
+---------------
+QB ENERGY OPERATING LLC       445,284
+TEP ROCKY MOUNTAIN LLC         67,284
+SCOUT ENERGY MANAGEMENT LLC    57,078
+LARAMIE ENERGY LLC             42,210
+NGL WATER SOLUTIONS DJ LLC     31,458
+
+---------------
+5 biggest increases in spills, 2024-2025
+(Gallons)
+---------------
+TEP ROCKY MOUNTAIN LLC       63,084
+LARAMIE ENERGY LLC           33,726
+NGL WATER SOLUTIONS DJ LLC   16,758
+NOBLE                        12,054
+DCP OPERATING COMPANY LP      3,864
+
+---------------
+5 biggest decreases in spills, 2024-2025
+(Gallons)
+---------------
+SCOUT ENERGY MANAGEMENT LLC               -98,448
+CAERUS PICEANCE LLC                       -48,804
+FUNDARE RESOURCES OPERATING COMPANY LLC   -16,506
+CITATION OIL & GAS CORP                   -11,718
+FULCRUM ENERGY OPERATING LLC               -7,056
+
+---------------
+Number of spills
+(year-to-year comparison)
+By operator
+---------------
+Year                     2025  2024 Pct Change
+Operator                                      
+QB ENERGY OPERATING LLC    46     2      2200%
+KERR MCGEE                 35    50       -30%
+PDC ENERGY INC             30    32        -6%
+NOBLE                      29    27         7%
+TEP ROCKY MOUNTAIN LLC     15     1      1400%
+
