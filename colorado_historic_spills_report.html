@@ -253,8 +253,8 @@
     </div>
     <div class="metric-card">
       <div class="label">Peak year</div>
-      <div class="value">2024</div>
-      <div class="sub">1,374 unique spills</div>
+      <div class="value">2025</div>
+      <div class="sub">1,948 unique spills</div>
     </div>
     <div class="metric-card">
       <div class="label">Top county</div>
@@ -272,13 +272,13 @@
   <section class="section">
     <p class="section-heading">Trend</p>
     <h2 class="section-title">Spill counts have risen sharply since 2021</h2>
-    <p class="section-body">The number of historical spill records filed each year was relatively flat from 2016 through 2020, then accelerated dramatically. From 2020 to 2024 filings increased more than tenfold — from 125 to 1,374 unique spills per year. This reflects a wave of decommissioning activity across Colorado's aging DJ Basin well fleet, as older wells reach end of life and operators are required to plug, cap, and remediate sites before closure.</p>
+    <p class="section-body">The number of historical spill records filed each year was relatively flat from 2016 through 2020, then accelerated dramatically. From 2020 to 2025 filings increased more than fifteenfold — from 125 to 1,948 unique spills per year. This reflects a wave of decommissioning activity across Colorado's aging DJ Basin well fleet, as older wells reach end of life and operators are required to plug, cap, and remediate sites before closure.</p>
 
     <div class="chart-wrap">
-      <p class="chart-title">Unique historical spills filed per year, 2016–2024</p>
-      <p class="chart-note">Each bar represents unique spills by date of discovery, deduplicated by tracking number. 2025–2026 are excluded as partial years with data entry still in progress.</p>
+      <p class="chart-title">Unique historical spills filed per year, 2016–2025</p>
+      <p class="chart-note">Each bar represents unique spills by date of discovery, deduplicated by tracking number. 2026 is excluded as a partial year.</p>
       <div class="chart-container" style="height:240px;">
-        <canvas id="yearChart" role="img" aria-label="Bar chart showing unique historical spill counts rising from 104 in 2016 to 1,374 in 2024.">2016: 104, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374.</canvas>
+        <canvas id="yearChart" role="img" aria-label="Bar chart showing unique historical spill counts rising from 104 in 2016 to a peak of 1,948 in 2025.">2016: 104, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374, 2025: 1948.</canvas>
       </div>
     </div>
   </section>
@@ -429,13 +429,13 @@
     <h2 class="section-title">Why the sharp uptick in filings from 2021 onward?</h2>
 
     <div class="section-body">
-      <p>The more-than-tenfold increase in historical spill filings between 2020 and 2024 is not primarily a sign that more spills are happening — it reflects several converging forces that are accelerating how quickly legacy contamination gets documented.</p>
+      <p>The more-than-fifteenfold increase in historical spill filings between 2020 and 2025 is not primarily a sign that more spills are happening — it reflects several converging forces that are accelerating how quickly legacy contamination gets documented.</p>
     </div>
 
     <div class="chart-wrap" style="margin-bottom:24px;">
       <p class="chart-title">Unique historical spills per year — the recent acceleration</p>
       <div class="chart-container" style="height:200px;">
-        <canvas id="uptickChart" role="img" aria-label="Line chart showing historical spill filings rising sharply from 125 in 2020 to 1,374 in 2024.">2016: 104, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374.</canvas>
+        <canvas id="uptickChart" role="img" aria-label="Line chart showing historical spill filings rising sharply from 125 in 2020 to 1,948 in 2025.">2016: 104, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374, 2025: 1948.</canvas>
       </div>
     </div>
 
@@ -469,10 +469,10 @@ const tooltipCount = ctx => ' ' + (ctx.parsed.x ?? ctx.parsed.y).toLocaleString(
 new Chart(document.getElementById('yearChart'), {
   type: 'bar',
   data: {
-    labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+    labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
     datasets: [{
-      data: [104,181,201,188,125,466,667,830,1374],
-      backgroundColor: (ctx) => ctx.dataIndex === 8 ? '#185FA5' : '#378ADD',
+      data: [104,181,201,188,125,466,667,830,1374,1948],
+      backgroundColor: (ctx) => ctx.dataIndex === 9 ? '#185FA5' : '#378ADD',
       borderRadius: 4,
       borderSkipped: false
     }]
@@ -576,9 +576,9 @@ new Chart(document.getElementById('monthChart'), {
 new Chart(document.getElementById('uptickChart'), {
   type: 'line',
   data: {
-    labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024'],
+    labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
     datasets: [{
-      data: [104,181,201,188,125,466,667,830,1374],
+      data: [104,181,201,188,125,466,667,830,1374,1948],
       borderColor: '#185FA5',
       backgroundColor: 'rgba(55,138,221,0.08)',
       borderWidth: 2.5,
