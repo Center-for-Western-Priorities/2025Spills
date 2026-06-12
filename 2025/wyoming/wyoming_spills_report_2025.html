@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wyoming Oil and Gas Spills 2025 | Center for Western Priorities</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Open+Sans:wght@400;600&family=Raleway:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<style>
+:root {
+  --cwp-green:#78b43c; --cwp-orange:#d2781e; --cwp-gold:#96782d;
+  --cwp-green-2:#84bb41; --cwp-blue-4:#4398b5; --cwp-blue-5:#2f5b74; --cwp-teal:#63c5d8;
+  --cwp-white:#ffffff; --cwp-off-white:#f5f5f3; --cwp-rule:#e0ddd8;
+  --cwp-mid-gray:#9a9590; --cwp-dark:#2a2a28; --cwp-dark-bg:#1e2624;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3','Open Sans',system-ui,sans-serif;font-size:17px;line-height:1.7;color:var(--cwp-dark);background:#fff}
+.site-header{background:var(--cwp-blue-4);padding:32px 24px}
+.site-header .inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:24px}
+.site-header img{height:48px;flex-shrink:0}
+.site-header .eyebrow{font-family:'Open Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:4px}
+.site-header h1{font-family:'Bitter',Georgia,serif;font-weight:700;font-size:28px;color:#fff;line-height:1.2}
+.site-header .meta{font-family:'Open Sans',sans-serif;font-size:13px;color:rgba(255,255,255,.65);margin-top:6px}
+.page{max-width:960px;margin:0 auto;padding:48px 24px}
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px}
+.stat-card{flex:1;min-width:150px;background:#fff;border:1px solid var(--cwp-rule);border-top:3px solid var(--cwp-green);border-radius:4px;padding:20px 20px 16px}
+.stat-card.blue{border-top-color:var(--cwp-blue-4)}
+.stat-card.orange{border-top-color:var(--cwp-orange)}
+.stat-card .num{font-family:'Raleway',sans-serif;font-weight:700;font-size:30px;color:var(--cwp-green);line-height:1;margin-bottom:4px}
+.stat-card.blue .num{color:var(--cwp-blue-4)}
+.stat-card.orange .num{color:var(--cwp-orange)}
+.stat-card .label{font-family:'Open Sans',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--cwp-mid-gray)}
+.section-block{margin-bottom:48px}
+.section-block .eyebrow{font-family:'Open Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cwp-green);margin-bottom:6px}
+.section-block h2{font-family:'Bitter',Georgia,serif;font-weight:600;font-size:21px;color:var(--cwp-dark);margin-bottom:16px;border-bottom:1px solid var(--cwp-rule);padding-bottom:10px}
+.section-block p{font-family:'Source Sans 3',sans-serif;font-size:16px;color:var(--cwp-dark);margin-bottom:12px}
+.chart-wrap{background:var(--cwp-off-white);border-radius:4px;padding:24px;margin-top:16px}
+.chart-wrap canvas{max-height:320px}
+.chart-source{font-family:'Open Sans',sans-serif;font-size:11px;color:var(--cwp-mid-gray);margin-top:10px}
+.chart-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.chart-pair .chart-wrap{margin-top:0}
+.callout{background:var(--cwp-off-white);border-left:3px solid var(--cwp-blue-4);border-radius:0 4px 4px 0;padding:16px 20px;margin:16px 0 24px;font-family:'Source Sans 3',sans-serif;font-size:15px}
+.callout strong{color:var(--cwp-blue-5)}
+footer{background:var(--cwp-dark-bg);padding:28px 24px;text-align:center}
+footer .inner{max-width:960px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:12px}
+footer img{height:36px;opacity:.85}
+footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-gray)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <img src="https://westernpriorities.org/images/CWP-logo-white.svg" alt="Center for Western Priorities" onerror="this.style.display='none'">
+    <div>
+      <div class="eyebrow">Center for Western Priorities &middot; Oil and Gas Spills Tracker 2025</div>
+      <h1>Wyoming Spills Report 2025</h1>
+      <div class="meta">Source: Wyoming Oil and Gas Conservation Commission (WOGCC) &nbsp;|&nbsp; Reported January 1 – December 31, 2025</div>
+    </div>
+  </div>
+</header>
+<main class="page">
+
+<div class="stat-row">
+  <div class="stat-card"><div class="num">786</div><div class="label">Total Spills in 2025</div></div>
+  <div class="stat-card blue"><div class="num">-39</div><div class="label">Change from 2024 (825)</div></div>
+  <div class="stat-card"><div class="num">191K</div><div class="label">Gallons of Oil Spilled</div></div>
+  <div class="stat-card orange"><div class="num">1.19M</div><div class="label">Gallons of Produced Water Spilled</div></div>
+</div>
+
+<!-- 1. Material type count -->
+<div class="section-block">
+  <div class="eyebrow">By Substance</div>
+  <h2>Number of Spills by Material Type, 2025</h2>
+  <p>Of 786 reported spills, 511 involved produced water and 336 involved oil. These categories overlap since many spills involve both substances. Wyoming tracks each substance separately based on discharge volumes.</p>
+  <div class="callout"><strong>Note:</strong> Counts reflect spills where each substance's discharge volume was greater than zero. A single spill incident can involve more than one substance.</div>
+  <div class="chart-pair">
+    <div class="chart-wrap"><canvas id="wyMatCount"></canvas><div class="chart-source">Spills with discharge &gt;0 by material. Source: WOGCC, 2025.</div></div>
+    <div class="chart-wrap"><canvas id="wyMatVolume"></canvas><div class="chart-source">Volume discharged (gallons). Source: WOGCC, 2025.</div></div>
+  </div>
+</div>
+
+<!-- 2. County -->
+<div class="section-block">
+  <div class="eyebrow">Geography</div>
+  <h2>Spills by County: 2024 vs. 2025</h2>
+  <p>Converse County led Wyoming with 172 spills, slightly down from 174 in 2024. Campbell County ranked second. Both counties sit atop the Powder River Basin, Wyoming's most active oil region. Laramie County fell sharply from 69 to 33, while Carbon rose from 73 to 83.</p>
+  <div class="chart-pair">
+    <div class="chart-wrap"><svg id="wyCountyMap2024" viewBox="0 0 560 380" width="100%" style="display:block"></svg><div class="chart-source">2024 spill count by county. Source: WOGCC, 2024. Hover for details.</div></div>
+    <div class="chart-wrap"><svg id="wyCountyMap2025" viewBox="0 0 560 380" width="100%" style="display:block"></svg><div class="chart-source">2025 spill count by county. Source: WOGCC, 2025. Hover for details.</div></div>
+  </div>
+</div>
+
+<!-- 3. Operators by count -->
+<div class="section-block">
+  <div class="eyebrow">Operators</div>
+  <h2>Spills by Operator: 2024 vs. 2025</h2>
+  <p>Crowheart led all Wyoming operators with 102 spills, down from 145 in 2024. Continental Resources increased from 93 to 95. EOG Resources fell from 59 to 46. Amplify Energy and Barn Owls Operating saw notable year-over-year increases.</p>
+  <div class="callout"><strong>Operator names</strong> are standardized by removing legal suffixes (LLC, LP, ENERGY, RESOURCES, OPERATING, etc.) and applying company-specific corrections, following the notebook's cleaning methodology.</div>
+  <div class="chart-wrap" style="max-height:380px"><canvas id="wyOpsCount" style="max-height:360px"></canvas><div class="chart-source">Top 8 operators by 2025 spill count. Source: WOGCC, 2025.</div></div>
+</div>
+
+<!-- 4. Operators by volume -->
+<div class="section-block">
+  <div class="eyebrow">Volume</div>
+  <h2>Top Operators by Volume Spilled, 2025 (Gallons)</h2>
+  <p>Merit Energy reported the highest volume at 303,565 gallons despite ranking seventh in spill count, reflecting a small number of large incidents. Continental ranked second at 177,000 gallons and Contango third at 134,000. Barn Owls Operating, which ranked sixth in spill count, reported nearly 64,000 gallons.</p>
+  <div class="chart-wrap"><canvas id="wyOpsVolume"></canvas><div class="chart-source">Combined oil, produced water, and other. Source: WOGCC, 2025.</div></div>
+</div>
+
+<!-- 5. Volume year-over-year -->
+<div class="section-block">
+  <div class="eyebrow">Year-Over-Year</div>
+  <h2>Volume Spilled by Top Operators: 2024 vs. 2025 (Gallons)</h2>
+  <p>Merit Energy's volume nearly tripled year-over-year, from 103,000 to 304,000 gallons. Contango more than doubled. Crowheart Energy fell by nearly 60,000 gallons despite remaining the highest-count operator.</p>
+  <div class="chart-wrap"><canvas id="wyVolYoY"></canvas><div class="chart-source">Top 5 operators by 2025 volume. Source: WOGCC, 2025.</div></div>
+</div>
+
+<!-- 6. Monthly -->
+<div class="section-block">
+  <div class="eyebrow">Seasonality</div>
+  <h2>Spills by Month, 2025</h2>
+  <p>February was Wyoming's peak month with 119 spills. Winter months (January–March) accounted for a disproportionate share of incidents, likely reflecting freeze-thaw stress on pipelines and equipment. Spill frequency dropped steadily through spring and summer.</p>
+  <div class="chart-wrap"><canvas id="wyMonthChart"></canvas><div class="chart-source">Source: WOGCC, 2025. Filtered by report date.</div></div>
+</div>
+
+</main>
+<footer>
+  <div class="inner">
+    <img src="https://westernpriorities.org/images/CWP-logo-white.svg" alt="Center for Western Priorities" onerror="this.style.display='none'">
+    <p>Center for Western Priorities &middot; westernpriorities.org</p>
+    <p>Data: Wyoming Oil and Gas Conservation Commission (WOGCC), 2025</p>
+  </div>
+</footer>
+<script>
+const C={green:'#78b43c',blue4:'#4398b5',orange:'#d2781e',gold:'#96782d',teal:'#63c5d8',blue5:'#2f5b74',green2:'#84bb41',gray:'#9a9590',rule:'#e0ddd8',dark:'#2a2a28'};
+const SEQ=[C.green,C.blue4,C.orange,C.gold,C.teal];
+Chart.defaults.font={family:"'Open Sans',sans-serif",size:12};
+Chart.defaults.color=C.dark;
+
+new Chart('wyMatCount',{type:'bar',data:{labels:['Produced Water','Oil','Other'],datasets:[{data:[511,336,53],backgroundColor:[C.blue4,C.green,C.gold],borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},title:{display:true,text:'Number of Spills by Type',font:{family:"'Bitter',serif",size:14},color:C.dark},tooltip:{callbacks:{label:c=>` ${c.parsed.y} spills`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule}}}}});
+
+new Chart('wyMatVolume',{type:'bar',data:{labels:['Produced Water','Oil','Other'],datasets:[{data:[1185342,190808,53508],backgroundColor:[C.blue4,C.green,C.gold],borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},title:{display:true,text:'Volume Discharged (Gallons)',font:{family:"'Bitter',serif",size:14},color:C.dark},tooltip:{callbacks:{label:c=>` ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(1)+'M':(v/1000).toFixed(0)+'K'}}}}});
+
+
+new Chart('wyOpsCount',{type:'bar',data:{labels:['Crowheart','Continental','Contango','EOG','Amplify','Barn Owls','Merit','Devon'],datasets:[{label:'2024',data:[145,93,63,59,18,0,35,29],backgroundColor:C.blue4,borderRadius:2},{label:'2025',data:[102,95,61,46,33,32,30,30],backgroundColor:C.green,borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.x} spills`}}},scales:{x:{grid:{color:C.rule}},y:{ticks:{font:{size:11}}}}}});
+
+new Chart('wyOpsVolume',{type:'bar',data:{labels:['Merit','Continental','Contango','Barn Owls','Crowheart','Citation','Peak Powder River','Devon'],datasets:[{data:[303565,176964,133795,63888,61598,57750,55734,50232],backgroundColor:SEQ.concat([C.teal,C.blue5]),borderRadius:2}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x.toLocaleString()} gal`}}},scales:{x:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K gal'}},y:{ticks:{font:{size:11}}}}}});
+
+new Chart('wyVolYoY',{type:'bar',data:{labels:['Merit','Continental','Contango','Barn Owls','Crowheart'],datasets:[{label:'2024',data:[102751,143559,53126,36246,120847],backgroundColor:C.blue4,borderRadius:2},{label:'2025',data:[303565,176964,133795,63888,61598],backgroundColor:C.green,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}}}}});
+
+new Chart('wyMonthChart',{type:'bar',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],datasets:[{data:[92,119,80,66,57,52,57,52,58,46,47,60],backgroundColor:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].map(m=>m==='Feb'?C.blue5:C.blue4),borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y} spills`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule}}}}});
+
+function makeCountyMap(id,stateFips,fipsToName,data,metric,opts){
+  opts=opts||{};
+  const el=document.getElementById(id);if(!el)return;
+  const W=560,H=380;
+  const svg=d3.select('#'+id).attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%').style('display','block');
+  const maxVal=opts.max||Math.max(...Object.values(data),1);
+  const col=d3.scaleSequential([0,maxVal],['#eef4e8','#2f5b74']);
+  const par=el.parentElement;par.style.position='relative';
+  const tip=d3.select(par).append('div').style('position','absolute').style('pointer-events','none')
+    .style('background','rgba(30,38,36,.92)').style('color','#fff').style('padding','6px 10px')
+    .style('border-radius','4px').style('font-family',"'Open Sans',sans-serif").style('font-size','12px')
+    .style('white-space','nowrap').style('z-index','10').style('opacity',0);
+  d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json').then(us=>{
+    const all=topojson.feature(us,us.objects.counties);
+    const st=all.features.filter(f=>String(f.id).padStart(5,'0').startsWith(stateFips));
+    const proj=d3.geoAlbers().fitExtent([[10,10],[W-10,H-40]],{type:'FeatureCollection',features:st});
+    const path=d3.geoPath(proj);
+    svg.selectAll('path').data(st).join('path').attr('d',path)
+      .attr('fill',d=>{const n=fipsToName[String(d.id).padStart(5,'0')]||'';return col(data[n]||0);})
+      .attr('stroke','#fff').attr('stroke-width',.7)
+      .on('mouseover',function(ev,d){
+        const n=fipsToName[String(d.id).padStart(5,'0')]||'Unknown';
+        d3.select(this).attr('stroke','#2a2a28').attr('stroke-width',1.5);
+        tip.html('<strong>'+n+'</strong><br>'+(data[n]||0).toLocaleString()+' '+metric).style('opacity',1);
+      })
+      .on('mousemove',function(ev){
+        const r=el.getBoundingClientRect();
+        tip.style('left',(ev.clientX-r.left+12)+'px').style('top',(ev.clientY-r.top-40)+'px');
+      })
+      .on('mouseout',function(){d3.select(this).attr('stroke','#fff').attr('stroke-width',.7);tip.style('opacity',0);});
+    const lW=140,lH=7,lX=8,lY=H-24;
+    const defs=svg.append('defs');
+    const grad=defs.append('linearGradient').attr('id',id+'-g');
+    grad.append('stop').attr('offset','0%').attr('stop-color','#eef4e8');
+    grad.append('stop').attr('offset','100%').attr('stop-color','#2f5b74');
+    svg.append('rect').attr('x',lX).attr('y',lY).attr('width',lW).attr('height',lH).attr('fill','url(#'+id+'-g)');
+    svg.append('text').attr('x',lX).attr('y',lY-3).style('font-size','9px').style('font-family',"'Open Sans',sans-serif").style('fill','#9a9590').text('0');
+    svg.append('text').attr('x',lX+lW).attr('y',lY-3).attr('text-anchor','end').style('font-size','9px').style('font-family',"'Open Sans',sans-serif").style('fill','#9a9590').text(maxVal.toLocaleString()+' '+metric);
+  }).catch(e=>console.error('Map error:',e));
+}
+
+(function(){
+  const wyFips={'56001':'Albany','56003':'Big Horn','56005':'Campbell','56007':'Carbon','56009':'Converse','56011':'Crook','56013':'Fremont','56015':'Goshen','56017':'Hot Springs','56019':'Johnson','56021':'Laramie','56023':'Lincoln','56025':'Natrona','56027':'Niobrara','56029':'Park','56031':'Platte','56033':'Sheridan','56035':'Sublette','56037':'Sweetwater','56039':'Teton','56041':'Uinta','56043':'Washakie','56045':'Weston'};
+  const wy25={Converse:172,Campbell:137,Sweetwater:110,Carbon:83,Sublette:52,Natrona:34,Laramie:33,Fremont:29,'Hot Springs':28,Park:22,Johnson:18,Niobrara:8,Weston:6,Crook:4,Lincoln:2,Sheridan:2,Washakie:1};
+  const wy24={Converse:174,Campbell:144,Sweetwater:114,Carbon:73,Laramie:69,Sublette:40,Natrona:37,Fremont:24,'Hot Springs':21,Park:21,Johnson:20,Weston:14,Crook:11,Uinta:7,Washakie:7,Niobrara:6,'Big Horn':4,Lincoln:3,Albany:2,Sheridan:1};
+  const sharedMax=Math.max(...Object.values(wy24),...Object.values(wy25));
+  makeCountyMap('wyCountyMap2024','56',wyFips,wy24,'spills',{max:sharedMax});
+  makeCountyMap('wyCountyMap2025','56',wyFips,wy25,'spills',{max:sharedMax});
+})();
+</script>
+</body>
+</html>

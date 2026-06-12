@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oil and Gas Spills Tracker 2025 | Center for Western Priorities</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Open+Sans:wght@400;600&family=Raleway:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --cwp-green:    #78b43c;
+  --cwp-orange:   #d2781e;
+  --cwp-blue:     #5a87a5;
+  --cwp-gold:     #96782d;
+  --cwp-wordmark: #465050;
+  --cwp-green-2:  #84bb41;
+  --cwp-green-5:  #92c43f;
+  --cwp-blue-2:   #6789a3;
+  --cwp-blue-3:   #3d759b;
+  --cwp-blue-4:   #4398b5;
+  --cwp-blue-5:   #2f5b74;
+  --cwp-blue-6:   #63c5d8;
+  --cwp-earth-1:  #998139;
+  --cwp-earth-3:  #cbbc41;
+  --cwp-orange-4: #e29f27;
+  --cwp-orange-5: #f09930;
+  --cwp-white:      #ffffff;
+  --cwp-off-white:  #f5f5f3;
+  --cwp-rule:       #e0ddd8;
+  --cwp-mid-gray:   #9a9590;
+  --cwp-dark:       #2a2a28;
+  --cwp-dark-bg:    #1e2624;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Source Sans 3', 'Open Sans', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--cwp-dark);
+  background: var(--cwp-white);
+}
+a { color: var(--cwp-blue-4); }
+
+/* ── Header ── */
+.site-header {
+  background: var(--cwp-blue-4);
+  padding: 32px 24px;
+}
+.site-header .inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.site-header img.logo { height: 52px; flex-shrink: 0; }
+.site-header .hd-text {}
+.site-header .eyebrow {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 4px;
+}
+.site-header h1 {
+  font-family: 'Bitter', Georgia, serif;
+  font-weight: 700;
+  font-size: 28px;
+  color: var(--cwp-white);
+  line-height: 1.2;
+}
+.site-header .meta {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 6px;
+}
+
+/* ── Main layout ── */
+.page { max-width: 960px; margin: 0 auto; padding: 48px 24px; }
+
+/* ── State section ── */
+.state-section { margin-bottom: 72px; }
+.state-header {
+  background: var(--cwp-dark-bg);
+  border-radius: 4px;
+  padding: 28px 32px;
+  margin-bottom: 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+}
+.state-header .state-label {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cwp-green);
+  margin-bottom: 6px;
+}
+.state-header h2 {
+  font-family: 'Bitter', Georgia, serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--cwp-white);
+  margin-bottom: 10px;
+}
+.state-header p {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.65;
+}
+.stat-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.stat-card {
+  flex: 1;
+  min-width: 160px;
+  background: var(--cwp-white);
+  border: 1px solid var(--cwp-rule);
+  border-top: 3px solid var(--cwp-green);
+  border-radius: 4px;
+  padding: 20px 20px 16px;
+}
+.stat-card.blue { border-top-color: var(--cwp-blue-4); }
+.stat-card.orange { border-top-color: var(--cwp-orange); }
+.stat-card .num {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--cwp-green);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-card.blue .num { color: var(--cwp-blue-4); }
+.stat-card.orange .num { color: var(--cwp-orange); }
+.stat-card .label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--cwp-mid-gray);
+}
+
+/* ── Section subheads ── */
+.section-block { margin-bottom: 48px; }
+.section-block .eyebrow {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cwp-green);
+  margin-bottom: 6px;
+}
+.section-block h3 {
+  font-family: 'Bitter', Georgia, serif;
+  font-weight: 600;
+  font-size: 21px;
+  color: var(--cwp-dark);
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--cwp-rule);
+  padding-bottom: 10px;
+}
+.section-block p {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 16px;
+  color: var(--cwp-dark);
+  margin-bottom: 12px;
+}
+
+/* ── Charts ── */
+.chart-wrap {
+  background: var(--cwp-off-white);
+  border-radius: 4px;
+  padding: 24px;
+  margin-top: 16px;
+}
+.chart-wrap canvas { max-height: 320px; }
+.chart-source {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  color: var(--cwp-mid-gray);
+  margin-top: 10px;
+}
+
+/* two-col charts */
+.chart-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+.chart-pair .chart-wrap { margin-top: 0; }
+
+/* ── Callout box ── */
+.callout {
+  background: var(--cwp-off-white);
+  border-left: 3px solid var(--cwp-blue-4);
+  border-radius: 0 4px 4px 0;
+  padding: 16px 20px;
+  margin: 16px 0 24px;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+}
+.callout strong { color: var(--cwp-blue-5); }
+
+/* ── Footer ── */
+footer {
+  background: var(--cwp-dark-bg);
+  padding: 28px 24px;
+  text-align: center;
+}
+footer .inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+footer img.logo { height: 36px; opacity: 0.85; }
+footer p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: var(--cwp-mid-gray);
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <div class="inner">
+    <img class="logo" src="https://westernpriorities.org/images/CWP-logo-white.svg" alt="Center for Western Priorities" onerror="this.style.display='none'">
+    <div class="hd-text">
+      <div class="eyebrow">Center for Western Priorities</div>
+      <h1>Oil and Gas Spills Tracker 2025</h1>
+      <div class="meta">Colorado &amp; Wyoming &nbsp;|&nbsp; Data through December 31, 2025</div>
+    </div>
+  </div>
+</header>
+
+<main class="page">
+
+<!-- ═══════════════════════════════════════════════
+     COLORADO
+════════════════════════════════════════════════ -->
+<section class="state-section" id="colorado">
+  <div class="state-header">
+    <div>
+      <div class="state-label">State Report</div>
+      <h2>Colorado</h2>
+      <p>Colorado reported 338 oil and gas spills in 2025, continuing a trend of elevated spill totals since 2016. Weld County, home to the Denver-Julesburg Basin, accounted for half of all reported incidents. Two operators with recent acquisitions, QB Energy and TEP Rocky Mountain, drove dramatic year-over-year increases in both spill counts and volumes.</p>
+    </div>
+  </div>
+
+  <!-- Stat cards -->
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">338</div>
+      <div class="label">Total Spills in 2025</div>
+    </div>
+    <div class="stat-card blue">
+      <div class="num">-40</div>
+      <div class="label">Change from 2024 (378)</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">794K</div>
+      <div class="label">Gallons Spilled in 2025</div>
+    </div>
+    <div class="stat-card orange">
+      <div class="num">3,892</div>
+      <div class="label">Total Spills Since 2014</div>
+    </div>
+  </div>
+
+  <!-- Chart 1: Spills per year trend -->
+  <div class="section-block">
+    <div class="eyebrow">Trend</div>
+    <h3>Colorado Spills Per Year, 2014–2025</h3>
+    <p>Colorado's annual spill count spiked in 2017 and has remained elevated. After a dip during the COVID-19 slowdown in 2020, reports climbed back above 400 before declining slightly in 2024 and 2025. The state has recorded nearly 3,900 spills since 2014.</p>
+    <div class="chart-wrap">
+      <canvas id="coYearChart"></canvas>
+      <div class="chart-source">Source: Colorado Oil and Gas Conservation Commission (COGCC), 2025. Spill Type: Recent.</div>
+    </div>
+  </div>
+
+  <!-- Chart 2: Volume per year -->
+  <div class="section-block">
+    <div class="eyebrow">Volume</div>
+    <h3>Total Volume Spilled Per Year (Gallons), 2021–2025</h3>
+    <p>Volume data is a minimum estimate based on disclosed amounts. 2022 saw the highest reported volume at 1.46 million gallons. After a sharp decline in 2024, volumes rebounded in 2025, driven largely by a single large spill associated with QB Energy.</p>
+    <div class="callout">
+      <strong>Note:</strong> Volume figures reflect the minimum amount reported to COGCC. Many spills list an unknown volume. They are most useful for comparing relative impact across operators and years, not as a precise environmental measure.
+    </div>
+    <div class="chart-wrap">
+      <canvas id="coVolumeChart"></canvas>
+      <div class="chart-source">Source: COGCC, 2025.</div>
+    </div>
+  </div>
+
+  <!-- Chart 3: Top 5 operators (donut) + Chart 4: All operators (bar) -->
+  <div class="section-block">
+    <div class="eyebrow">Operators</div>
+    <h3>Spills by Operator, 2025</h3>
+    <p>The top five operators accounted for 45% of all 2025 spills. QB Energy, formed in 2024 to acquire Caerus Oil and Gas assets, led all operators with 46 spills. Kerr McGee and PDC Energy, both long-established legacy operators, reported the second and third most spills.</p>
+    <div class="chart-pair">
+      <div class="chart-wrap">
+        <canvas id="coTop5Donut"></canvas>
+        <div class="chart-source">Top 5 vs. all others. Source: COGCC, 2025.</div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="coOperatorsBar"></canvas>
+        <div class="chart-source">Top 15 operators by spill count. Source: COGCC, 2025.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart 5: By county -->
+  <div class="section-block">
+    <div class="eyebrow">Geography</div>
+    <h3>Spills by County, 2025</h3>
+    <p>Weld County recorded 170 spills, accounting for 50% of Colorado's total. Garfield County in the Piceance Basin was second with 61. The remaining spills were spread across 19 additional counties.</p>
+    <div class="chart-wrap">
+      <canvas id="coCountyChart"></canvas>
+      <div class="chart-source">Counties with at least one reported spill. Source: COGCC, 2025.</div>
+    </div>
+  </div>
+
+  <!-- Chart 6: Surface owner (donut) -->
+  <div class="section-block">
+    <div class="eyebrow">Land Ownership</div>
+    <h3>Spills by Surface Owner, 2025</h3>
+    <p>81% of spills occurred on private land, reflecting the concentration of DJ Basin drilling in areas with private surface ownership. 10% occurred on federal land managed by the Bureau of Land Management or US Forest Service.</p>
+    <div class="chart-wrap" style="max-width:420px;">
+      <canvas id="coSurfaceOwner"></canvas>
+      <div class="chart-source">Source: COGCC, 2025.</div>
+    </div>
+  </div>
+
+  <!-- Chart 7: Oil size + Chart 8: Produced water size -->
+  <div class="section-block">
+    <div class="eyebrow">Spill Size</div>
+    <h3>Spill Size Distribution, 2025</h3>
+    <p>Most oil spills were small, under five barrels. The majority of produced water spills also fell in the one-to-100-barrel range. A meaningful share of both substances list an unknown volume, reflecting gaps in self-reported disclosure.</p>
+    <div class="chart-pair">
+      <div class="chart-wrap">
+        <canvas id="coOilSize"></canvas>
+        <div class="chart-source">Oil spills by size (barrels). Source: COGCC, 2025.</div>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="coWaterSize"></canvas>
+        <div class="chart-source">Produced water spills by size (barrels). Source: COGCC, 2025.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart 9: Operator volume year-over-year -->
+  <div class="section-block">
+    <div class="eyebrow">Year-Over-Year</div>
+    <h3>Volume Spilled by Top Operators: 2024 vs. 2025 (Gallons)</h3>
+    <p>TEP Rocky Mountain and Laramie Energy both saw large volume increases in 2025. Scout Energy and Caerus Piceance saw substantial decreases. QB Energy, absent from 2024 data due to its formation that year, reported 445,000 gallons in 2025.</p>
+    <div class="chart-wrap">
+      <canvas id="coOpVolumeYY"></canvas>
+      <div class="chart-source">Operators with significant activity in 2024 or 2025. Source: COGCC, 2025.</div>
+    </div>
+  </div>
+
+  <!-- Chart 10: Biggest volume increases -->
+  <div class="section-block">
+    <div class="eyebrow">Year-Over-Year</div>
+    <h3>Biggest Volume Increases, 2024–2025 (Gallons)</h3>
+    <p>TEP Rocky Mountain LLC, which acquired Terra Energy Partners' Piceance Basin assets, led all operators in volume increase. Laramie Energy and NGL Water Solutions DJ also saw notable jumps.</p>
+    <div class="chart-wrap">
+      <canvas id="coIncreases"></canvas>
+      <div class="chart-source">Source: COGCC, 2025.</div>
+    </div>
+  </div>
+
+  <!-- Chart 11: Biggest volume decreases -->
+  <div class="section-block">
+    <div class="eyebrow">Year-Over-Year</div>
+    <h3>Biggest Volume Decreases, 2024–2025 (Gallons)</h3>
+    <p>Scout Energy Management LLC reduced its reported volume by more than 98,000 gallons. Caerus Piceance LLC, the predecessor company to QB Energy in the Piceance Basin, reported a near-total drop as operations transitioned.</p>
+    <div class="chart-wrap">
+      <canvas id="coDecreases"></canvas>
+      <div class="chart-source">Source: COGCC, 2025.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     WYOMING
+════════════════════════════════════════════════ -->
+<section class="state-section" id="wyoming">
+  <div class="state-header">
+    <div>
+      <div class="state-label">State Report</div>
+      <h2>Wyoming</h2>
+      <p>Wyoming reported 786 oil and gas spills in 2025, a slight decrease from 825 in 2024. Converse and Campbell counties, home to the Powder River Basin, led all counties. Merit Energy Company was the top spiller by volume with more than 300,000 gallons of oil and produced water discharged.</p>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="num">786</div>
+      <div class="label">Total Spills in 2025</div>
+    </div>
+    <div class="stat-card blue">
+      <div class="num">-39</div>
+      <div class="label">Change from 2024 (825)</div>
+    </div>
+    <div class="stat-card">
+      <div class="num">191K</div>
+      <div class="label">Gallons of Oil Spilled</div>
+    </div>
+    <div class="stat-card orange">
+      <div class="num">1.19M</div>
+      <div class="label">Gallons of Produced Water Spilled</div>
+    </div>
+  </div>
+
+  <!-- Chart 12: WY by county (grouped bar 2024 vs 2025) -->
+  <div class="section-block">
+    <div class="eyebrow">Geography</div>
+    <h3>Spills by County: 2024 vs. 2025</h3>
+    <p>Converse County leads Wyoming in reported spill incidents, followed closely by Campbell County. Both counties sit atop the Powder River Basin, Wyoming's most active oil-producing region. Laramie County fell sharply from 69 to 33 spills. Carbon County increased from 73 to 83.</p>
+    <div class="chart-wrap">
+      <canvas id="wyCountyChart"></canvas>
+      <div class="chart-source">Top counties by 2025 spill count. Source: Wyoming Oil and Gas Conservation Commission (WOGCC), 2025.</div>
+    </div>
+  </div>
+
+  <!-- Chart 13: WY top operators by count -->
+  <div class="section-block">
+    <div class="eyebrow">Operators</div>
+    <h3>Top Operators by Number of Spills, 2025</h3>
+    <p>Crowheart led Wyoming operators with 102 spills, down from 145 in 2024. Continental reported 95 spills, up slightly from 93. EOG Resources ranked fourth with 46 spills, down from 59. Amplify nearly doubled its reported incident count year-over-year.</p>
+    <div class="chart-wrap">
+      <canvas id="wyOpsCount"></canvas>
+      <div class="chart-source">Source: WOGCC, 2025.</div>
+    </div>
+  </div>
+
+  <!-- Chart 14: WY top operators by volume -->
+  <div class="section-block">
+    <div class="eyebrow">Volume</div>
+    <h3>Top Operators by Volume Spilled, 2025 (Gallons)</h3>
+    <p>Merit reported the highest volume at 303,565 gallons despite ranking seventh in spill count, reflecting a small number of large incidents. Continental ranked second at 177,000 gallons and Contango third at 134,000. Barn Owls Operating, which ranked sixth in spill count, reported nearly 64,000 gallons.</p>
+    <div class="chart-wrap">
+      <canvas id="wyOpsVolume"></canvas>
+      <div class="chart-source">Combined oil, produced water, and other discharged volumes. Source: WOGCC, 2025.</div>
+    </div>
+  </div>
+
+  <!-- Chart 15: WY by month -->
+  <div class="section-block">
+    <div class="eyebrow">Seasonality</div>
+    <h3>Spills by Month, 2025</h3>
+    <p>February was Wyoming's peak month with 119 reported spills. Winter months (January-March) accounted for a disproportionate share, likely reflecting freeze-thaw stress on pipelines and production equipment. Spill frequency dropped consistently through spring and summer before recovering slightly in December.</p>
+    <div class="chart-wrap">
+      <canvas id="wyMonthChart"></canvas>
+      <div class="chart-source">Source: WOGCC, 2025.</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Methodology note -->
+<div class="section-block">
+  <div class="eyebrow">About This Report</div>
+  <h3>Methodology</h3>
+  <p>Colorado data is sourced from the Colorado Oil and Gas Conservation Commission's Spills database (Spills.zip, downloaded June 2025). Only spills categorized as "Recent" are included; "Historical" spills reported under Colorado's retroactive disclosure program are analyzed separately. Wyoming data was provided by the Wyoming Oil and Gas Conservation Commission upon request.</p>
+  <p>Volume figures represent the minimum amount reported by operators. Spills with unknown volumes are included in counts but excluded from volume calculations. New Mexico data was not available at time of publication.</p>
+  <p>Year-over-year comparisons for operators reflect company name standardization performed in the CWP Oil and Gas Spills Tracker notebook. Companies that merged or changed names may appear under their current or most common name.</p>
+</div>
+
+</main>
+
+<footer>
+  <div class="inner">
+    <img class="logo" src="https://westernpriorities.org/images/CWP-logo-white.svg" alt="Center for Western Priorities" onerror="this.style.display='none'">
+    <p>Center for Western Priorities &middot; westernpriorities.org</p>
+    <p>Data: Colorado Oil and Gas Conservation Commission; Wyoming Oil and Gas Conservation Commission</p>
+  </div>
+</footer>
+
+<script>
+const CWP = {
+  green:   '#78b43c',
+  blue4:   '#4398b5',
+  orange:  '#d2781e',
+  gold:    '#96782d',
+  teal:    '#63c5d8',
+  blue5:   '#2f5b74',
+  green2:  '#84bb41',
+  orange5: '#f09930',
+  midGray: '#9a9590',
+  dark:    '#2a2a28',
+  rule:    '#e0ddd8',
+};
+const SEQ5 = [CWP.green, CWP.blue4, CWP.orange, CWP.gold, CWP.teal];
+
+const defaultFont = { family: "'Open Sans', sans-serif", size: 12, color: CWP.dark };
+Chart.defaults.font = defaultFont;
+Chart.defaults.color = CWP.dark;
+
+function barOpts(indexAxis='x') {
+  return {
+    indexAxis,
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: { legend: { display: false }, tooltip: { callbacks: {} } },
+    scales: {
+      x: { grid: { color: CWP.rule }, ticks: { font: { size: 11 } } },
+      y: { grid: { display: indexAxis === 'x' }, ticks: { font: { size: 11 } } }
+    }
+  };
+}
+
+// ── CO Chart 1: Spills per year ──────────────────────────────────────────
+new Chart(document.getElementById('coYearChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2014','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+    datasets: [{
+      label: 'Spills',
+      data: [2, 248, 437, 400, 455, 349, 409, 457, 419, 378, 338],
+      backgroundColor: ['2014','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'].map(
+        y => y === '2025' ? CWP.blue5 : CWP.blue4
+      ),
+      borderRadius: 2,
+    }]
+  },
+  options: {
+    ...barOpts(),
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y} spills` } }
+    }
+  }
+});
+
+// ── CO Chart 2: Volume per year ──────────────────────────────────────────
+new Chart(document.getElementById('coVolumeChart'), {
+  type: 'bar',
+  data: {
+    labels: ['2021','2022','2023','2024','2025'],
+    datasets: [{
+      label: 'Gallons Spilled',
+      data: [723744, 1460340, 1050714, 436128, 794472],
+      backgroundColor: ['2021','2022','2023','2024','2025'].map(
+        y => y === '2025' ? CWP.green : CWP.green2
+      ),
+      borderRadius: 2,
+    }]
+  },
+  options: {
+    ...barOpts(),
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y.toLocaleString()} gallons` } }
+    },
+    scales: {
+      x: { grid: { color: CWP.rule } },
+      y: { grid: { color: CWP.rule }, ticks: { callback: v => (v/1e6).toFixed(2) + 'M gal' } }
+    }
+  }
+});
+
+// ── CO Chart 3: Top 5 donut ──────────────────────────────────────────────
+new Chart(document.getElementById('coTop5Donut'), {
+  type: 'doughnut',
+  data: {
+    labels: ['QB Energy Operating','Kerr McGee','PDC Energy','Noble','TEP Rocky Mountain','Other'],
+    datasets: [{
+      data: [46, 35, 30, 29, 15, 187],
+      backgroundColor: [...SEQ5, CWP.midGray],
+      borderWidth: 1, borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 14 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed} spills` } }
+    }
+  }
+});
+
+// ── CO Chart 4: All operators bar ────────────────────────────────────────
+new Chart(document.getElementById('coOperatorsBar'), {
+  type: 'bar',
+  data: {
+    labels: ['QB Energy Operating','Kerr McGee','PDC Energy Inc','Noble','TEP Rocky Mountain','DCP Operating','Bison IV Operating','KP Kauffman','Laramie Energy','Fulcrum Energy'],
+    datasets: [{
+      data: [46, 35, 30, 29, 15, 13, 13, 13, 11, 8],
+      backgroundColor: CWP.blue4,
+      borderRadius: 2,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: true,
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x} spills` } }
+    },
+    scales: {
+      x: { grid: { color: CWP.rule }, ticks: { font: { size: 11 } } },
+      y: { ticks: { font: { size: 10 } } }
+    }
+  }
+});
+
+// ── CO Chart 5: By county ────────────────────────────────────────────────
+new Chart(document.getElementById('coCountyChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Weld','Garfield','Adams','Rio Blanco','La Plata','Jackson','Las Animas','Mesa','Yuma','Cheyenne','Moffat','Logan','Washington','Arapahoe','Montezuma','Kiowa','Elbert','Gunnison','Larimer','Phillips','San Miguel'],
+    datasets: [{
+      data: [170, 61, 20, 19, 11, 9, 8, 7, 7, 6, 4, 2, 2, 3, 2, 2, 1, 1, 1, 1, 1],
+      backgroundColor: CWP.green,
+      borderRadius: 2,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x} spills` } }
+    },
+    scales: {
+      x: { grid: { color: CWP.rule } },
+      y: { ticks: { font: { size: 11 } } }
+    }
+  },
+});
+document.getElementById('coCountyChart').parentElement.style.maxHeight = '420px';
+document.getElementById('coCountyChart').style.maxHeight = '420px';
+
+// ── CO Chart 6: Surface owner ────────────────────────────────────────────
+new Chart(document.getElementById('coSurfaceOwner'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Private','Federal','Other','State','Tribal'],
+    datasets: [{
+      data: [276, 33, 23, 7, 1],
+      backgroundColor: SEQ5,
+      borderWidth: 1, borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'right', labels: { font: { size: 12 }, boxWidth: 14 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed} spills` } }
+    }
+  }
+});
+
+// ── CO Chart 7: Oil spill size ───────────────────────────────────────────
+new Chart(document.getElementById('coOilSize'), {
+  type: 'doughnut',
+  data: {
+    labels: ['<1 bbl','1–5 bbls','5–100 bbls','>100 bbls','Unknown'],
+    datasets: [{
+      data: [30, 32, 35, 1, 57],
+      backgroundColor: [CWP.green, CWP.blue4, CWP.orange, CWP.gold, CWP.midGray],
+      borderWidth: 1, borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      title: { display: true, text: 'Oil Spills', font: { family: "'Bitter', serif", size: 14 }, color: CWP.dark },
+      legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 12 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}` } }
+    }
+  }
+});
+
+// ── CO Chart 8: Produced water size ─────────────────────────────────────
+new Chart(document.getElementById('coWaterSize'), {
+  type: 'doughnut',
+  data: {
+    labels: ['<1 bbl','1–5 bbls','5–100 bbls','>100 bbls','Unknown'],
+    datasets: [{
+      data: [16, 47, 74, 13, 106],
+      backgroundColor: [CWP.green, CWP.blue4, CWP.orange, CWP.gold, CWP.midGray],
+      borderWidth: 1, borderColor: '#fff'
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      title: { display: true, text: 'Produced Water Spills', font: { family: "'Bitter', serif", size: 14 }, color: CWP.dark },
+      legend: { position: 'right', labels: { font: { size: 11 }, boxWidth: 12 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.parsed}` } }
+    }
+  }
+});
+
+// ── CO Chart 9: Operator volume year-over-year ───────────────────────────
+new Chart(document.getElementById('coOpVolumeYY'), {
+  type: 'bar',
+  data: {
+    labels: ['Scout Energy','Caerus Piceance','Kerr McGee','PDC Energy Inc','Fulcrum Energy','Fundare Resources','TEP Rocky Mountain','Noble','Laramie Energy','NGL Water Solutions'],
+    datasets: [
+      { label: '2024', data: [155526, 49518, 26502, 32046, 11592, 24570, 4200, 16422, 8484, 14700], backgroundColor: CWP.blue4, borderRadius: 2 },
+      { label: '2025', data: [57078, 714, 25494, 26208, 4536, 8064, 67284, 28476, 42210, 31458], backgroundColor: CWP.green, borderRadius: 2 }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 12 }, boxWidth: 12 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.x.toLocaleString()} gal` } }
+    },
+    scales: {
+      x: { grid: { color: CWP.rule }, ticks: { callback: v => (v/1000).toFixed(0) + 'K' } },
+      y: { ticks: { font: { size: 10 } } }
+    }
+  }
+});
+document.getElementById('coOpVolumeYY').parentElement.style.maxHeight = '380px';
+document.getElementById('coOpVolumeYY').style.maxHeight = '380px';
+
+// ── CO Chart 10: Biggest increases ───────────────────────────────────────
+new Chart(document.getElementById('coIncreases'), {
+  type: 'bar',
+  data: {
+    labels: ['TEP Rocky Mountain','Laramie Energy','NGL Water Solutions DJ','Noble','DCP Operating Company'],
+    datasets: [{
+      data: [63084, 33726, 16758, 12054, 3864],
+      backgroundColor: CWP.green,
+      borderRadius: 2,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` +${ctx.parsed.x.toLocaleString()} gal` } }
+    },
+    scales: {
+      x: { grid: { color: CWP.rule }, ticks: { callback: v => (v/1000).toFixed(0) + 'K gal' } },
+      y: { ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// ── CO Chart 11: Biggest decreases ───────────────────────────────────────
+new Chart(document.getElementById('coDecreases'), {
+  type: 'bar',
+  data: {
+    labels: ['Scout Energy Management','Caerus Piceance','Fundare Resources Operating','Citation Oil & Gas Corp','Fulcrum Energy Operating'],
+    datasets: [{
+      data: [98448, 48804, 16506, 11718, 7056],
+      backgroundColor: CWP.orange,
+      borderRadius: 2,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` -${ctx.parsed.x.toLocaleString()} gal` } }
+    },
+    scales: {
+      x: { grid: { color: CWP.rule }, ticks: { callback: v => '-' + (v/1000).toFixed(0) + 'K gal' } },
+      y: { ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// ── WY Chart 12: By county 2024 vs 2025 ─────────────────────────────────
+new Chart(document.getElementById('wyCountyChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Converse','Campbell','Sweetwater','Carbon','Sublette','Laramie','Natrona','Fremont','Hot Springs'],
+    datasets: [
+      { label: '2024', data: [174, 144, 114, 73, 40, 69, 37, 24, 21], backgroundColor: CWP.blue4, borderRadius: 2 },
+      { label: '2025', data: [172, 137, 110, 83, 52, 33, 34, 29, 28], backgroundColor: CWP.green, borderRadius: 2 }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 12 }, boxWidth: 12 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.y} spills` } }
+    },
+    scales: {
+      x: { grid: { display: false } },
+      y: { grid: { color: CWP.rule } }
+    }
+  }
+});
+
+// ── WY Chart 13: Top operators by count ─────────────────────────────────
+new Chart(document.getElementById('wyOpsCount'), {
+  type: 'bar',
+  data: {
+    labels: ['Crowheart','Continental','Contango','EOG','Amplify','Barn Owls','Merit','Devon'],
+    datasets: [
+      { label: '2024', data: [145, 93, 63, 59, 18, 0, 35, 29], backgroundColor: CWP.blue4, borderRadius: 2 },
+      { label: '2025', data: [102, 95, 61, 46, 33, 32, 30, 30], backgroundColor: CWP.green, borderRadius: 2 }
+    ]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 12 }, boxWidth: 12 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.parsed.x} spills` } }
+    },
+    scales: {
+      x: { grid: { color: CWP.rule } },
+      y: { ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// ── WY Chart 14: Top operators by volume ─────────────────────────────────
+new Chart(document.getElementById('wyOpsVolume'), {
+  type: 'bar',
+  data: {
+    labels: ['Merit','Continental','Contango','Barn Owls','Crowheart','Citation','Peak Powder River','Devon'],
+    datasets: [{
+      data: [303565, 176964, 133795, 63888, 61598, 57750, 55734, 50232],
+      backgroundColor: SEQ5.slice(0, 6),
+      borderRadius: 2,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.x.toLocaleString()} gal` } }
+    },
+    scales: {
+      x: { grid: { color: CWP.rule }, ticks: { callback: v => (v/1000).toFixed(0) + 'K gal' } },
+      y: { ticks: { font: { size: 11 } } }
+    }
+  }
+});
+
+// ── WY Chart 15: By month ─────────────────────────────────────────────────
+new Chart(document.getElementById('wyMonthChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    datasets: [{
+      label: 'Spills',
+      data: [92, 119, 80, 66, 57, 52, 57, 52, 58, 46, 47, 60],
+      backgroundColor: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].map(
+        m => m === 'Feb' ? CWP.blue5 : CWP.blue4
+      ),
+      borderRadius: 2,
+    }]
+  },
+  options: {
+    ...barOpts(),
+    plugins: { legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.parsed.y} spills` } }
+    }
+  }
+});
+</script>
+</body>
+</html>

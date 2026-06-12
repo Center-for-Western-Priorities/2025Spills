@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New Mexico Oil and Gas Spills 2025 | Center for Western Priorities</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Open+Sans:wght@400;600&family=Raleway:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<style>
+:root {
+  --cwp-green:#78b43c; --cwp-orange:#d2781e; --cwp-gold:#96782d;
+  --cwp-green-2:#84bb41; --cwp-blue-4:#4398b5; --cwp-blue-5:#2f5b74; --cwp-teal:#63c5d8;
+  --cwp-white:#ffffff; --cwp-off-white:#f5f5f3; --cwp-rule:#e0ddd8;
+  --cwp-mid-gray:#9a9590; --cwp-dark:#2a2a28; --cwp-dark-bg:#1e2624;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3','Open Sans',system-ui,sans-serif;font-size:17px;line-height:1.7;color:var(--cwp-dark);background:#fff}
+.site-header{background:var(--cwp-blue-4);padding:32px 24px}
+.site-header .inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:24px}
+.site-header img{height:48px;flex-shrink:0}
+.site-header .eyebrow{font-family:'Open Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:4px}
+.site-header h1{font-family:'Bitter',Georgia,serif;font-weight:700;font-size:28px;color:#fff;line-height:1.2}
+.site-header .meta{font-family:'Open Sans',sans-serif;font-size:13px;color:rgba(255,255,255,.65);margin-top:6px}
+.page{max-width:960px;margin:0 auto;padding:48px 24px}
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:40px}
+.stat-card{flex:1;min-width:150px;background:#fff;border:1px solid var(--cwp-rule);border-top:3px solid var(--cwp-green);border-radius:4px;padding:20px 20px 16px}
+.stat-card.blue{border-top-color:var(--cwp-blue-4)}
+.stat-card.orange{border-top-color:var(--cwp-orange)}
+.stat-card.gold{border-top-color:var(--cwp-gold)}
+.stat-card .num{font-family:'Raleway',sans-serif;font-weight:700;font-size:28px;color:var(--cwp-green);line-height:1;margin-bottom:4px}
+.stat-card.blue .num{color:var(--cwp-blue-4)}
+.stat-card.orange .num{color:var(--cwp-orange)}
+.stat-card.gold .num{color:var(--cwp-gold)}
+.stat-card .label{font-family:'Open Sans',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--cwp-mid-gray)}
+.section-block{margin-bottom:48px}
+.section-block .eyebrow{font-family:'Open Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cwp-green);margin-bottom:6px}
+.section-block h2{font-family:'Bitter',Georgia,serif;font-weight:600;font-size:21px;color:var(--cwp-dark);margin-bottom:16px;border-bottom:1px solid var(--cwp-rule);padding-bottom:10px}
+.section-block p{font-family:'Source Sans 3',sans-serif;font-size:16px;color:var(--cwp-dark);margin-bottom:12px}
+.chart-wrap{background:var(--cwp-off-white);border-radius:4px;padding:24px;margin-top:16px}
+.chart-wrap canvas{max-height:320px}
+.chart-source{font-family:'Open Sans',sans-serif;font-size:11px;color:var(--cwp-mid-gray);margin-top:10px}
+.chart-pair{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.chart-pair .chart-wrap{margin-top:0}
+.callout{background:var(--cwp-off-white);border-left:3px solid var(--cwp-blue-4);border-radius:0 4px 4px 0;padding:16px 20px;margin:16px 0 24px;font-family:'Source Sans 3',sans-serif;font-size:15px}
+.callout strong{color:var(--cwp-blue-5)}
+footer{background:var(--cwp-dark-bg);padding:28px 24px;text-align:center}
+footer .inner{max-width:960px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:12px}
+footer img{height:36px;opacity:.85}
+footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-gray)}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <img src="https://westernpriorities.org/images/CWP-logo-white.svg" alt="Center for Western Priorities" onerror="this.style.display='none'">
+    <div>
+      <div class="eyebrow">Center for Western Priorities &middot; Oil and Gas Spills Tracker 2025</div>
+      <h1>New Mexico Spills Report 2025</h1>
+      <div class="meta">Source: New Mexico Oil Conservation Division (OCD) &nbsp;|&nbsp; Incidents with date January 1 – December 31, 2025</div>
+    </div>
+  </div>
+</header>
+<main class="page">
+
+<div class="stat-row">
+  <div class="stat-card"><div class="num">38,364</div><div class="label">Total Incidents in 2025</div></div>
+  <div class="stat-card blue"><div class="num">1,329</div><div class="label">Liquid Spills</div></div>
+  <div class="stat-card orange"><div class="num">37,035</div><div class="label">Gas Releases</div></div>
+  <div class="stat-card gold"><div class="num">5.38M</div><div class="label">Gallons of Liquid Spilled</div></div>
+</div>
+
+<div class="callout">
+  <strong>New Mexico tracks two types of incidents:</strong> liquid spills (produced water, crude oil, condensate) and gas releases (natural gas vented or flared). Gas releases dominate the count. Liquid and gas totals are analyzed separately throughout this report.
+</div>
+
+<!-- 1. Trend since 2022 -->
+<div class="section-block">
+  <div class="eyebrow">Trend</div>
+  <h2>Total Incidents Per Year, 2022–2025</h2>
+  <p>New Mexico reported 38,364 incidents in 2025, down from 42,213 in 2024 and well below the 2023 peak of 54,622. The 2023 spike reflected expanded reporting requirements. Incidents include both liquid spills and gas (vented/flared) releases.</p>
+  <div class="chart-wrap"><canvas id="nmTrendChart"></canvas><div class="chart-source">Source: New Mexico OCD, 2022–2025. Deduped by Incident Number.</div></div>
+</div>
+
+<!-- 2. Liquid vs gas breakdown -->
+<div class="section-block">
+  <div class="eyebrow">By Type</div>
+  <h2>Incident Type and Volume, 2025</h2>
+  <p>Liquid spills totaled 1,329 incidents and 5.38 million gallons. Gas releases totaled 37,035 incidents and 9.4 billion cubic feet. Produced water was the most common liquid spilled; natural gas flaring accounted for the vast majority of gas volume.</p>
+  <div class="chart-pair">
+    <div class="chart-wrap"><canvas id="nmLiquidMat"></canvas><div class="chart-source">Liquid spills by material (gallons). Source: NM OCD, 2025.</div></div>
+    <div class="chart-wrap"><canvas id="nmGasMat"></canvas><div class="chart-source">Gas releases by material (billion cubic feet). Source: NM OCD, 2025.</div></div>
+  </div>
+</div>
+
+<!-- 3. Causes of liquid spills -->
+<div class="section-block">
+  <div class="eyebrow">Causes</div>
+  <h2>Causes of Liquid Spills, 2025</h2>
+  <p>Equipment failure was the leading cause of liquid spills with 651 incidents (49%), followed by corrosion at 309 (23%). Human error accounted for 83 incidents. Together, equipment failure and corrosion represent nearly three-quarters of all liquid spills.</p>
+  <div class="chart-wrap" style="max-width:480px"><canvas id="nmLiqCauses"></canvas><div class="chart-source">Top 5 causes plus all others. Source: NM OCD, 2025.</div></div>
+</div>
+
+<!-- 4. Causes of gas releases -->
+<div class="section-block">
+  <div class="eyebrow">Causes</div>
+  <h2>Causes of Gas Releases, 2025</h2>
+  <p>High line pressure was the most common cause of gas releases with 9,003 incidents (24%), followed by equipment failure (8,383) and repair and maintenance (5,736). Midstream emergency maintenance accounted for 4,148 releases. Pipeline quality specifications issues totaled 2,647.</p>
+  <div class="chart-wrap" style="max-width:540px"><canvas id="nmGasCauses"></canvas><div class="chart-source">Top 5 causes plus all others. Source: NM OCD, 2025.</div></div>
+</div>
+
+<!-- 5. Spill sources -->
+<div class="section-block">
+  <div class="eyebrow">Sources</div>
+  <h2>Sources of All Incidents, 2025</h2>
+  <p>Producing wells were the most common incident source with 8,169 reports, followed by separators (5,990) and pipelines (5,008). Tanks of all types accounted for roughly 4,900 combined incidents.</p>
+  <div class="chart-wrap"><canvas id="nmSources"></canvas><div class="chart-source">Top 6 spill sources by incident count. Source: NM OCD, 2025.</div></div>
+</div>
+
+<!-- 6. Top liquid spillers -->
+<div class="section-block">
+  <div class="eyebrow">Operators</div>
+  <h2>Top Liquid Spillers: 2024 vs. 2025 (Gallons)</h2>
+  <p>Devon Energy Production led all operators with 1.02 million gallons of liquid spilled in 2025, up from 343,000 in 2024. EOG Resources ranked second at 460,000 gallons. OXY USA, which led in 2024 with 491,000 gallons, fell to sixth place in 2025 at 272,000.</p>
+  <div class="chart-wrap"><canvas id="nmLiqSpillers"></canvas><div class="chart-source">Top 6 operators by 2025 liquid volume. Source: NM OCD, 2025.</div></div>
+</div>
+
+<!-- 7. Top methane spillers -->
+<div class="section-block">
+  <div class="eyebrow">Methane Waste</div>
+  <h2>Top Methane Waste Operators: 2024 vs. 2025 (Billion Cubic Feet)</h2>
+  <p>EOG Resources led all operators in methane waste with 1.38 billion cubic feet in 2025, down slightly from 1.58 billion in 2024. Matador Production ranked second. Civitas Permian and Permian Resources Operating were new entrants to the top five.</p>
+  <div class="chart-wrap"><canvas id="nmMethaneSpillers"></canvas><div class="chart-source">Top 5 operators by 2025 methane volume (flared and vented). Source: NM OCD, 2025.</div></div>
+</div>
+
+<!-- 8. County liquid count + volume -->
+<div class="section-block">
+  <div class="eyebrow">Geography</div>
+  <h2>Liquid Spills by County, 2025</h2>
+  <p>Lea and Eddy counties in the Permian Basin dominated, accounting for nearly all liquid spills. Lea County recorded 605 incidents and 2.84 million gallons. Eddy County had 594 incidents and 2.22 million gallons. San Juan County in the northwest was a distant third.</p>
+  <div class="chart-pair">
+    <div class="chart-wrap"><svg id="nmCountyCount" viewBox="0 0 560 400" width="100%" style="display:block"></svg><div class="chart-source">Liquid spills by county (count). Source: NM OCD, 2025. Hover for details.</div></div>
+    <div class="chart-wrap"><svg id="nmCountyVol" viewBox="0 0 560 400" width="100%" style="display:block"></svg><div class="chart-source">Liquid volume by county (gallons). Source: NM OCD, 2025. Hover for details.</div></div>
+  </div>
+</div>
+
+<!-- 9. County gas releases -->
+<div class="section-block">
+  <div class="eyebrow">Geography</div>
+  <h2>Gas Releases by County, 2025</h2>
+  <p>Lea County reported 21,559 gas releases, more than all other counties combined. Eddy County had 14,935. The Permian Basin's two core counties accounted for 98% of all New Mexico gas release incidents.</p>
+  <div class="chart-wrap" style="max-width:540px"><svg id="nmGasCounty" viewBox="0 0 560 400" width="100%" style="display:block"></svg><div class="chart-source">Gas releases by county (incident count). Source: NM OCD, 2025. Hover for details.</div></div>
+</div>
+
+</main>
+<footer>
+  <div class="inner">
+    <img src="https://westernpriorities.org/images/CWP-logo-white.svg" alt="Center for Western Priorities" onerror="this.style.display='none'">
+    <p>Center for Western Priorities &middot; westernpriorities.org</p>
+    <p>Data: New Mexico Energy, Minerals and Natural Resources Department, Oil Conservation Division (OCD), 2025</p>
+  </div>
+</footer>
+<script>
+const C={green:'#78b43c',blue4:'#4398b5',orange:'#d2781e',gold:'#96782d',teal:'#63c5d8',blue5:'#2f5b74',green2:'#84bb41',gray:'#9a9590',rule:'#e0ddd8',dark:'#2a2a28'};
+const SEQ=[C.green,C.blue4,C.orange,C.gold,C.teal];
+Chart.defaults.font={family:"'Open Sans',sans-serif",size:12};
+Chart.defaults.color=C.dark;
+
+new Chart('nmTrendChart',{type:'bar',data:{labels:['2022','2023','2024','2025'],datasets:[{data:[42725,54622,42213,38364],backgroundColor:['2022','2023','2024','2025'].map(y=>y==='2025'?C.blue5:C.blue4),borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y.toLocaleString()} incidents`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}}}}});
+
+new Chart('nmLiquidMat',{type:'doughnut',data:{labels:['Produced Water','Crude Oil','Condensate','Other'],datasets:[{data:[4591944,667632,89250,36162],backgroundColor:SEQ,borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{title:{display:true,text:'Liquid Spills by Material (Gallons)',font:{family:"'Bitter',serif",size:13},color:C.dark},legend:{position:'right',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed.toLocaleString()} gal`}}}}});
+
+new Chart('nmGasMat',{type:'doughnut',data:{labels:['Flared','Vented','Other'],datasets:[{data:[9169760,208111,6243],backgroundColor:[C.orange,C.gold,C.gray],borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{title:{display:true,text:'Gas Releases by Material (Million CF)',font:{family:"'Bitter',serif",size:13},color:C.dark},legend:{position:'right',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.label}: ${(c.parsed/1000).toFixed(1)}B cf`}}}}});
+
+new Chart('nmLiqCauses',{type:'doughnut',data:{labels:['Equipment Failure','Corrosion','Human Error','Other','Overflow'],datasets:[{data:[651,309,83,73,53],backgroundColor:SEQ,borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}`}}}}});
+
+new Chart('nmGasCauses',{type:'bar',data:{labels:['High Line Pressure','Equipment Failure','Repair & Maintenance','Midstream Emergency','Pipeline Quality','Other'],datasets:[{data:[9003,8383,5736,4148,2647,7118],backgroundColor:[C.green,C.blue4,C.orange,C.gold,C.teal,C.gray],borderRadius:2}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x.toLocaleString()} incidents`}}},scales:{x:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}},y:{ticks:{font:{size:11}}}}}});
+
+new Chart('nmSources',{type:'bar',data:{labels:['Producing Well','Other','Separator','Pipeline','Tank (Any)','Gas Compressor Station'],datasets:[{data:[8169,7970,5990,5008,3479,3321],backgroundColor:[C.green,C.gray,C.blue4,C.orange,C.gold,C.teal],borderRadius:2}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x.toLocaleString()} incidents`}}},scales:{x:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}},y:{ticks:{font:{size:11}}}}}});
+
+new Chart('nmLiqSpillers',{type:'bar',data:{labels:['Devon Energy','EOG Resources','Solaris Water','XTO Energy','Matador','OXY USA'],datasets:[{label:'2024',data:[343140,0,0,254772,220080,490644],backgroundColor:C.blue4,borderRadius:2},{label:'2025',data:[1018752,460152,368130,335076,321594,272286],backgroundColor:C.green,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(2)+'M':(v/1000).toFixed(0)+'K'}}}}});
+
+new Chart('nmMethaneSpillers',{type:'bar',data:{labels:['EOG Resources','Matador','Civitas Permian','Permian Resources','XTO Permian'],datasets:[{label:'2024 (BCF)',data:[1.579,1.120,0,0.983,0.566],backgroundColor:C.blue4,borderRadius:2},{label:'2025 (BCF)',data:[1.380,1.357,0.902,0.666,0.593],backgroundColor:C.orange,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toFixed(3)} BCF`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>v.toFixed(1)+' BCF'}}}}});
+
+
+function makeCountyMap(id,stateFips,fipsToName,data,metric,opts){
+  opts=opts||{};
+  const el=document.getElementById(id);if(!el)return;
+  const W=560,H=400;
+  const svg=d3.select('#'+id).attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%').style('display','block');
+  const maxVal=opts.max||Math.max(...Object.values(data),1);
+  const col=d3.scaleSequential([0,maxVal],['#eef4e8','#2f5b74']);
+  const fmt=opts.fmt||(v=>v.toLocaleString()+' '+metric);
+  const par=el.parentElement;par.style.position='relative';
+  const tip=d3.select(par).append('div').style('position','absolute').style('pointer-events','none')
+    .style('background','rgba(30,38,36,.92)').style('color','#fff').style('padding','6px 10px')
+    .style('border-radius','4px').style('font-family',"'Open Sans',sans-serif").style('font-size','12px')
+    .style('white-space','nowrap').style('z-index','10').style('opacity',0);
+  d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json').then(us=>{
+    const all=topojson.feature(us,us.objects.counties);
+    const st=all.features.filter(f=>String(f.id).padStart(5,'0').startsWith(stateFips));
+    const proj=d3.geoAlbers().fitExtent([[10,10],[W-10,H-40]],{type:'FeatureCollection',features:st});
+    const path=d3.geoPath(proj);
+    svg.selectAll('path').data(st).join('path').attr('d',path)
+      .attr('fill',d=>{const n=fipsToName[String(d.id).padStart(5,'0')]||'';return col(data[n]||0);})
+      .attr('stroke','#fff').attr('stroke-width',.7)
+      .on('mouseover',function(ev,d){
+        const n=fipsToName[String(d.id).padStart(5,'0')]||'Unknown';
+        d3.select(this).attr('stroke','#2a2a28').attr('stroke-width',1.5);
+        tip.html('<strong>'+n+'</strong><br>'+fmt(data[n]||0)).style('opacity',1);
+      })
+      .on('mousemove',function(ev){
+        const r=el.getBoundingClientRect();
+        tip.style('left',(ev.clientX-r.left+12)+'px').style('top',(ev.clientY-r.top-40)+'px');
+      })
+      .on('mouseout',function(){d3.select(this).attr('stroke','#fff').attr('stroke-width',.7);tip.style('opacity',0);});
+    const lW=140,lH=7,lX=8,lY=H-22;
+    const defs=svg.append('defs');
+    const grad=defs.append('linearGradient').attr('id',id+'-g');
+    grad.append('stop').attr('offset','0%').attr('stop-color','#eef4e8');
+    grad.append('stop').attr('offset','100%').attr('stop-color','#2f5b74');
+    svg.append('rect').attr('x',lX).attr('y',lY).attr('width',lW).attr('height',lH).attr('fill','url(#'+id+'-g)');
+    svg.append('text').attr('x',lX).attr('y',lY-3).style('font-size','9px').style('font-family',"'Open Sans',sans-serif").style('fill','#9a9590').text('0');
+    svg.append('text').attr('x',lX+lW).attr('y',lY-3).attr('text-anchor','end').style('font-size','9px').style('font-family',"'Open Sans',sans-serif").style('fill','#9a9590').text(fmt(maxVal));
+  }).catch(e=>console.error('Map error:',e));
+}
+
+(function(){
+  const nmFips={'35001':'Bernalillo','35003':'Catron','35005':'Chaves','35006':'Cibola','35007':'Colfax','35009':'Curry','35011':'De Baca','35013':'Dona Ana','35015':'Eddy','35017':'Grant','35019':'Guadalupe','35021':'Harding','35023':'Hidalgo','35025':'Lea','35027':'Lincoln','35028':'Los Alamos','35029':'Luna','35031':'McKinley','35033':'Mora','35035':'Otero','35037':'Quay','35039':'Rio Arriba','35041':'Roosevelt','35043':'Sandoval','35045':'San Juan','35047':'San Miguel','35049':'Santa Fe','35051':'Sierra','35053':'Socorro','35055':'Taos','35057':'Torrance','35059':'Union','35061':'Valencia'};
+  const nmLiqCount={Eddy:890,Lea:870,'San Juan':87,'Rio Arriba':35,Chaves:4,Sandoval:3,Roosevelt:3,Union:2};
+  const nmLiqVol={Lea:1041983,Eddy:557452,'San Juan':199997,'Rio Arriba':21000,Sandoval:8652,Chaves:2058,Roosevelt:1932,Union:1008};
+  const nmGas={Lea:21464,Eddy:14667,Chaves:364,'San Juan':122,'Rio Arriba':72,Roosevelt:2,Otero:1,Torrance:1};
+  makeCountyMap('nmCountyCount','35',nmFips,nmLiqCount,'spills');
+  makeCountyMap('nmCountyVol','35',nmFips,nmLiqVol,'gal',{fmt:v=>v>=1e6?(v/1e6).toFixed(2)+' M gal':v>=1000?(v/1000).toFixed(1)+' K gal':v+' gal'});
+  makeCountyMap('nmGasCounty','35',nmFips,nmGas,'releases');
+})();
+</script>
+</body>
+</html>
