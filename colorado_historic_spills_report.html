@@ -346,7 +346,7 @@ body {
          onerror="this.style.display='none'">
     <p class="report-eyebrow">Data Analysis · Colorado Oil &amp; Gas</p>
     <h1 class="report-title">Colorado Historic Oil &amp; Gas Spills</h1>
-    <p class="report-subtitle">An analysis of 6,767 unique historical spill records from Colorado's ECMC database, deduplicated by tracking number.</p>
+    <p class="report-subtitle">An analysis of 6,084 unique historical spill records from Colorado's ECMC database, deduplicated by tracking number. Covers 2016–2025; excludes pre-2016 records and 2026-dated entries.</p>
     <p class="report-meta">Data source: COGCC / ECMC (ColoradoSpills.xlsm) &nbsp;·&nbsp; Spill type: Historical &nbsp;·&nbsp; Analysis prepared June 2026</p>
   </div>
 </header>
@@ -357,7 +357,7 @@ body {
   <div class="metrics">
     <div class="metric-card">
       <div class="label">Unique spills</div>
-      <div class="value">6,767</div>
+      <div class="value">6,084</div>
       <div class="sub">deduplicated by tracking #</div>
     </div>
     <div class="metric-card blue">
@@ -373,7 +373,7 @@ body {
     <div class="metric-card blue">
       <div class="label">Top operator</div>
       <div class="value">Noble</div>
-      <div class="sub">2,585 spills on record</div>
+      <div class="sub">2,301 spills on record</div>
     </div>
   </div>
 
@@ -385,7 +385,7 @@ body {
 
     <div class="chart-wrap">
       <p class="chart-title">Unique historical spills filed per year, 2016–2025</p>
-      <p class="chart-note">Unique spills by date of discovery, deduplicated by tracking number. 2026 excluded as a partial year.</p>
+      <p class="chart-note">Unique spills by date of discovery, deduplicated by tracking number. Covers 2016–2025; pre-2016 records and 2026-dated entries excluded.</p>
       <div class="chart-container" style="height:240px;">
         <canvas id="yearChart" role="img" aria-label="Bar chart showing unique historical spill counts rising from 104 in 2016 to a peak of 1,948 in 2025.">2016: 104, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374, 2025: 1948.</canvas>
       </div>
@@ -396,13 +396,13 @@ body {
   <!-- Geography -->
   <section class="section">
     <p class="section-eyebrow">Geography</p>
-    <h2 class="section-title">Weld County accounts for 88% of all historical spills</h2>
-    <p class="section-body">The geographic distribution is highly concentrated. Weld County, the heart of Colorado's Denver-Julesburg Basin, has 5,924 of the 6,767 total historical spill records. The next largest county, Adams, has just 200. This reflects both the density of oil and gas development in the DJ Basin and the scale of ongoing abandonment and reclamation activity there.</p>
+    <h2 class="section-title">Weld County accounts for 87% of all historical spills</h2>
+    <p class="section-body">The geographic distribution is highly concentrated. Weld County, the heart of Colorado's Denver-Julesburg Basin, has 5,303 of the 6,084 total historical spill records. The next largest county, Adams, has just 187. This reflects both the density of oil and gas development in the DJ Basin and the scale of ongoing abandonment and reclamation activity there.</p>
 
     <div class="chart-wrap">
       <p class="chart-title">Top 10 counties by unique historical spill count</p>
       <div class="chart-container" style="height:340px;">
-        <canvas id="countyChart" role="img" aria-label="Horizontal bar chart. Weld County has 5,924 spills, far exceeding all others.">Weld: 5924, Adams: 200, Rio Blanco: 104, Garfield: 90, Boulder: 87, Larimer: 39, Cheyenne: 39, Arapahoe: 33, Broomfield: 29, Moffat: 21.</canvas>
+        <canvas id="countyChart" role="img" aria-label="Horizontal bar chart. Weld County has 5,303 spills, far exceeding all others.">Weld: 5303, Adams: 187, Rio Blanco: 97, Garfield: 85, Boulder: 74, Larimer: 39, Cheyenne: 38, Broomfield: 29, Arapahoe: 24, Moffat: 21.</canvas>
       </div>
       <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
     </div>
@@ -412,12 +412,12 @@ body {
   <section class="section">
     <p class="section-eyebrow">Operators</p>
     <h2 class="section-title">Three operators account for 76% of historical spill records</h2>
-    <p class="section-body">Noble Energy (2,585), Kerr McGee Oil &amp; Gas (1,831), and PDC Energy (779) together account for nearly three-quarters of all historical spill records on file. All three are major DJ Basin operators with large legacy well inventories. Noble Energy was acquired by Chevron in 2020, and Kerr McGee's assets were absorbed into Crestone Peak Resources and then Civitas Resources, meaning many of these historical liabilities now sit with successor companies.</p>
+    <p class="section-body">Noble Energy (2,301), Kerr McGee Oil &amp; Gas (1,672), and PDC Energy (665) together account for nearly three-quarters of all historical spill records on file. All three are major DJ Basin operators with large legacy well inventories. Noble Energy was acquired by Chevron in 2020, and Kerr McGee's assets were absorbed into Crestone Peak Resources and then Civitas Resources, meaning many of these historical liabilities now sit with successor companies.</p>
 
     <div class="chart-wrap">
       <p class="chart-title">Top 10 operators by unique historical spill count</p>
       <div class="chart-container" style="height:340px;">
-        <canvas id="opChart" role="img" aria-label="Horizontal bar chart. Noble Energy leads with 2,585 spills, followed by Kerr McGee at 1,831 and PDC Energy at 779.">Noble Energy: 2585, Kerr McGee: 1831, PDC Energy: 779, Crestone Peak: 306, Extraction O&G: 168, Bonanza Creek: 118, Caerus Piceance: 86, KP Kauffman: 57, Highpoint: 51, Great Western: 39.</canvas>
+        <canvas id="opChart" role="img" aria-label="Horizontal bar chart. Noble Energy leads with 2,301 spills, followed by Kerr McGee at 1,672 and PDC Energy at 665.">Noble Energy: 2301, Kerr McGee: 1672, PDC Energy: 665, Crestone Peak: 279, Extraction O&G: 156, Bonanza Creek: 103, Caerus Piceance: 86, KP Kauffman: 56, Highpoint: 40, Great Western: 39.</canvas>
       </div>
       <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
     </div>
@@ -427,27 +427,27 @@ body {
   <section class="section">
     <p class="section-eyebrow">Infrastructure &amp; Land</p>
     <h2 class="section-title">Tank batteries and wells are the most common failure points</h2>
-    <p class="section-body">Tank batteries (32%) and wells (30%) together account for nearly two-thirds of historical spill sites, with flowline systems contributing another 20%. Almost all historical spills, 96%, occurred on private land, with federal and state lands representing a small fraction. This has implications for landowner notification and long-term remediation obligations.</p>
+    <p class="section-body">Tank batteries (33%) and wells (30%) together account for nearly two-thirds of historical spill sites, with flowline systems contributing another 19%. Almost all historical spills, 96%, occurred on private land, with federal and state lands representing a small fraction. This has implications for landowner notification and long-term remediation obligations.</p>
 
     <div class="two-col">
       <div class="chart-wrap">
         <p class="chart-title">Spills by facility type</p>
         <div class="chart-container" style="height:220px;">
-          <canvas id="facilityChart" role="img" aria-label="Donut chart. Tank battery 32%, well 30%, flowline system 20%, well site 6%, other 12%.">Tank battery: 2178, Well: 2034, Flowline system: 1355, Well site: 410, Other: 790.</canvas>
+          <canvas id="facilityChart" role="img" aria-label="Donut chart. Tank battery 33%, well 30%, flowline system 19%, well site 7%, other 11%.">Tank battery: 2028, Well: 1815, Flowline system: 1149, Well site: 397, Other: 695.</canvas>
         </div>
         <div class="legend">
-          <span class="legend-item"><span class="legend-swatch" style="background:#78b43c;"></span>Tank battery (32%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#78b43c;"></span>Tank battery (33%)</span>
           <span class="legend-item"><span class="legend-swatch" style="background:#4398b5;"></span>Well (30%)</span>
-          <span class="legend-item"><span class="legend-swatch" style="background:#d2781e;"></span>Flowline (20%)</span>
-          <span class="legend-item"><span class="legend-swatch" style="background:#96782d;"></span>Well site (6%)</span>
-          <span class="legend-item"><span class="legend-swatch" style="background:#63c5d8;"></span>Other (12%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#d2781e;"></span>Flowline (19%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#96782d;"></span>Well site (7%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#63c5d8;"></span>Other (11%)</span>
         </div>
         <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
       </div>
       <div class="chart-wrap">
         <p class="chart-title">Spills by surface owner</p>
         <div class="chart-container" style="height:220px;">
-          <canvas id="ownerChart" role="img" aria-label="Donut chart. Private land accounts for 96% of historical spills.">Private: 6490, Federal: 127, Other: 117, State: 31, Tribal: 2.</canvas>
+          <canvas id="ownerChart" role="img" aria-label="Donut chart. Private land accounts for 96% of historical spills.">Private: 5819, Federal: 123, Other: 111, State: 29, Tribal: 2.</canvas>
         </div>
         <div class="legend">
           <span class="legend-item"><span class="legend-swatch" style="background:#4398b5;"></span>Private (96%)</span>
@@ -464,12 +464,12 @@ body {
   <section class="section">
     <p class="section-eyebrow">Seasonality</p>
     <h2 class="section-title">Spring and fall see the most spill discoveries</h2>
-    <p class="section-body">April is the peak month for historical spill discoveries, likely reflecting both spring construction season starting up and spring thaw exposing contamination frozen or buried under snow. October is a secondary peak, coinciding with fall site work before winter shutdowns. Summer months are notably quieter in relative terms, despite being peak field activity season.</p>
+    <p class="section-body">April is the peak month for historical spill discoveries, likely reflecting both spring construction season starting up and spring thaw exposing contamination frozen or buried under snow. October is a secondary peak, coinciding with fall site work before winter shutdowns. February sees the fewest discoveries, likely reflecting winter field slowdowns.</p>
 
     <div class="chart-wrap">
       <p class="chart-title">Unique spills by month of discovery</p>
       <div class="chart-container" style="height:200px;">
-        <canvas id="monthChart" role="img" aria-label="Bar chart of spills by discovery month. April peaks at 754, November is lowest at 472.">Jan: 580, Feb: 542, Mar: 667, Apr: 754, May: 521, Jun: 545, Jul: 522, Aug: 493, Sep: 523, Oct: 591, Nov: 472, Dec: 557.</canvas>
+        <canvas id="monthChart" role="img" aria-label="Bar chart of spills by discovery month. April peaks at 608, February is lowest at 369.">Jan: 388, Feb: 369, Mar: 500, Apr: 608, May: 521, Jun: 545, Jul: 521, Aug: 492, Sep: 523, Oct: 591, Nov: 470, Dec: 556.</canvas>
       </div>
       <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
     </div>
@@ -644,7 +644,7 @@ new Chart(document.getElementById('countyChart'), {
   data: {
     labels: ['Weld','Adams','Rio Blanco','Garfield','Boulder','Larimer','Cheyenne','Arapahoe','Broomfield','Moffat'],
     datasets: [{
-      data: [5924,200,104,90,87,39,39,33,29,21],
+      data: [5303,187,97,85,74,39,38,29,24,21],
       backgroundColor: (ctx) => ctx.dataIndex === 0 ? cwpBlue5 : cwpGreen,
       borderRadius: 3, borderSkipped: false
     }]
@@ -664,7 +664,7 @@ new Chart(document.getElementById('opChart'), {
   data: {
     labels: ['Noble Energy','Kerr McGee','PDC Energy','Crestone Peak','Extraction O&G','Bonanza Creek','Caerus Piceance','KP Kauffman','Highpoint','Great Western'],
     datasets: [{
-      data: [2585,1831,779,306,168,118,86,57,51,39],
+      data: [2301,1672,665,279,156,103,86,56,40,39],
       backgroundColor: (ctx) => ctx.dataIndex < 3 ? cwpBlue5 : cwpOrange,
       borderRadius: 3, borderSkipped: false
     }]
@@ -683,7 +683,7 @@ new Chart(document.getElementById('facilityChart'), {
   type: 'doughnut',
   data: {
     labels: ['Tank battery','Well','Flowline system','Well site','Other'],
-    datasets: [{ data: [2178,2034,1355,410,790], backgroundColor: [cwpGreen, cwpBlue, cwpOrange, cwpGold, cwpTeal], borderWidth: 2, borderColor: '#fff' }]
+    datasets: [{ data: [2028,1815,1149,397,695], backgroundColor: [cwpGreen, cwpBlue, cwpOrange, cwpGold, cwpTeal], borderWidth: 2, borderColor: '#fff' }]
   },
   options: { ...baseOpts, cutout: '60%' }
 });
@@ -693,13 +693,13 @@ new Chart(document.getElementById('ownerChart'), {
   type: 'doughnut',
   data: {
     labels: ['Private','Federal','Other','State','Tribal'],
-    datasets: [{ data: [6490,127,117,31,2], backgroundColor: [cwpBlue, cwpGreen, cwpOrange, cwpGold, cwpTeal], borderWidth: 2, borderColor: '#fff' }]
+    datasets: [{ data: [5819,123,111,29,2], backgroundColor: [cwpBlue, cwpGreen, cwpOrange, cwpGold, cwpTeal], borderWidth: 2, borderColor: '#fff' }]
   },
   options: { ...baseOpts, cutout: '60%' }
 });
 
 /* Monthly chart */
-const monthVals = [580,542,667,754,521,545,522,493,523,591,472,557];
+const monthVals = [388,369,500,608,521,545,521,492,523,591,470,556];
 const maxM = Math.max(...monthVals);
 new Chart(document.getElementById('monthChart'), {
   type: 'bar',
