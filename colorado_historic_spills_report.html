@@ -3,246 +3,355 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Colorado Historic Oil &amp; Gas Spills — CWP Analysis</title>
+<title>Colorado Historic Oil &amp; Gas Spills — Center for Western Priorities</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Open+Sans:wght@400;600&family=Raleway:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: #f7f6f3;
-    color: #1a1a18;
-    font-size: 16px;
-    line-height: 1.65;
-  }
+:root {
+  --cwp-green:    #78b43c;
+  --cwp-orange:   #d2781e;
+  --cwp-blue:     #5a87a5;
+  --cwp-gold:     #96782d;
+  --cwp-wordmark: #465050;
+  --cwp-green-2:  #84bb41;
+  --cwp-green-3:  #a1aa4e;
+  --cwp-green-4:  #92b06a;
+  --cwp-green-5:  #92c43f;
+  --cwp-blue-2:   #6789a3;
+  --cwp-blue-3:   #3d759b;
+  --cwp-blue-4:   #4398b5;
+  --cwp-blue-5:   #2f5b74;
+  --cwp-blue-6:   #63c5d8;
+  --cwp-earth-1:  #998139;
+  --cwp-earth-2:  #9e4b2e;
+  --cwp-earth-3:  #cbbc41;
+  --cwp-earth-4:  #de6630;
+  --cwp-orange-2: #d77a28;
+  --cwp-orange-3: #cc753a;
+  --cwp-orange-4: #e29f27;
+  --cwp-orange-5: #f09930;
+  --cwp-white:      #ffffff;
+  --cwp-off-white:  #f5f5f3;
+  --cwp-rule:       #e0ddd8;
+  --cwp-mid-gray:   #9a9590;
+  --cwp-dark:       #2a2a28;
+  --cwp-dark-bg:    #1e2624;
+}
 
-  .page {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 48px 32px 80px;
-  }
+body {
+  font-family: 'Source Sans 3', 'Open Sans', system-ui, sans-serif;
+  background: var(--cwp-off-white);
+  color: var(--cwp-dark);
+  font-size: 16px;
+  line-height: 1.7;
+}
 
-  /* Header */
-  .report-header {
-    border-bottom: 2px solid #1a1a18;
-    padding-bottom: 24px;
-    margin-bottom: 40px;
-  }
-  .report-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #888;
-    margin-bottom: 10px;
-  }
-  .report-title {
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 12px;
-  }
-  .report-subtitle {
-    font-size: 16px;
-    color: #555;
-    max-width: 640px;
-  }
-  .report-meta {
-    margin-top: 16px;
-    font-size: 13px;
-    color: #999;
-  }
+/* ── Header band ── */
+.report-header {
+  background: var(--cwp-blue-4);
+  color: var(--cwp-white);
+  padding: 48px 32px 40px;
+}
+.report-header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+.cwp-logo {
+  height: 36px;
+  margin-bottom: 32px;
+  display: block;
+}
+.report-eyebrow {
+  font-family: 'Raleway', 'Open Sans', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 12px;
+}
+.report-title {
+  font-family: 'Bitter', Georgia, serif;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  color: var(--cwp-white);
+}
+.report-subtitle {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 17px;
+  color: rgba(255,255,255,0.85);
+  max-width: 640px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.report-meta {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 16px;
+}
 
-  /* Metric cards */
-  .metrics {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    margin-bottom: 48px;
-  }
-  .metric-card {
-    background: #fff;
-    border: 1px solid #e8e6e0;
-    border-radius: 10px;
-    padding: 20px;
-  }
-  .metric-card .label {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: #999;
-    margin-bottom: 6px;
-  }
-  .metric-card .value {
-    font-size: 28px;
-    font-weight: 700;
-    color: #1a1a18;
-    line-height: 1.1;
-  }
-  .metric-card .sub {
-    font-size: 12px;
-    color: #aaa;
-    margin-top: 4px;
-  }
+/* ── Page body ── */
+.page {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+}
 
-  /* Sections */
-  .section {
-    margin-bottom: 52px;
-  }
-  .section-heading {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #999;
-    margin-bottom: 6px;
-  }
-  .section-title {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: #1a1a18;
-  }
-  .section-body {
-    font-size: 15px;
-    color: #444;
-    line-height: 1.75;
-    max-width: 720px;
-    margin-bottom: 24px;
-  }
-  .section-body p + p { margin-top: 12px; }
+/* ── Metric cards ── */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 56px;
+}
+.metric-card {
+  background: var(--cwp-white);
+  border: 1px solid var(--cwp-rule);
+  border-radius: 4px;
+  padding: 20px;
+  border-top: 3px solid var(--cwp-green);
+}
+.metric-card.blue { border-top-color: var(--cwp-blue-4); }
+.metric-card .label {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--cwp-mid-gray);
+  margin-bottom: 8px;
+}
+.metric-card .value {
+  font-family: 'Raleway', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--cwp-green);
+  line-height: 1.1;
+}
+.metric-card.blue .value { color: var(--cwp-blue-4); }
+.metric-card .sub {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: var(--cwp-mid-gray);
+  margin-top: 4px;
+}
 
-  /* Charts */
-  .chart-wrap {
-    background: #fff;
-    border: 1px solid #e8e6e0;
-    border-radius: 10px;
-    padding: 24px;
-    margin-top: 16px;
-  }
-  .chart-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: #555;
-    margin-bottom: 4px;
-  }
-  .chart-note {
-    font-size: 12px;
-    color: #aaa;
-    margin-bottom: 16px;
-  }
-  .chart-container {
-    position: relative;
-    width: 100%;
-  }
+/* ── Sections ── */
+.section { margin-bottom: 56px; }
+.section-eyebrow {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cwp-green);
+  margin-bottom: 6px;
+}
+.section-title {
+  font-family: 'Bitter', Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--cwp-dark);
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+.section-body {
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.75;
+  max-width: 720px;
+  margin-bottom: 24px;
+}
+.section-body p + p { margin-top: 12px; }
+.section-body strong { color: var(--cwp-dark); font-weight: 600; }
 
-  .two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
+/* ── Charts ── */
+.chart-wrap {
+  background: var(--cwp-white);
+  border: 1px solid var(--cwp-rule);
+  border-radius: 4px;
+  padding: 24px;
+  margin-top: 16px;
+}
+.chart-title {
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cwp-dark);
+  margin-bottom: 4px;
+}
+.chart-note {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  color: var(--cwp-mid-gray);
+  margin-bottom: 16px;
+}
+.chart-container { position: relative; width: 100%; }
+.chart-source {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  color: var(--cwp-mid-gray);
+  margin-top: 10px;
+}
 
-  /* Legend */
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    margin-top: 14px;
-    font-size: 12px;
-    color: #666;
-  }
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .legend-swatch {
-    width: 10px;
-    height: 10px;
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
 
-  /* Discovery reasons list */
-  .reasons-list {
-    list-style: none;
-    margin: 20px 0;
-  }
-  .reasons-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    padding: 14px 0;
-    border-bottom: 1px solid #eeece8;
-    font-size: 15px;
-    color: #333;
-  }
-  .reasons-list li:last-child { border-bottom: none; }
-  .reason-pct {
-    font-size: 20px;
-    font-weight: 700;
-    color: #1a1a18;
-    min-width: 52px;
-    line-height: 1.2;
-  }
-  .reason-desc strong {
-    display: block;
-    font-weight: 600;
-    color: #1a1a18;
-    margin-bottom: 2px;
-  }
-  .reason-desc span {
-    font-size: 13px;
-    color: #777;
-  }
+/* ── Legend ── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 14px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: var(--cwp-mid-gray);
+}
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
 
-  /* Callout box */
-  .callout {
-    background: #fff8e7;
-    border-left: 4px solid #e6a817;
-    border-radius: 0 8px 8px 0;
-    padding: 18px 20px;
-    margin: 20px 0;
-    font-size: 15px;
-    color: #5a3e0a;
-    line-height: 1.65;
-  }
-  .callout strong { color: #3d2a06; }
+/* ── Callout ── */
+.callout {
+  background: var(--cwp-off-white);
+  border-left: 3px solid var(--cwp-blue-4);
+  border-radius: 0 4px 4px 0;
+  padding: 18px 20px;
+  margin: 24px 0;
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  color: var(--cwp-dark);
+  line-height: 1.7;
+}
+.callout strong { color: var(--cwp-blue-5); font-weight: 600; }
 
-  /* Divider */
-  .divider {
-    border: none;
-    border-top: 1px solid #e0ddd8;
-    margin: 48px 0;
-  }
+/* ── Discovery reasons ── */
+.reasons-list { list-style: none; margin: 20px 0; }
+.reasons-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--cwp-rule);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  color: var(--cwp-dark);
+}
+.reasons-list li:last-child { border-bottom: none; }
+.reason-pct {
+  font-family: 'Raleway', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--cwp-green);
+  min-width: 56px;
+  line-height: 1.2;
+  padding-top: 2px;
+}
+.reason-desc strong {
+  display: block;
+  font-weight: 600;
+  color: var(--cwp-dark);
+  margin-bottom: 4px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
+.reason-desc span {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.65;
+}
 
-  /* Footer */
-  .report-footer {
-    border-top: 1px solid #e0ddd8;
-    padding-top: 24px;
-    font-size: 13px;
-    color: #aaa;
-  }
+/* ── Numbered list ── */
+.numbered-list { list-style: none; margin: 20px 0; }
+.numbered-list li {
+  display: flex;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--cwp-rule);
+  font-family: 'Source Sans 3', sans-serif;
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+}
+.numbered-list li:last-child { border-bottom: none; }
+.num-badge {
+  font-family: 'Raleway', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--cwp-white);
+  background: var(--cwp-blue-4);
+  border-radius: 4px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.num-content strong {
+  display: block;
+  font-weight: 600;
+  color: var(--cwp-dark);
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 4px;
+}
 
-  @media (max-width: 640px) {
-    .metrics { grid-template-columns: repeat(2, 1fr); }
-    .two-col { grid-template-columns: 1fr; }
-    .page { padding: 32px 20px 60px; }
-    .report-title { font-size: 24px; }
-  }
+/* ── Divider ── */
+.divider {
+  border: none;
+  border-top: 1px solid var(--cwp-rule);
+  margin: 48px 0;
+}
+
+/* ── Footer ── */
+.report-footer {
+  background: var(--cwp-dark-bg);
+  padding: 32px;
+  text-align: center;
+}
+.report-footer img { height: 28px; margin-bottom: 12px; display: block; margin-left: auto; margin-right: auto; }
+.report-footer p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+}
+
+@media (max-width: 640px) {
+  .metrics { grid-template-columns: repeat(2, 1fr); }
+  .two-col { grid-template-columns: 1fr; }
+  .page { padding: 32px 20px 60px; }
+  .report-title { font-size: 26px; }
+  .report-header { padding: 32px 20px; }
+}
 </style>
 </head>
 <body>
-<div class="page">
 
-  <!-- Header -->
-  <header class="report-header">
-    <p class="report-label">Center for Western Priorities</p>
+<!-- Header -->
+<header class="report-header">
+  <div class="report-header-inner">
+    <img src="https://westernpriorities.org/images/CWP-logo-white.svg"
+         alt="Center for Western Priorities" class="cwp-logo"
+         onerror="this.style.display='none'">
+    <p class="report-eyebrow">Data Analysis · Colorado Oil &amp; Gas</p>
     <h1 class="report-title">Colorado Historic Oil &amp; Gas Spills</h1>
     <p class="report-subtitle">An analysis of 6,767 unique historical spill records from Colorado's ECMC database, deduplicated by tracking number.</p>
-    <p class="report-meta">Data source: ColoradoSpills.xlsm (COGCC / ECMC) &nbsp;·&nbsp; Spill type: Historical &nbsp;·&nbsp; Analysis prepared June 2026</p>
-  </header>
+    <p class="report-meta">Data source: COGCC / ECMC (ColoradoSpills.xlsm) &nbsp;·&nbsp; Spill type: Historical &nbsp;·&nbsp; Analysis prepared June 2026</p>
+  </div>
+</header>
+
+<div class="page">
 
   <!-- Metrics -->
   <div class="metrics">
@@ -251,7 +360,7 @@
       <div class="value">6,767</div>
       <div class="sub">deduplicated by tracking #</div>
     </div>
-    <div class="metric-card">
+    <div class="metric-card blue">
       <div class="label">Peak year</div>
       <div class="value">2025</div>
       <div class="sub">1,948 unique spills</div>
@@ -261,61 +370,64 @@
       <div class="value">Weld</div>
       <div class="sub">88% of all spills</div>
     </div>
-    <div class="metric-card">
+    <div class="metric-card blue">
       <div class="label">Top operator</div>
       <div class="value">Noble</div>
       <div class="sub">2,585 spills on record</div>
     </div>
   </div>
 
-  <!-- Spills over time -->
+  <!-- Trend -->
   <section class="section">
-    <p class="section-heading">Trend</p>
+    <p class="section-eyebrow">Trend</p>
     <h2 class="section-title">Spill counts have risen sharply since 2021</h2>
-    <p class="section-body">The number of historical spill records filed each year was relatively flat from 2016 through 2020, then accelerated dramatically. From 2020 to 2025 filings increased more than fifteenfold — from 125 to 1,948 unique spills per year. This reflects a wave of decommissioning activity across Colorado's aging DJ Basin well fleet, as older wells reach end of life and operators are required to plug, cap, and remediate sites before closure.</p>
+    <p class="section-body">The number of historical spill records filed each year was relatively flat from 2016 through 2020, then accelerated dramatically. From 2020 to 2025 filings increased more than fifteenfold, from 125 to 1,948 unique spills per year. This reflects a wave of decommissioning activity across Colorado's aging DJ Basin well fleet, as older wells reach end of life and operators are required to plug, cap, and remediate sites before closure.</p>
 
     <div class="chart-wrap">
       <p class="chart-title">Unique historical spills filed per year, 2016–2025</p>
-      <p class="chart-note">Each bar represents unique spills by date of discovery, deduplicated by tracking number. 2026 is excluded as a partial year.</p>
+      <p class="chart-note">Unique spills by date of discovery, deduplicated by tracking number. 2026 excluded as a partial year.</p>
       <div class="chart-container" style="height:240px;">
         <canvas id="yearChart" role="img" aria-label="Bar chart showing unique historical spill counts rising from 104 in 2016 to a peak of 1,948 in 2025.">2016: 104, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374, 2025: 1948.</canvas>
       </div>
+      <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
     </div>
   </section>
 
   <!-- Geography -->
   <section class="section">
-    <p class="section-heading">Geography</p>
+    <p class="section-eyebrow">Geography</p>
     <h2 class="section-title">Weld County accounts for 88% of all historical spills</h2>
-    <p class="section-body">The geographic distribution is highly concentrated. Weld County — the heart of Colorado's Denver-Julesburg Basin — has 5,924 of the 6,767 total historical spill records. The next largest county, Adams, has just 200. This reflects both the density of oil and gas development in the DJ Basin and the scale of ongoing abandonment and reclamation activity there.</p>
+    <p class="section-body">The geographic distribution is highly concentrated. Weld County, the heart of Colorado's Denver-Julesburg Basin, has 5,924 of the 6,767 total historical spill records. The next largest county, Adams, has just 200. This reflects both the density of oil and gas development in the DJ Basin and the scale of ongoing abandonment and reclamation activity there.</p>
 
     <div class="chart-wrap">
       <p class="chart-title">Top 10 counties by unique historical spill count</p>
       <div class="chart-container" style="height:340px;">
         <canvas id="countyChart" role="img" aria-label="Horizontal bar chart. Weld County has 5,924 spills, far exceeding all others.">Weld: 5924, Adams: 200, Rio Blanco: 104, Garfield: 90, Boulder: 87, Larimer: 39, Cheyenne: 39, Arapahoe: 33, Broomfield: 29, Moffat: 21.</canvas>
       </div>
+      <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
     </div>
   </section>
 
   <!-- Operators -->
   <section class="section">
-    <p class="section-heading">Operators</p>
+    <p class="section-eyebrow">Operators</p>
     <h2 class="section-title">Three operators account for 76% of historical spill records</h2>
-    <p class="section-body">Noble Energy (2,585), Kerr McGee Oil &amp; Gas (1,831), and PDC Energy (779) together account for nearly three-quarters of all historical spill records on file. All three are major DJ Basin operators with large legacy well inventories. Notably, Noble Energy was acquired by Chevron in 2020, and Kerr McGee's assets were absorbed into Crestone Peak Resources and then Civitas Resources — meaning many of these historical liabilities now sit with successor companies.</p>
+    <p class="section-body">Noble Energy (2,585), Kerr McGee Oil &amp; Gas (1,831), and PDC Energy (779) together account for nearly three-quarters of all historical spill records on file. All three are major DJ Basin operators with large legacy well inventories. Noble Energy was acquired by Chevron in 2020, and Kerr McGee's assets were absorbed into Crestone Peak Resources and then Civitas Resources, meaning many of these historical liabilities now sit with successor companies.</p>
 
     <div class="chart-wrap">
       <p class="chart-title">Top 10 operators by unique historical spill count</p>
       <div class="chart-container" style="height:340px;">
         <canvas id="opChart" role="img" aria-label="Horizontal bar chart. Noble Energy leads with 2,585 spills, followed by Kerr McGee at 1,831 and PDC Energy at 779.">Noble Energy: 2585, Kerr McGee: 1831, PDC Energy: 779, Crestone Peak: 306, Extraction O&G: 168, Bonanza Creek: 118, Caerus Piceance: 86, KP Kauffman: 57, Highpoint: 51, Great Western: 39.</canvas>
       </div>
+      <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
     </div>
   </section>
 
   <!-- Facility + Owner -->
   <section class="section">
-    <p class="section-heading">Infrastructure &amp; Land</p>
+    <p class="section-eyebrow">Infrastructure &amp; Land</p>
     <h2 class="section-title">Tank batteries and wells are the most common failure points</h2>
-    <p class="section-body">Tank batteries (32%) and wells (30%) together account for nearly two-thirds of historical spill sites, with flowline systems contributing another 20%. Almost all historical spills — 96% — occurred on private land, with federal and state lands representing a small fraction. This has implications for landowner notification and long-term remediation obligations.</p>
+    <p class="section-body">Tank batteries (32%) and wells (30%) together account for nearly two-thirds of historical spill sites, with flowline systems contributing another 20%. Almost all historical spills, 96%, occurred on private land, with federal and state lands representing a small fraction. This has implications for landowner notification and long-term remediation obligations.</p>
 
     <div class="two-col">
       <div class="chart-wrap">
@@ -324,12 +436,13 @@
           <canvas id="facilityChart" role="img" aria-label="Donut chart. Tank battery 32%, well 30%, flowline system 20%, well site 6%, other 12%.">Tank battery: 2178, Well: 2034, Flowline system: 1355, Well site: 410, Other: 790.</canvas>
         </div>
         <div class="legend">
-          <span class="legend-item"><span class="legend-swatch" style="background:#7F77DD;"></span>Tank battery (32%)</span>
-          <span class="legend-item"><span class="legend-swatch" style="background:#AFA9EC;"></span>Well (30%)</span>
-          <span class="legend-item"><span class="legend-swatch" style="background:#534AB7;"></span>Flowline (20%)</span>
-          <span class="legend-item"><span class="legend-swatch" style="background:#CECBF6;"></span>Well site (6%)</span>
-          <span class="legend-item"><span class="legend-swatch" style="background:#3C3489;"></span>Other (12%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#78b43c;"></span>Tank battery (32%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#4398b5;"></span>Well (30%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#d2781e;"></span>Flowline (20%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#96782d;"></span>Well site (6%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#63c5d8;"></span>Other (12%)</span>
         </div>
+        <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
       </div>
       <div class="chart-wrap">
         <p class="chart-title">Spills by surface owner</p>
@@ -337,26 +450,28 @@
           <canvas id="ownerChart" role="img" aria-label="Donut chart. Private land accounts for 96% of historical spills.">Private: 6490, Federal: 127, Other: 117, State: 31, Tribal: 2.</canvas>
         </div>
         <div class="legend">
-          <span class="legend-item"><span class="legend-swatch" style="background:#378ADD;"></span>Private (96%)</span>
-          <span class="legend-item"><span class="legend-swatch" style="background:#185FA5;"></span>Federal (2%)</span>
-          <span class="legend-item"><span class="legend-swatch" style="background:#B5D4F4;"></span>Other (2%)</span>
-          <span class="legend-item"><span class="legend-swatch" style="background:#85B7EB;"></span>State (&lt;1%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#4398b5;"></span>Private (96%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#78b43c;"></span>Federal (2%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#d2781e;"></span>Other (2%)</span>
+          <span class="legend-item"><span class="legend-swatch" style="background:#96782d;"></span>State (&lt;1%)</span>
         </div>
+        <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
       </div>
     </div>
   </section>
 
   <!-- Seasonality -->
   <section class="section">
-    <p class="section-heading">Seasonality</p>
+    <p class="section-eyebrow">Seasonality</p>
     <h2 class="section-title">Spring and fall see the most spill discoveries</h2>
-    <p class="section-body">April is the peak month for historical spill discoveries, likely reflecting both spring construction season starting up and spring thaw exposing contamination that was frozen or buried under snow. October is a secondary peak, coinciding with fall site work before winter shutdowns. The summer months are notably quieter in relative terms, despite being peak field activity season.</p>
+    <p class="section-body">April is the peak month for historical spill discoveries, likely reflecting both spring construction season starting up and spring thaw exposing contamination frozen or buried under snow. October is a secondary peak, coinciding with fall site work before winter shutdowns. Summer months are notably quieter in relative terms, despite being peak field activity season.</p>
 
     <div class="chart-wrap">
       <p class="chart-title">Unique spills by month of discovery</p>
       <div class="chart-container" style="height:200px;">
         <canvas id="monthChart" role="img" aria-label="Bar chart of spills by discovery month. April peaks at 754, November is lowest at 472.">Jan: 580, Feb: 542, Mar: 667, Apr: 754, May: 521, Jun: 545, Jul: 522, Aug: 493, Sep: 523, Oct: 591, Nov: 472, Dec: 557.</canvas>
       </div>
+      <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
     </div>
   </section>
 
@@ -364,15 +479,15 @@
 
   <!-- Discovery reasons -->
   <section class="section">
-    <p class="section-heading">Key finding</p>
+    <p class="section-eyebrow">Key finding</p>
     <h2 class="section-title">Why are historical spills being discovered now?</h2>
 
     <div class="section-body">
-      <p>Analysis of the spill description field across all 6,767 records reveals a striking pattern: <strong>nearly every historical spill was found not when it happened, but years or decades later — when someone dug up the ground.</strong> Active leak detection during operations accounts for less than 1% of discoveries. The vast majority are uncovered by construction, decommissioning, or regulatory cleanup work.</p>
+      <p>Analysis of the spill description field across all 6,767 records reveals a striking pattern: <strong>nearly every historical spill was found not when it happened, but years or decades later, when someone dug up the ground.</strong> Active leak detection during operations accounts for less than 1% of discoveries. The vast majority are uncovered by construction, decommissioning, or regulatory cleanup work.</p>
     </div>
 
     <div class="callout">
-      <strong>The core finding:</strong> Colorado's historical spill record is largely a paper trail of contamination that sat silently underground — sometimes for decades — until decommissioning work forced it into the open. These are not spills being caught and reported in real time. They are legacy contamination events that regulatory site closure requirements are finally surfacing.
+      <strong>The core finding:</strong> Colorado's historical spill record is largely a paper trail of contamination that sat silently underground, sometimes for decades, until decommissioning work forced it into the open. These are not spills being caught and reported in real time. They are legacy contamination events that regulatory site closure requirements are finally surfacing.
     </div>
 
     <ul class="reasons-list">
@@ -386,28 +501,28 @@
       <li>
         <div class="reason-pct">~20%</div>
         <div class="reason-desc">
-          <strong>Plugging, abandonment &amp; cut-and-cap operations</strong>
-          <span>A well is being formally plugged and shut in — or subject to a COGCC-mandated "cut and cap" wellhead closure procedure — and impacted soil is found beneath the wellhead, separator, or vault. The contamination is typically described as historical with unknown volume, and remediation is scheduled as a follow-on activity. This category also includes wellhead abandonment during operator decommissioning programs.</span>
+          <strong>Plugging, abandonment, and cut-and-cap operations</strong>
+          <span>A well is being formally plugged and shut in, or subject to a COGCC-mandated "cut and cap" wellhead closure procedure, and impacted soil is found beneath the wellhead, separator, or vault. The contamination is typically described as historical with unknown volume, and remediation is scheduled as a follow-on activity.</span>
         </div>
       </li>
       <li>
         <div class="reason-pct">4%</div>
         <div class="reason-desc">
-          <strong>Construction &amp; excavation activities</strong>
-          <span>Routine construction work — new pipelines, surface upgrades, road grading — unexpectedly turns up hydrocarbon-impacted soil. These are typically incidental discoveries rather than targeted investigations.</span>
+          <strong>Construction and excavation activities</strong>
+          <span>Routine construction work, including new pipelines, surface upgrades, and road grading, unexpectedly turns up hydrocarbon-impacted soil. These are typically incidental discoveries rather than targeted investigations.</span>
         </div>
       </li>
       <li>
         <div class="reason-pct">1%</div>
         <div class="reason-desc">
-          <strong>Pressure testing &amp; integrity testing</strong>
+          <strong>Pressure testing and integrity testing</strong>
           <span>Flowline pressure tests or vault integrity tests reveal a failed component, which upon excavation exposes a historical release in the surrounding soil or groundwater.</span>
         </div>
       </li>
       <li>
         <div class="reason-pct">1%</div>
         <div class="reason-desc">
-          <strong>Site reclamation, pit closure &amp; emissions upgrades</strong>
+          <strong>Site reclamation, pit closure, and emissions upgrades</strong>
           <span>Closing an old production pit, conducting a Form 27 remediation project, or performing an emissions control upgrade triggers excavation that exposes legacy contamination not previously on record.</span>
         </div>
       </li>
@@ -423,67 +538,103 @@
 
   <hr class="divider">
 
-  <!-- Uptick explanation -->
+  <!-- Uptick -->
   <section class="section">
-    <p class="section-heading">Explaining the trend</p>
-    <h2 class="section-title">Why the sharp uptick in filings from 2021 onward?</h2>
+    <p class="section-eyebrow">Explaining the trend</p>
+    <h2 class="section-title">Why the sharp rise in filings from 2021 onward?</h2>
 
     <div class="section-body">
-      <p>The more-than-fifteenfold increase in historical spill filings between 2020 and 2025 is not primarily a sign that more spills are happening — it reflects several converging forces that are accelerating how quickly legacy contamination gets documented.</p>
+      <p>The more-than-fifteenfold increase in historical spill filings between 2020 and 2025 is not primarily a sign that more spills are happening. It reflects several converging forces that are accelerating how quickly legacy contamination gets documented.</p>
     </div>
 
     <div class="chart-wrap" style="margin-bottom:24px;">
-      <p class="chart-title">Unique historical spills per year — the recent acceleration</p>
+      <p class="chart-title">Unique historical spills per year, 2016–2025</p>
       <div class="chart-container" style="height:200px;">
         <canvas id="uptickChart" role="img" aria-label="Line chart showing historical spill filings rising sharply from 125 in 2020 to 1,948 in 2025.">2016: 104, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374, 2025: 1948.</canvas>
       </div>
+      <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
     </div>
 
-    <div class="section-body">
-      <p><strong>1. An aging well fleet entering mass decommissioning.</strong> The DJ Basin saw a major drilling boom in the 2010s. Many of those wells — and the older legacy wells predating the boom — are now reaching end of productive life. When an operator plugs and abandons a well or deconstructs a tank battery, COGCC rules require environmental assessment of the site. As the volume of P&amp;A activity has climbed sharply since 2021, so has the volume of historical releases being uncovered and documented.</p>
-
-      <p><strong>2. Stricter COGCC rules after SB 181 (2019).</strong> Colorado's landmark 2019 oil and gas reform law directed the COGCC to prioritize public health and environmental protection and led to a comprehensive rewrite of state rules. Enhanced site assessment requirements, stronger Form 27 closure protocols, and tighter remediation standards all mean that activities which might previously have closed out with minimal investigation now trigger more thorough soil and groundwater sampling — and more historical releases being identified and reported.</p>
-
-      <p><strong>3. Cut-and-cap program scaling up.</strong> COGCC's "cut and cap" rule requires operators to physically cut and cap wellheads at decommissioned sites. As this program has ramped up across Weld County's large inventory of older wells, each site assessment creates another opportunity to find — and report — soil contamination that has been present for years.</p>
-
-      <p><strong>4. Operator consolidation surfacing inherited liabilities.</strong> Several large acquisitions in the DJ Basin (notably Chevron's purchase of Noble Energy in 2020 and Civitas Resources' consolidation of Kerr McGee/Crestone legacy assets) brought new scrutiny to inherited well portfolios. Post-acquisition due diligence and accelerated decommissioning programs have pushed large backlogs of legacy contamination into the COGCC reporting system.</p>
-    </div>
+    <ul class="numbered-list">
+      <li>
+        <div class="num-badge">1</div>
+        <div class="num-content">
+          <strong>An aging well fleet entering mass decommissioning</strong>
+          The DJ Basin saw a major drilling boom in the 2010s. Many of those wells, and the older legacy wells predating the boom, are now reaching end of productive life. When an operator plugs and abandons a well or deconstructs a tank battery, COGCC rules require environmental assessment of the site. As the volume of plugging and abandonment activity has climbed sharply since 2021, so has the volume of historical releases being uncovered and documented.
+        </div>
+      </li>
+      <li>
+        <div class="num-badge">2</div>
+        <div class="num-content">
+          <strong>Stricter COGCC rules after SB 181 (2019)</strong>
+          Colorado's landmark 2019 oil and gas reform law directed the COGCC to prioritize public health and environmental protection and led to a comprehensive rewrite of state rules. Enhanced site assessment requirements, stronger Form 27 closure protocols, and tighter remediation standards all mean that activities which might previously have closed out with minimal investigation now trigger more thorough soil and groundwater sampling, and more historical releases being identified and reported.
+        </div>
+      </li>
+      <li>
+        <div class="num-badge">3</div>
+        <div class="num-content">
+          <strong>Cut-and-cap program scaling up</strong>
+          COGCC's "cut and cap" rule requires operators to physically cut and cap wellheads at decommissioned sites. As this program has ramped up across Weld County's large inventory of older wells, each site assessment creates another opportunity to find and report soil contamination that has been present for years.
+        </div>
+      </li>
+      <li>
+        <div class="num-badge">4</div>
+        <div class="num-content">
+          <strong>Operator consolidation surfacing inherited liabilities</strong>
+          Several large acquisitions in the DJ Basin, notably Chevron's purchase of Noble Energy in 2020 and Civitas Resources' consolidation of Kerr McGee and Crestone legacy assets, brought new scrutiny to inherited well portfolios. Post-acquisition due diligence and accelerated decommissioning programs have pushed large backlogs of legacy contamination into the COGCC reporting system.
+        </div>
+      </li>
+    </ul>
 
     <div class="callout">
-      <strong>What the trend tells us:</strong> The uptick in historical spill filings is largely good news from a regulatory standpoint — it means the decommissioning and remediation pipeline is working. But it also underscores how much historic contamination was never caught in real time, and how much legacy liability remains embedded in Colorado's oil and gas landscape — most of it on private land, and most of it concentrated in Weld County.
+      <strong>What the trend tells us:</strong> The rise in historical spill filings is largely good news from a regulatory standpoint. It means the decommissioning and remediation pipeline is working. But it also underscores how much historic contamination was never caught in real time, and how much legacy liability remains embedded in Colorado's oil and gas landscape, most of it on private land, and most of it concentrated in Weld County.
     </div>
   </section>
 
-  <footer class="report-footer">
-    <p>Center for Western Priorities &nbsp;·&nbsp; Data: Colorado ECMC / COGCC (ColoradoSpills.xlsm) &nbsp;·&nbsp; Analysis: June 2026 &nbsp;·&nbsp; 6,767 unique historical spill records deduplicated by COGCC tracking number</p>
-  </footer>
-
 </div>
+
+<!-- Footer -->
+<footer class="report-footer">
+  <img src="https://westernpriorities.org/images/CWP-logo-white.svg"
+       alt="Center for Western Priorities"
+       onerror="this.style.display='none'">
+  <p>Center for Western Priorities · westernpriorities.org</p>
+  <p style="margin-top:4px;">Data: COGCC / ECMC · Analysis: June 2026 · 6,767 unique historical spill records deduplicated by COGCC tracking number</p>
+</footer>
 
 <script>
 const gridColor = 'rgba(0,0,0,0.06)';
-const textColor = '#999';
-const tooltipCount = ctx => ' ' + (ctx.parsed.x ?? ctx.parsed.y).toLocaleString() + ' spills';
+const textColor = '#9a9590';
+const cwpGreen  = '#78b43c';
+const cwpBlue   = '#4398b5';
+const cwpOrange = '#d2781e';
+const cwpGold   = '#96782d';
+const cwpTeal   = '#63c5d8';
+const cwpBlue5  = '#2f5b74';
+
+const baseScales = {
+  x: { grid: { display: false }, ticks: { color: textColor, font: { size: 12 }, autoSkip: false } },
+  y: { grid: { color: gridColor }, border: { display: false }, ticks: { color: textColor, font: { size: 12 } } }
+};
+const baseOpts = {
+  responsive: true, maintainAspectRatio: false,
+  plugins: { legend: { display: false } }
+};
 
 /* Year chart */
+const yearData = [104,181,201,188,125,466,667,830,1374,1948];
 new Chart(document.getElementById('yearChart'), {
   type: 'bar',
   data: {
     labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
     datasets: [{
-      data: [104,181,201,188,125,466,667,830,1374,1948],
-      backgroundColor: (ctx) => ctx.dataIndex === 9 ? '#185FA5' : '#378ADD',
-      borderRadius: 4,
-      borderSkipped: false
+      data: yearData,
+      backgroundColor: yearData.map((v,i) => i === 9 ? cwpBlue5 : cwpBlue),
+      borderRadius: 3, borderSkipped: false
     }]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' spills' } } },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: textColor, font: { size: 12 }, autoSkip: false } },
-      y: { grid: { color: gridColor }, border: { display: false }, ticks: { color: textColor, font: { size: 12 } } }
-    }
+  options: { ...baseOpts, scales: baseScales,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' spills' } } }
   }
 });
 
@@ -494,13 +645,12 @@ new Chart(document.getElementById('countyChart'), {
     labels: ['Weld','Adams','Rio Blanco','Garfield','Boulder','Larimer','Cheyenne','Arapahoe','Broomfield','Moffat'],
     datasets: [{
       data: [5924,200,104,90,87,39,39,33,29,21],
-      backgroundColor: (ctx) => ctx.dataIndex === 0 ? '#0F6E56' : '#1D9E75',
-      borderRadius: 4, borderSkipped: false
+      backgroundColor: (ctx) => ctx.dataIndex === 0 ? cwpBlue5 : cwpGreen,
+      borderRadius: 3, borderSkipped: false
     }]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: tooltipCount } } },
+  options: { ...baseOpts, indexAxis: 'y',
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() + ' spills' } } },
     scales: {
       x: { grid: { color: gridColor }, border: { display: false }, ticks: { color: textColor, font: { size: 12 }, callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v } },
       y: { grid: { display: false }, ticks: { color: textColor, font: { size: 12 } } }
@@ -515,13 +665,12 @@ new Chart(document.getElementById('opChart'), {
     labels: ['Noble Energy','Kerr McGee','PDC Energy','Crestone Peak','Extraction O&G','Bonanza Creek','Caerus Piceance','KP Kauffman','Highpoint','Great Western'],
     datasets: [{
       data: [2585,1831,779,306,168,118,86,57,51,39],
-      backgroundColor: (ctx) => ctx.dataIndex < 3 ? '#993C1D' : '#D85A30',
-      borderRadius: 4, borderSkipped: false
+      backgroundColor: (ctx) => ctx.dataIndex < 3 ? cwpBlue5 : cwpOrange,
+      borderRadius: 3, borderSkipped: false
     }]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: tooltipCount } } },
+  options: { ...baseOpts, indexAxis: 'y',
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() + ' spills' } } },
     scales: {
       x: { grid: { color: gridColor }, border: { display: false }, ticks: { color: textColor, font: { size: 12 }, callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v } },
       y: { grid: { display: false }, ticks: { color: textColor, font: { size: 12 } } }
@@ -534,9 +683,9 @@ new Chart(document.getElementById('facilityChart'), {
   type: 'doughnut',
   data: {
     labels: ['Tank battery','Well','Flowline system','Well site','Other'],
-    datasets: [{ data: [2178,2034,1355,410,790], backgroundColor: ['#7F77DD','#AFA9EC','#534AB7','#CECBF6','#3C3489'], borderWidth: 2, borderColor: '#fff' }]
+    datasets: [{ data: [2178,2034,1355,410,790], backgroundColor: [cwpGreen, cwpBlue, cwpOrange, cwpGold, cwpTeal], borderWidth: 2, borderColor: '#fff' }]
   },
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, cutout: '60%' }
+  options: { ...baseOpts, cutout: '60%' }
 });
 
 /* Owner donut */
@@ -544,9 +693,9 @@ new Chart(document.getElementById('ownerChart'), {
   type: 'doughnut',
   data: {
     labels: ['Private','Federal','Other','State','Tribal'],
-    datasets: [{ data: [6490,127,117,31,2], backgroundColor: ['#378ADD','#185FA5','#B5D4F4','#85B7EB','#042C53'], borderWidth: 2, borderColor: '#fff' }]
+    datasets: [{ data: [6490,127,117,31,2], backgroundColor: [cwpBlue, cwpGreen, cwpOrange, cwpGold, cwpTeal], borderWidth: 2, borderColor: '#fff' }]
   },
-  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, cutout: '60%' }
+  options: { ...baseOpts, cutout: '60%' }
 });
 
 /* Monthly chart */
@@ -558,17 +707,12 @@ new Chart(document.getElementById('monthChart'), {
     labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
     datasets: [{
       data: monthVals,
-      backgroundColor: monthVals.map(v => v === maxM ? '#185FA5' : '#378ADD'),
-      borderRadius: 4, borderSkipped: false
+      backgroundColor: monthVals.map(v => v === maxM ? cwpBlue5 : cwpGreen),
+      borderRadius: 3, borderSkipped: false
     }]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' spills' } } },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: textColor, font: { size: 12 }, autoSkip: false } },
-      y: { grid: { color: gridColor }, border: { display: false }, ticks: { color: textColor, font: { size: 12 } } }
-    }
+  options: { ...baseOpts, scales: baseScales,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' spills' } } }
   }
 });
 
@@ -579,23 +723,18 @@ new Chart(document.getElementById('uptickChart'), {
     labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
     datasets: [{
       data: [104,181,201,188,125,466,667,830,1374,1948],
-      borderColor: '#185FA5',
-      backgroundColor: 'rgba(55,138,221,0.08)',
+      borderColor: cwpBlue,
+      backgroundColor: 'rgba(67,152,181,0.08)',
       borderWidth: 2.5,
-      pointBackgroundColor: '#185FA5',
+      pointBackgroundColor: cwpBlue,
       pointRadius: 4,
       pointHoverRadius: 6,
       fill: true,
       tension: 0.3
     }]
   },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' spills' } } },
-    scales: {
-      x: { grid: { display: false }, ticks: { color: textColor, font: { size: 12 }, autoSkip: false } },
-      y: { grid: { color: gridColor }, border: { display: false }, ticks: { color: textColor, font: { size: 12 } } }
-    }
+  options: { ...baseOpts, scales: baseScales,
+    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' spills' } } }
   }
 });
 </script>
