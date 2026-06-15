@@ -57,7 +57,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
     <div>
       <div class="eyebrow">Center for Western Priorities &middot; Oil and Gas Spills Tracker 2025</div>
       <h1>Colorado Spills Report 2025</h1>
-      <div class="meta">Source: Colorado Oil and Gas Conservation Commission (COGCC) &nbsp;|&nbsp; Recent spills, January 1 – December 31, 2025</div>
+      <div class="meta">Source: Energy and Carbon Management Commission (ECMC) &nbsp;|&nbsp; Recent spills, January 1 – December 31, 2025</div>
     </div>
   </div>
 </header>
@@ -75,7 +75,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <div class="eyebrow">Trend</div>
   <h2>Spills Per Year, 2014–2025</h2>
   <p>Colorado reported 338 oil and gas spills in 2025, a decrease from 378 in 2024. Spill counts rose sharply from 2016 to 2017 and have remained elevated. The state has recorded 3,892 spills since 2014.</p>
-  <div class="chart-wrap"><canvas id="coYearChart"></canvas><div class="chart-source">Source: COGCC, 2025. Spill Type: Recent. Deduped by Tracking #.</div></div>
+  <div class="chart-wrap"><canvas id="coYearChart"></canvas><div class="chart-source">Source: ECMC, 2025. Spill Type: Recent. Deduped by Tracking #.</div></div>
 </div>
 
 <!-- 2. Volume per year -->
@@ -84,16 +84,9 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <h2>Total Volume Spilled Per Year (Gallons), 2021–2025</h2>
   <p>2022 saw the highest reported volume at 1.46 million gallons. After a sharp decline in 2024, volumes rebounded in 2025, driven largely by a single large spill from QB Energy Operating in the Piceance Basin.</p>
   <div class="callout"><strong>Note:</strong> Volume figures are minimums based on operator self-reporting. Many spills list an unknown volume.</div>
-  <div class="chart-wrap"><canvas id="coVolumeChart"></canvas><div class="chart-source">Source: COGCC, 2025. Oil, condensate, produced water, E&amp;P waste, flowback fluid, and drilling fluid combined.</div></div>
+  <div class="chart-wrap"><canvas id="coVolumeChart"></canvas><div class="chart-source">Source: ECMC, 2025. Oil, condensate, produced water, E&amp;P waste, flowback fluid, and drilling fluid combined.</div></div>
 </div>
 
-<!-- 3. Monthly -->
-<div class="section-block">
-  <div class="eyebrow">Seasonality</div>
-  <h2>Spills by Month, 2025</h2>
-  <p>January was Colorado's peak month with 48 reported spills. Spring (April) saw a secondary high. Summer and fall months were comparatively lower, consistent with prior-year patterns.</p>
-  <div class="chart-wrap"><canvas id="coMonthChart"></canvas><div class="chart-source">Source: COGCC, 2025.</div></div>
-</div>
 
 <!-- 4 & 5. Operators -->
 <div class="section-block">
@@ -101,8 +94,8 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <h2>Spills by Operator, 2025</h2>
   <p>The top five operators accounted for 45% of all 2025 spills. QB Energy Operating, formed in 2024 to acquire Caerus Oil and Gas assets in the Piceance Basin, led all operators with 46 spills. TEP Rocky Mountain, formerly Terra Energy Partners, saw a 1,400% increase from just one spill in 2024.</p>
   <div class="chart-pair">
-    <div class="chart-wrap"><canvas id="coTop5Donut"></canvas><div class="chart-source">Top 5 vs. all others. Source: COGCC, 2025.</div></div>
-    <div class="chart-wrap"><canvas id="coOperatorsBar"></canvas><div class="chart-source">Top 10 operators by spill count. Source: COGCC, 2025.</div></div>
+    <div class="chart-wrap"><canvas id="coTop5Donut"></canvas><div class="chart-source">Top 5 vs. all others. Source: ECMC, 2025.</div></div>
+    <div class="chart-wrap"><canvas id="coOperatorsBar"></canvas><div class="chart-source">Top 10 operators by spill count. Source: ECMC, 2025.</div></div>
   </div>
 </div>
 
@@ -111,7 +104,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <div class="eyebrow">Geography</div>
   <h2>Spills by County, 2025</h2>
   <p>Weld County recorded 170 spills (50% of total), reflecting the density of DJ Basin activity. Garfield County in the Piceance Basin ranked second with 61. Spills occurred in 21 of Colorado's 64 counties.</p>
-  <div class="chart-wrap"><svg id="coCountyMap" viewBox="0 0 800 400" width="100%" style="display:block"></svg><div class="chart-source">Source: COGCC, 2025. Hover over a county for spill count.</div></div>
+  <div class="chart-wrap"><svg id="coCountyMap" viewBox="0 0 800 400" width="100%" style="display:block"></svg><div class="chart-source">Source: ECMC, 2025. Hover over a county for spill count.</div></div>
 </div>
 
 <!-- 7. Surface owner -->
@@ -119,29 +112,26 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <div class="eyebrow">Land Ownership</div>
   <h2>Spills by Surface Owner, 2025</h2>
   <p>81% of spills occurred on private land, consistent with the DJ Basin's surface ownership pattern. 10% occurred on federal land managed by the Bureau of Land Management or US Forest Service.</p>
-  <div class="chart-wrap" style="max-width:460px"><canvas id="coSurfaceOwner"></canvas><div class="chart-source">Source: COGCC, 2025.</div></div>
+  <div class="chart-wrap" style="max-width:460px"><canvas id="coSurfaceOwner"></canvas><div class="chart-source">Source: ECMC, 2025.</div></div>
 </div>
 
-<!-- 8 & 9. Spill size -->
+<!-- 8. Volume by fluid type -->
 <div class="section-block">
-  <div class="eyebrow">Spill Size</div>
-  <h2>Spill Size Distribution, 2025</h2>
-  <p>Among the 155 reported oil spills, most fell in the one-to-100-barrel range. Of 256 produced water spills, the five-to-100-barrel range was most common. A substantial share list an unknown volume, reflecting limits in self-reported disclosure.</p>
-  <div class="chart-pair">
-    <div class="chart-wrap"><canvas id="coOilSize"></canvas><div class="chart-source">Oil spills by size (barrels). Source: COGCC, 2025.</div></div>
-    <div class="chart-wrap"><canvas id="coWaterSize"></canvas><div class="chart-source">Produced water spills by size (barrels). Source: COGCC, 2025.</div></div>
-  </div>
+  <div class="eyebrow">Volume Breakdown</div>
+  <h2>Volume Spilled by Fluid Type, 2025 (Gallons)</h2>
+  <p>Produced water dominated 2025 spill volume at 86% of the total 794,472 gallons reported. Other E&P waste — a category that includes brine, scale, and miscellaneous oilfield fluids — accounted for 7%. Oil and condensate together made up 7%, consistent with the DJ Basin's high water-to-oil production ratio.</p>
+  <div class="chart-wrap"><canvas id="coFluidVol"></canvas><div class="chart-source">Total gallons by fluid type, deduplicated by Tracking #. Source: ECMC, 2025.</div></div>
 </div>
 
 <!-- 10-12. Distance charts -->
 <div class="section-block">
   <div class="eyebrow">Proximity</div>
   <h2>Distance to Sensitive Resources, 2025</h2>
-  <p>Of 338 spills, 100 (30%) reported distance to surface water, 110 (33%) reported distance to water wells, and 77 (23%) reported distance to occupied buildings. Among those reporting, a meaningful share occurred within 500 feet of each resource type.</p>
-  <div class="callout"><strong>Note:</strong> These figures reflect only spills that reported a proximity measurement. The majority did not disclose distance data.</div>
-  <div class="chart-wrap"><canvas id="coSurfaceWater"></canvas><div class="chart-source">Spills within one mile of surface water, by distance bucket (feet). n=100 reporting. Source: COGCC, 2025.</div></div>
-  <div class="chart-wrap" style="margin-top:16px"><canvas id="coWaterWells"></canvas><div class="chart-source">Spills within one mile of a water well, by distance bucket (feet). n=110 reporting. Source: COGCC, 2025.</div></div>
-  <div class="chart-wrap" style="margin-top:16px"><canvas id="coBuildings"></canvas><div class="chart-source">Spills within one mile of an occupied building, by distance bucket (feet). n=77 reporting. Source: COGCC, 2025.</div></div>
+  <p>Of 338 spills, 263 (78%) reported distance to surface water, 280 (83%) reported distance to water wells, and 196 (58%) reported distance to occupied buildings. Among those reporting, a meaningful share occurred within 500 feet of each resource type.</p>
+  <div class="callout"><strong>Note:</strong> These figures reflect only spills that reported a proximity measurement. Where multiple distance values exist for a single spill, the closest distance is used.</div>
+  <div class="chart-wrap"><canvas id="coSurfaceWater"></canvas><div class="chart-source">Spills within one mile of surface water, by distance bucket (feet). n=263 reporting. Source: ECMC, 2025.</div></div>
+  <div class="chart-wrap" style="margin-top:16px"><canvas id="coWaterWells"></canvas><div class="chart-source">Spills within one mile of a water well, by distance bucket (feet). n=280 reporting. Source: ECMC, 2025.</div></div>
+  <div class="chart-wrap" style="margin-top:16px"><canvas id="coBuildings"></canvas><div class="chart-source">Spills within one mile of an occupied building, by distance bucket (feet). n=196 reporting. Source: ECMC, 2025.</div></div>
 </div>
 
 <!-- 13. Operator volume YoY -->
@@ -149,7 +139,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <div class="eyebrow">Year-Over-Year</div>
   <h2>Volume Spilled by Operator: 2024 vs. 2025 (Gallons)</h2>
   <p>TEP Rocky Mountain and Laramie Energy both saw large volume increases. Scout Energy and Caerus Piceance saw substantial decreases. QB Energy, new in 2025, reported 445,284 gallons and is not shown here as it had no 2024 baseline.</p>
-  <div class="chart-wrap" style="max-height:380px"><canvas id="coOpVolumeYY" style="max-height:360px"></canvas><div class="chart-source">Source: COGCC, 2025. Volumes in gallons (combined liquids, deduped by Tracking #).</div></div>
+  <div class="chart-wrap" style="max-height:380px"><canvas id="coOpVolumeYY" style="max-height:360px"></canvas><div class="chart-source">Source: ECMC, 2025. Volumes in gallons (combined liquids, deduped by Tracking #).</div></div>
 </div>
 
 <!-- 14 & 15. Changes -->
@@ -158,8 +148,8 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <h2>Biggest Volume Changes by Operator, 2024–2025 (Gallons)</h2>
   <p>TEP Rocky Mountain led all operators in volume increase at +63,084 gallons. Scout Energy Management recorded the largest decrease at -98,448 gallons, having been the second-largest spiller in 2024.</p>
   <div class="chart-pair">
-    <div class="chart-wrap"><canvas id="coIncreases"></canvas><div class="chart-source">Top increases. Source: COGCC, 2025.</div></div>
-    <div class="chart-wrap"><canvas id="coDecreases"></canvas><div class="chart-source">Top decreases. Source: COGCC, 2025.</div></div>
+    <div class="chart-wrap"><canvas id="coIncreases"></canvas><div class="chart-source">Top increases. Source: ECMC, 2025.</div></div>
+    <div class="chart-wrap"><canvas id="coDecreases"></canvas><div class="chart-source">Top decreases. Source: ECMC, 2025.</div></div>
   </div>
 </div>
 
@@ -168,7 +158,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <div class="inner">
     <img src="https://westernpriorities.org/images/CWP-logo-white.svg" alt="Center for Western Priorities" onerror="this.style.display='none'">
     <p>Center for Western Priorities &middot; westernpriorities.org</p>
-    <p>Data: Colorado Oil and Gas Conservation Commission (COGCC), 2025</p>
+    <p>Data: Energy and Carbon Management Commission (ECMC), 2025</p>
   </div>
 </footer>
 <script>
@@ -182,7 +172,6 @@ new Chart('coYearChart',{type:'bar',data:{labels:['2014','2016','2017','2018','2
 
 new Chart('coVolumeChart',{type:'bar',data:{labels:['2021','2022','2023','2024','2025'],datasets:[{data:[723744,1460340,1050714,436128,794472],backgroundColor:['2021','2022','2023','2024','2025'].map(y=>y==='2025'?C.green:C.green2),borderRadius:2}]},options:{...bOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{color:C.rule}},y:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(1)+'M':(v/1000).toFixed(0)+'K'}}}}});
 
-new Chart('coMonthChart',{type:'bar',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],datasets:[{data:[48,35,28,31,20,27,27,28,22,22,29,21],backgroundColor:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].map(m=>m==='Jan'?C.blue5:C.blue4),borderRadius:2}]},options:{...bOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y} spills`}}}}});
 
 new Chart('coTop5Donut',{type:'doughnut',data:{labels:['QB Energy Operating','Kerr McGee','PDC Energy','Noble','TEP Rocky Mountain','Other'],datasets:[{data:[46,35,30,29,15,187],backgroundColor:[...SEQ,C.gray],borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:14}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}`}}}}});
 
@@ -191,15 +180,13 @@ new Chart('coOperatorsBar',{type:'bar',data:{labels:['QB Energy Operating','Kerr
 
 new Chart('coSurfaceOwner',{type:'doughnut',data:{labels:['Private','Federal','Other','State','Tribal'],datasets:[{data:[276,33,23,7,1],backgroundColor:SEQ,borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:12},boxWidth:14}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}`}}}}});
 
-new Chart('coOilSize',{type:'doughnut',data:{labels:['<1 bbl','1–5 bbls','5–100 bbls','>100 bbls','Unknown'],datasets:[{data:[30,32,35,1,57],backgroundColor:[C.green,C.blue4,C.orange,C.gold,C.gray],borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{title:{display:true,text:'Oil Spills (n=155)',font:{family:"'Bitter',serif",size:14},color:C.dark},legend:{position:'right',labels:{font:{size:11},boxWidth:12}}}}});
-
-new Chart('coWaterSize',{type:'doughnut',data:{labels:['<1 bbl','1–5 bbls','5–100 bbls','>100 bbls','Unknown'],datasets:[{data:[16,47,74,13,106],backgroundColor:[C.green,C.blue4,C.orange,C.gold,C.gray],borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{title:{display:true,text:'Produced Water Spills (n=256)',font:{family:"'Bitter',serif",size:14},color:C.dark},legend:{position:'right',labels:{font:{size:11},boxWidth:12}}}}});
+new Chart('coFluidVol',{type:'bar',data:{labels:['Produced Water','Other E&P Waste','Oil','Condensate','Drilling Fluid'],datasets:[{data:[682122,57540,37884,14448,2478],backgroundColor:[C.blue4,C.gold,C.green,C.orange,C.gray],borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x.toLocaleString()} gal`}}},scales:{x:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(1)+'M':(v/1000).toFixed(0)+'K',font:{size:11}}},y:{ticks:{font:{size:11}}}}}});
 
 const distOpts=label=>({indexAxis:'y',responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false},title:{display:true,text:label,font:{family:"'Bitter',serif",size:13},color:C.dark},tooltip:{callbacks:{label:c=>` ${c.parsed.x} spills`}}},scales:{x:{grid:{color:C.rule},ticks:{font:{size:11}}},y:{ticks:{font:{size:11}}}}});
 const distLabels=['0–500 ft','500–1,000 ft','1,000–1,500 ft','1,500–2,000 ft','2,000–2,500 ft','2,500–5,280 ft'];
-new Chart('coSurfaceWater',{type:'bar',data:{labels:distLabels,datasets:[{data:[20,23,21,10,8,18],backgroundColor:C.teal,borderRadius:2}]},options:distOpts('Surface Water (n=100 reporting, 30% of spills)')});
-new Chart('coWaterWells',{type:'bar',data:{labels:distLabels,datasets:[{data:[15,29,24,11,10,21],backgroundColor:C.blue4,borderRadius:2}]},options:distOpts('Water Wells (n=110 reporting, 33% of spills)')});
-new Chart('coBuildings',{type:'bar',data:{labels:distLabels,datasets:[{data:[8,22,18,12,9,8],backgroundColor:C.green,borderRadius:2}]},options:distOpts('Occupied Buildings (n=77 reporting, 23% of spills)')});
+new Chart('coSurfaceWater',{type:'bar',data:{labels:distLabels,datasets:[{data:[71,56,43,26,18,49],backgroundColor:C.teal,borderRadius:2}]},options:distOpts('Surface Water (n=263 reporting, 78% of spills)')});
+new Chart('coWaterWells',{type:'bar',data:{labels:distLabels,datasets:[{data:[51,54,60,29,28,57],backgroundColor:C.blue4,borderRadius:2}]},options:distOpts('Water Wells (n=280 reporting, 83% of spills)')});
+new Chart('coBuildings',{type:'bar',data:{labels:distLabels,datasets:[{data:[27,52,41,25,15,34],backgroundColor:C.green,borderRadius:2}]},options:distOpts('Occupied Buildings (n=196 reporting, 58% of spills)')});
 
 new Chart('coOpVolumeYY',{type:'bar',data:{labels:['Scout Energy','Caerus Piceance','Kerr McGee','PDC Energy','Fulcrum Energy','Fundare Resources','Noble','Laramie Energy','NGL Water Solutions','TEP Rocky Mountain'],datasets:[{label:'2024',data:[155526,49518,26502,32046,11592,24570,16422,8484,14700,4200],backgroundColor:C.blue4,borderRadius:2},{label:'2025',data:[57078,714,25494,26208,4536,8064,28476,42210,31458,67284],backgroundColor:C.green,borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.x.toLocaleString()} gal`}}},scales:{x:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}},y:{ticks:{font:{size:10}}}}}});
 

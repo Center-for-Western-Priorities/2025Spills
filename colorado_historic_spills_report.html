@@ -347,7 +347,7 @@ body {
     <p class="report-eyebrow">Data Analysis · Colorado Oil &amp; Gas</p>
     <h1 class="report-title">Colorado Historic Oil &amp; Gas Spills</h1>
     <p class="report-subtitle">An analysis of 6,084 unique historical spill records from Colorado's ECMC database, deduplicated by tracking number. Covers 2016–2025; excludes pre-2016 records and 2026-dated entries.</p>
-    <p class="report-meta">Data source: COGCC / ECMC (ColoradoSpills.xlsm) &nbsp;·&nbsp; Spill type: Historical &nbsp;·&nbsp; Analysis prepared June 2026</p>
+    <p class="report-meta">Data source: ECMC (ColoradoSpills.xlsm) &nbsp;·&nbsp; Spill type: Historical &nbsp;·&nbsp; Analysis prepared June 2026</p>
   </div>
 </header>
 
@@ -389,7 +389,7 @@ body {
       <div class="chart-container" style="height:240px;">
         <canvas id="yearChart" role="img" aria-label="Bar chart showing unique historical spill counts rising from 104 in 2016 to a peak of 1,948 in 2025.">2016: 104, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374, 2025: 1948.</canvas>
       </div>
-      <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
+      <p class="chart-source">Source: ECMC, ColoradoSpills.xlsm</p>
     </div>
   </section>
 
@@ -404,7 +404,7 @@ body {
       <div class="chart-container" style="height:340px;">
         <canvas id="countyChart" role="img" aria-label="Horizontal bar chart. Weld County has 5,303 spills, far exceeding all others.">Weld: 5303, Adams: 187, Rio Blanco: 97, Garfield: 85, Boulder: 74, Larimer: 39, Cheyenne: 38, Broomfield: 29, Arapahoe: 24, Moffat: 21.</canvas>
       </div>
-      <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
+      <p class="chart-source">Source: ECMC, ColoradoSpills.xlsm</p>
     </div>
   </section>
 
@@ -419,7 +419,7 @@ body {
       <div class="chart-container" style="height:340px;">
         <canvas id="opChart" role="img" aria-label="Horizontal bar chart. Noble Energy leads with 2,301 spills, followed by Kerr McGee at 1,672 and PDC Energy at 665.">Noble Energy: 2301, Kerr McGee: 1672, PDC Energy: 665, Crestone Peak: 279, Extraction O&G: 156, Bonanza Creek: 103, Caerus Piceance: 86, KP Kauffman: 56, Highpoint: 40, Great Western: 39.</canvas>
       </div>
-      <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
+      <p class="chart-source">Source: ECMC, ColoradoSpills.xlsm</p>
     </div>
   </section>
 
@@ -442,7 +442,7 @@ body {
           <span class="legend-item"><span class="legend-swatch" style="background:#96782d;"></span>Well site (7%)</span>
           <span class="legend-item"><span class="legend-swatch" style="background:#63c5d8;"></span>Other (11%)</span>
         </div>
-        <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
+        <p class="chart-source">Source: ECMC, ColoradoSpills.xlsm</p>
       </div>
       <div class="chart-wrap">
         <p class="chart-title">Spills by surface owner</p>
@@ -455,27 +455,10 @@ body {
           <span class="legend-item"><span class="legend-swatch" style="background:#d2781e;"></span>Other (2%)</span>
           <span class="legend-item"><span class="legend-swatch" style="background:#96782d;"></span>State (&lt;1%)</span>
         </div>
-        <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
+        <p class="chart-source">Source: ECMC, ColoradoSpills.xlsm</p>
       </div>
     </div>
   </section>
-
-  <!-- Seasonality -->
-  <section class="section">
-    <p class="section-eyebrow">Seasonality</p>
-    <h2 class="section-title">Spring and fall see the most spill discoveries</h2>
-    <p class="section-body">April is the peak month for historical spill discoveries, likely reflecting both spring construction season starting up and spring thaw exposing contamination frozen or buried under snow. October is a secondary peak, coinciding with fall site work before winter shutdowns. February sees the fewest discoveries, likely reflecting winter field slowdowns.</p>
-
-    <div class="chart-wrap">
-      <p class="chart-title">Unique spills by month of discovery</p>
-      <div class="chart-container" style="height:200px;">
-        <canvas id="monthChart" role="img" aria-label="Bar chart of spills by discovery month. April peaks at 608, February is lowest at 369.">Jan: 388, Feb: 369, Mar: 500, Apr: 608, May: 521, Jun: 545, Jul: 521, Aug: 492, Sep: 523, Oct: 591, Nov: 470, Dec: 556.</canvas>
-      </div>
-      <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
-    </div>
-  </section>
-
-  <hr class="divider">
 
   <!-- Discovery reasons -->
   <section class="section">
@@ -483,7 +466,7 @@ body {
     <h2 class="section-title">Why are historical spills being discovered now?</h2>
 
     <div class="section-body">
-      <p>Analysis of the spill description field across all 6,767 records reveals a striking pattern: <strong>nearly every historical spill was found not when it happened, but years or decades later, when someone dug up the ground.</strong> Active leak detection during operations accounts for less than 1% of discoveries. The vast majority are uncovered by construction, decommissioning, or regulatory cleanup work.</p>
+      <p>Analysis of the spill description and root cause fields across all 6,084 records (2016–2025) reveals a striking pattern: <strong>nearly every historical spill was found not when it happened, but years or decades later, when someone dug up the ground.</strong> Active leak detection during operations accounts for less than 1% of discoveries. The vast majority are uncovered by decommissioning, plugging, or regulatory closure work.</p>
     </div>
 
     <div class="callout">
@@ -492,44 +475,51 @@ body {
 
     <ul class="reasons-list">
       <li>
-        <div class="reason-pct">56%</div>
+        <div class="reason-pct">41%</div>
         <div class="reason-desc">
-          <strong>Deconstruction / tank removal</strong>
+          <strong>Plugging, abandonment, and cut-and-cap operations</strong>
+          <span>A well is being formally plugged and shut in, or subject to an ECMC-mandated "cut and cap" wellhead closure procedure, and impacted soil is found beneath the wellhead, separator, or vault. The contamination is typically described as historical with unknown volume, and remediation is scheduled as a follow-on activity. This is the single largest discovery trigger in the dataset.</span>
+        </div>
+      </li>
+      <li>
+        <div class="reason-pct">22%</div>
+        <div class="reason-desc">
+          <strong>Tank battery deconstruction</strong>
           <span>Workers deconstructing a tank battery find contaminated soil beneath produced water vaults, dump lines, or tanks. The language is nearly formulaic across thousands of filings: "while deconstructing the [location] tank battery, soil with historical petroleum hydrocarbon impacts were encountered beneath the [vessel/vault/dumpline]." The contamination is almost always described as pre-existing with no active leak at the time of discovery.</span>
         </div>
       </li>
       <li>
-        <div class="reason-pct">~20%</div>
+        <div class="reason-pct">13%</div>
         <div class="reason-desc">
-          <strong>Plugging, abandonment, and cut-and-cap operations</strong>
-          <span>A well is being formally plugged and shut in, or subject to a COGCC-mandated "cut and cap" wellhead closure procedure, and impacted soil is found beneath the wellhead, separator, or vault. The contamination is typically described as historical with unknown volume, and remediation is scheduled as a follow-on activity.</span>
+          <strong>Flowline decommissioning</strong>
+          <span>Operators pulling old flowlines out of service encounter hydrocarbon-impacted soil at directional changes or high-PID locations along the pipe corridor. Reports frequently note that an exact release point cannot be determined due to the historical nature of the contamination.</span>
         </div>
       </li>
       <li>
-        <div class="reason-pct">4%</div>
+        <div class="reason-pct">7%</div>
+        <div class="reason-desc">
+          <strong>Facility decommissioning</strong>
+          <span>Closure of production facilities — separators, compressor stations, and other surface equipment — triggers soil assessment that uncovers historical impacts not previously documented.</span>
+        </div>
+      </li>
+      <li>
+        <div class="reason-pct">6%</div>
         <div class="reason-desc">
           <strong>Construction and excavation activities</strong>
           <span>Routine construction work, including new pipelines, surface upgrades, and road grading, unexpectedly turns up hydrocarbon-impacted soil. These are typically incidental discoveries rather than targeted investigations.</span>
         </div>
       </li>
       <li>
-        <div class="reason-pct">1%</div>
+        <div class="reason-pct">2%</div>
         <div class="reason-desc">
-          <strong>Pressure testing and integrity testing</strong>
-          <span>Flowline pressure tests or vault integrity tests reveal a failed component, which upon excavation exposes a historical release in the surrounding soil or groundwater.</span>
-        </div>
-      </li>
-      <li>
-        <div class="reason-pct">1%</div>
-        <div class="reason-desc">
-          <strong>Site reclamation, pit closure, and emissions upgrades</strong>
-          <span>Closing an old production pit, conducting a Form 27 remediation project, or performing an emissions control upgrade triggers excavation that exposes legacy contamination not previously on record.</span>
+          <strong>Site reclamation and pit closure</strong>
+          <span>Closing an old production pit or conducting a Form 27 remediation project triggers excavation that exposes legacy contamination not previously on record.</span>
         </div>
       </li>
       <li>
         <div class="reason-pct">&lt;1%</div>
         <div class="reason-desc">
-          <strong>COGCC field inspection</strong>
+          <strong>ECMC field inspection</strong>
           <span>A state field inspector spots pooled fluids or stained soil during a routine site visit and initiates a report. These represent a very small share of discoveries, suggesting inspection capacity is not the primary driver of detection.</span>
         </div>
       </li>
@@ -545,14 +535,6 @@ body {
 
     <div class="section-body">
       <p>The more-than-fifteenfold increase in historical spill filings between 2020 and 2025 is not primarily a sign that more spills are happening. It reflects several converging forces that are accelerating how quickly legacy contamination gets documented.</p>
-    </div>
-
-    <div class="chart-wrap" style="margin-bottom:24px;">
-      <p class="chart-title">Unique historical spills per year, 2016–2025</p>
-      <div class="chart-container" style="height:200px;">
-        <canvas id="uptickChart" role="img" aria-label="Line chart showing historical spill filings rising sharply from 125 in 2020 to 1,948 in 2025.">2016: 104, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374, 2025: 1948.</canvas>
-      </div>
-      <p class="chart-source">Source: COGCC / ECMC, ColoradoSpills.xlsm</p>
     </div>
 
     <ul class="numbered-list">
@@ -599,7 +581,7 @@ body {
        alt="Center for Western Priorities"
        onerror="this.style.display='none'">
   <p>Center for Western Priorities · westernpriorities.org</p>
-  <p style="margin-top:4px;">Data: COGCC / ECMC · Analysis: June 2026 · 6,767 unique historical spill records deduplicated by COGCC tracking number</p>
+  <p style="margin-top:4px;">Data: ECMC · Analysis: June 2026 · 6,084 unique historical spill records (2016–2025) deduplicated by tracking number</p>
 </footer>
 
 <script>
@@ -698,45 +680,6 @@ new Chart(document.getElementById('ownerChart'), {
   options: { ...baseOpts, cutout: '60%' }
 });
 
-/* Monthly chart */
-const monthVals = [388,369,500,608,521,545,521,492,523,591,470,556];
-const maxM = Math.max(...monthVals);
-new Chart(document.getElementById('monthChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-    datasets: [{
-      data: monthVals,
-      backgroundColor: monthVals.map(v => v === maxM ? cwpBlue5 : cwpGreen),
-      borderRadius: 3, borderSkipped: false
-    }]
-  },
-  options: { ...baseOpts, scales: baseScales,
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' spills' } } }
-  }
-});
-
-/* Uptick line chart */
-new Chart(document.getElementById('uptickChart'), {
-  type: 'line',
-  data: {
-    labels: ['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
-    datasets: [{
-      data: [104,181,201,188,125,466,667,830,1374,1948],
-      borderColor: cwpBlue,
-      backgroundColor: 'rgba(67,152,181,0.08)',
-      borderWidth: 2.5,
-      pointBackgroundColor: cwpBlue,
-      pointRadius: 4,
-      pointHoverRadius: 6,
-      fill: true,
-      tension: 0.3
-    }]
-  },
-  options: { ...baseOpts, scales: baseScales,
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.y.toLocaleString() + ' spills' } } }
-  }
-});
 </script>
 </body>
 </html>
