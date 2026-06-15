@@ -22,7 +22,7 @@ Interactive HTML reports covering spills reported January 1 – December 31, 202
 - New Mexico: NM OCD (`2025/newmexico/nm_spills.xls`, downloaded from OCD permitting portal)
 
 **Charts included per state:**
-- Colorado (15 charts): spills per year (2014–2025), volume per year, monthly seasonality, top operators (donut + bar), county heat map, surface owner, oil/produced water spill size, distance to surface water / water wells / occupied buildings, operator volume year-over-year, biggest increases and decreases
+- Colorado (13 charts): spills per year (2016–2025), volume per year, top operators (donut + bar), county heat map, surface owner, volume by fluid type, distance to surface water / water wells / occupied buildings, operator volume year-over-year, biggest increases and decreases
 - Wyoming (7 charts): material type count and volume, county heat maps (2024 vs. 2025 side-by-side), operators by count and volume, volume year-over-year, monthly seasonality
 - New Mexico (11 charts): trend 2022–2025, liquid/gas material type donuts, causes, spill sources, top operators year-over-year, county heat maps (liquid count, liquid volume, gas releases)
 
@@ -36,7 +36,9 @@ Analysis of historical spill records (Spill Type = "Historical") filed with COGC
 |---|---|
 | `colorado_historic_spills_report.html` | [View](https://center-for-western-priorities.github.io/2025Spills/colorado_historic_spills_report.html) |
 
-**Key findings:** 6,084 unique historical spills on record (2016–2025; excludes pre-2016 records and 2026-dated entries). Weld County accounts for 87% of all records. Noble Energy (2,301), Kerr McGee (1,672), and PDC Energy (665) together account for roughly three-quarters of filings. Spill counts have risen sharply since 2021, reflecting a wave of decommissioning activity across aging DJ Basin wells.
+**Key findings:** 6,084 unique historical spills on record (2016–2025; excludes pre-2016 records and 2026-dated entries). Weld County accounts for 87% of all records. Noble Energy (2,301), Kerr McGee (1,672), and PDC Energy (665) together account for roughly three-quarters of filings. Spill counts have risen sharply since 2021, reflecting a wave of decommissioning activity across aging DJ Basin wells. Discovery reason breakdown (from root cause / description fields): plugging, abandonment, and cut-and-cap (41%); tank battery deconstruction (22%); flowline decommissioning (13%); facility decommissioning (7%); construction/excavation (6%); reclamation/pit closure (2%); ECMC field inspection (<1%).
+
+**Charts:** spills per year (2016–2025 bar chart), county choropleth heat map, top operators bar, facility type donut, surface owner donut, discovery reason breakdown (narrative with data-verified percentages).
 
 ---
 
@@ -44,10 +46,11 @@ Analysis of historical spill records (Spill Type = "Historical") filed with COGC
 
 Analysis follows the methodology in `CWP Oil and Gas Spills Tracker.ipynb`.
 
-**Colorado:**
-- Filter to Spill Type = "Recent"; deduplicate by Tracking #
-- Volume: Oil BBLs Spilled + Produced Water BBLs Spilled + Condensate BBLs Spilled, converted to gallons (× 42)
-- Distance analysis: Surface Water Near, Water Wells, Occupied Buildings columns; filter ≤ 5,280 ft; bucket into 500 ft ranges
+**Colorado 2025:**
+- Filter to Spill Type = "Recent", Date of Discovery 2016–2025; deduplicate by Tracking #
+- Volume: for each Tracking #, take MAX value per liquid column across all rows; sum all six columns; multiply by 42. Fluid types: oil, condensate, produced water, drilling fluid, flowback fluid, other E&P waste
+- Distance analysis: Surface Water Near, Water Wells, Occupied Buildings columns; for each Tracking #, use the minimum reported distance across all rows; filter ≤ 5,280 ft; bucket into 500 ft ranges
+- Data source: ECMC (formerly COGCC)
 
 **Wyoming:**
 - Unit conversion via `togallons()`: rows with Unit = "Bbls" multiply by 42; "Gal" rows kept as-is
@@ -90,3 +93,9 @@ Analysis follows the methodology in `CWP Oil and Gas Spills Tracker.ipynb`.
 - `pandas` — data processing and pivot tables
 
 Reports are standalone HTML files — no build step required. Charts use Chart.js 4.4.1 and D3.js 7 (CDN). County heat maps use the US Atlas TopoJSON (CDN). Google Fonts are loaded from CDN. An internet connection is required to render fonts, charts, and maps.
+
+---
+
+## Data source note
+
+Colorado data is sourced from ECMC (Energy and Carbon Management Commission), the agency formerly known as COGCC (Colorado Oil and Gas Conservation Commission). The agency was renamed in 2023. All chart attributions use "ECMC."

@@ -7,6 +7,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;600;700&family=Open+Sans:wght@400;600&family=Raleway:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -400,11 +402,9 @@ body {
     <p class="section-body">The geographic distribution is highly concentrated. Weld County, the heart of Colorado's Denver-Julesburg Basin, has 5,303 of the 6,084 total historical spill records. The next largest county, Adams, has just 187. This reflects both the density of oil and gas development in the DJ Basin and the scale of ongoing abandonment and reclamation activity there.</p>
 
     <div class="chart-wrap">
-      <p class="chart-title">Top 10 counties by unique historical spill count</p>
-      <div class="chart-container" style="height:340px;">
-        <canvas id="countyChart" role="img" aria-label="Horizontal bar chart. Weld County has 5,303 spills, far exceeding all others.">Weld: 5303, Adams: 187, Rio Blanco: 97, Garfield: 85, Boulder: 74, Larimer: 39, Cheyenne: 38, Broomfield: 29, Arapahoe: 24, Moffat: 21.</canvas>
-      </div>
-      <p class="chart-source">Source: ECMC, ColoradoSpills.xlsm</p>
+      <p class="chart-title">Historical spills by county, 2016–2025</p>
+      <svg id="historicCountyMap" viewBox="0 0 800 400" width="100%" style="display:block"></svg>
+      <p class="chart-source">Source: ECMC, ColoradoSpills.xlsm. Hover over a county for spill count.</p>
     </div>
   </section>
 
@@ -620,25 +620,56 @@ new Chart(document.getElementById('yearChart'), {
   }
 });
 
-/* County chart */
-new Chart(document.getElementById('countyChart'), {
-  type: 'bar',
-  data: {
-    labels: ['Weld','Adams','Rio Blanco','Garfield','Boulder','Larimer','Cheyenne','Arapahoe','Broomfield','Moffat'],
-    datasets: [{
-      data: [5303,187,97,85,74,39,38,29,24,21],
-      backgroundColor: (ctx) => ctx.dataIndex === 0 ? cwpBlue5 : cwpGreen,
-      borderRadius: 3, borderSkipped: false
-    }]
-  },
-  options: { ...baseOpts, indexAxis: 'y',
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ' ' + ctx.parsed.x.toLocaleString() + ' spills' } } },
-    scales: {
-      x: { grid: { color: gridColor }, border: { display: false }, ticks: { color: textColor, font: { size: 12 }, callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v } },
-      y: { grid: { display: false }, ticks: { color: textColor, font: { size: 12 } } }
-    }
+/* County choropleth map */
+(function(){
+  function makeCountyMap(id,stateFips,fipsToName,data,metric){
+    const el=document.getElementById(id); if(!el)return;
+    const W=800,H=400;
+    const svg=d3.select('#'+id).attr('viewBox',`0 0 ${W} ${H}`).attr('width','100%').style('display','block');
+    const maxVal=Math.max(...Object.values(data),1);
+    const col=d3.scaleSequential([0,maxVal],['#eef4e8','#2f5b74']);
+    const fmt=v=>v.toLocaleString()+' '+metric;
+    d3.json('https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json').then(us=>{
+      const counties=topojson.feature(us,us.objects.counties);
+      const stateCounties=counties.features.filter(f=>f.id.toString().padStart(5,'0').startsWith(stateFips));
+      const proj=d3.geoAlbers().fitExtent([[24,16],[W-24,H-16]],{type:'FeatureCollection',features:stateCounties});
+      const path=d3.geoPath().projection(proj);
+      svg.selectAll('path').data(stateCounties).join('path')
+        .attr('d',path)
+        .attr('fill',f=>{const n=fipsToName[f.id.toString().padStart(5,'0')];const v=data[n];return v!=null?col(v):'#f0ede8';})
+        .attr('stroke','#fff').attr('stroke-width',0.5)
+        .on('mousemove',(event,f)=>{const n=fipsToName[f.id.toString().padStart(5,'0')];showTip(event,n||'Unknown',data[n]);})
+        .on('mouseleave',()=>tip.style('display','none'));
+      const grad=svg.append('defs').append('linearGradient').attr('id','lgHist').attr('x1','0%').attr('x2','100%');
+      grad.append('stop').attr('offset','0%').attr('stop-color','#eef4e8');
+      grad.append('stop').attr('offset','100%').attr('stop-color','#2f5b74');
+      const lx=W-160,ly=H-28;
+      svg.append('rect').attr('x',lx).attr('y',ly).attr('width',120).attr('height',10).attr('fill','url(#lgHist)').attr('rx',2);
+      svg.append('text').attr('x',lx).attr('y',ly-4).attr('font-size',10).attr('font-family','Open Sans,sans-serif').attr('fill','#9a9590').text('0');
+      svg.append('text').attr('x',lx+120).attr('y',ly-4).attr('font-size',10).attr('font-family','Open Sans,sans-serif').attr('fill','#9a9590').attr('text-anchor','end').text(maxVal.toLocaleString());
+      // Append tooltip last so it renders above all paths
+      const tip=svg.append('g').style('pointer-events','none').style('display','none');
+      const tipRect=tip.append('rect').attr('rx',4).attr('fill','#2a2a28').attr('opacity',0.88);
+      const tipText=tip.append('text').attr('fill','#fff').attr('font-size',12).attr('font-family','Open Sans,sans-serif').attr('dominant-baseline','middle');
+      function showTip(event,name,val){
+        const[mx,my]=d3.pointer(event,el);
+        const txt=name+(val!=null?': '+fmt(val):'');
+        tipText.text(txt);
+        const tw=txt.length*6.5+16,th=24;
+        const tx=Math.min(mx+12,W-tw-4),ty=Math.max(my-12,4);
+        tipRect.attr('x',tx).attr('y',ty).attr('width',tw).attr('height',th);
+        tipText.attr('x',tx+8).attr('y',ty+th/2);
+        tip.style('display',null);
+      }
+      svg.selectAll('path')
+        .on('mousemove',(event,f)=>{const n=fipsToName[f.id.toString().padStart(5,'0')];showTip(event,n||'Unknown',data[n]);})
+        .on('mouseleave',()=>tip.style('display','none'));
+    });
   }
-});
+  const coFips={'08001':'Adams','08003':'Alamosa','08005':'Arapahoe','08007':'Archuleta','08009':'Baca','08011':'Bent','08013':'Boulder','08014':'Broomfield','08015':'Chaffee','08017':'Cheyenne','08019':'Clear Creek','08021':'Conejos','08023':'Costilla','08025':'Crowley','08027':'Custer','08029':'Delta','08031':'Denver','08033':'Dolores','08035':'Douglas','08037':'Eagle','08039':'Elbert','08041':'El Paso','08043':'Fremont','08045':'Garfield','08047':'Gilpin','08049':'Grand','08051':'Gunnison','08053':'Hinsdale','08055':'Huerfano','08057':'Jackson','08059':'Jefferson','08061':'Kiowa','08063':'Kit Carson','08065':'Lake','08067':'La Plata','08069':'Larimer','08071':'Las Animas','08073':'Lincoln','08075':'Logan','08077':'Mesa','08079':'Mineral','08081':'Moffat','08083':'Montezuma','08085':'Montrose','08087':'Morgan','08089':'Otero','08091':'Ouray','08093':'Park','08095':'Phillips','08097':'Pitkin','08099':'Prowers','08101':'Pueblo','08103':'Rio Blanco','08105':'Rio Grande','08107':'Routt','08109':'Saguache','08111':'San Juan','08113':'San Miguel','08115':'Sedgwick','08117':'Summit','08119':'Teller','08121':'Washington','08123':'Weld','08125':'Yuma'};
+  const histData={Adams:187,Arapahoe:24,Archuleta:1,Baca:17,Boulder:74,Broomfield:29,Cheyenne:38,Denver:7,Elbert:18,Fremont:2,Garfield:85,Gunnison:1,Huerfano:16,Jackson:14,'Kit Carson':5,Kiowa:5,'La Plata':8,Larimer:39,'Las Animas':12,Lincoln:4,Logan:17,Mesa:20,Moffat:21,Montezuma:5,Morgan:6,Pitkin:2,Prowers:4,'Rio Blanco':97,'San Miguel':3,Washington:19,Weld:5303,Yuma:1};
+  makeCountyMap('historicCountyMap','08',coFips,histData,'spills');
+})();
 
 /* Operator chart */
 new Chart(document.getElementById('opChart'), {

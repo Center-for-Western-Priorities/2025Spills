@@ -67,14 +67,14 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <div class="stat-card"><div class="num">338</div><div class="label">Total Spills in 2025</div></div>
   <div class="stat-card blue"><div class="num">-40</div><div class="label">Change from 2024 (378)</div></div>
   <div class="stat-card"><div class="num">794K</div><div class="label">Gallons Spilled</div></div>
-  <div class="stat-card orange"><div class="num">3,892</div><div class="label">Total Spills Since 2014</div></div>
+  <div class="stat-card orange"><div class="num">3,890</div><div class="label">Total Spills Since 2016</div></div>
 </div>
 
 <!-- 1. Spills per year -->
 <div class="section-block">
   <div class="eyebrow">Trend</div>
-  <h2>Spills Per Year, 2014–2025</h2>
-  <p>Colorado reported 338 oil and gas spills in 2025, a decrease from 378 in 2024. Spill counts rose sharply from 2016 to 2017 and have remained elevated. The state has recorded 3,892 spills since 2014.</p>
+  <h2>Spills Per Year, 2016–2025</h2>
+  <p>Colorado reported 338 oil and gas spills in 2025, a decrease from 378 in 2024. Spill counts rose sharply from 2016 to 2017 and have remained elevated. The state has recorded 3,890 spills since 2016.</p>
   <div class="chart-wrap"><canvas id="coYearChart"></canvas><div class="chart-source">Source: ECMC, 2025. Spill Type: Recent. Deduped by Tracking #.</div></div>
 </div>
 
@@ -168,7 +168,7 @@ Chart.defaults.font={family:"'Open Sans',sans-serif",size:12};
 Chart.defaults.color=C.dark;
 const bOpts=(ia='x')=>({indexAxis:ia,responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:C.rule},ticks:{font:{size:11}}},y:{grid:{display:ia==='x'},ticks:{font:{size:11}}}}});
 
-new Chart('coYearChart',{type:'bar',data:{labels:['2014','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],datasets:[{data:[2,248,437,400,455,349,409,457,419,378,338],backgroundColor:['2014','2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'].map(y=>y==='2025'?C.blue5:C.blue4),borderRadius:2}]},options:{...bOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y} spills`}}}}});
+new Chart('coYearChart',{type:'bar',data:{labels:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],datasets:[{data:[248,437,400,455,349,409,457,419,378,338],backgroundColor:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'].map(y=>y==='2025'?C.blue5:C.blue4),borderRadius:2}]},options:{...bOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y} spills`}}}}});
 
 new Chart('coVolumeChart',{type:'bar',data:{labels:['2021','2022','2023','2024','2025'],datasets:[{data:[723744,1460340,1050714,436128,794472],backgroundColor:['2021','2022','2023','2024','2025'].map(y=>y==='2025'?C.green:C.green2),borderRadius:2}]},options:{...bOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{color:C.rule}},y:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(1)+'M':(v/1000).toFixed(0)+'K'}}}}});
 
