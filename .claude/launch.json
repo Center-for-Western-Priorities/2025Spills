@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "spills_report_2025",
-      "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "3456"],
+      "runtimeExecutable": "node",
+      "runtimeArgs": [".claude/server.js"],
       "port": 3456
     }
   ]
