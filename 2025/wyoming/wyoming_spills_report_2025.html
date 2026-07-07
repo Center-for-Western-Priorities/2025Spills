@@ -127,6 +127,21 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 </div>
 
 </main>
+
+<section style="background:#f5f5f3;border-top:2px solid #e0ddd8;padding:48px 32px;">
+  <div style="max-width:960px;margin:0 auto;">
+    <p style="font-family:'Open Sans',sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#9a9590;margin-bottom:8px;">Methodology</p>
+    <h2 style="font-family:'Bitter',Georgia,serif;font-size:1.15rem;font-weight:600;color:#2a2a28;margin-bottom:16px;">Data and methods</h2>
+    <div style="font-family:'Source Sans 3','Open Sans',sans-serif;font-size:0.9rem;line-height:1.7;color:#465050;max-width:720px;">
+      <p style="margin-bottom:12px;"><strong>Data source:</strong> Wyoming Oil and Gas Conservation Commission (WOGCC). Source files: <code>WyomingSpills2025.xlsx</code> (2025 spills) and <code>WyomingSpills2024.xlsx</code> (2024 spills, used for year-over-year comparisons).</p>
+      <p style="margin-bottom:12px;"><strong>Record selection:</strong> All spill records in the source files are included; no spill-type filter is applied (WOGCC data does not use the Recent/Historical distinction used by ECMC). Each row represents one reported spill event.</p>
+      <p style="margin-bottom:12px;"><strong>Volume:</strong> Volume units vary by row. Rows where Unit = "Bbls" are converted to gallons by multiplying by 42; rows where Unit = "Gal" are used as reported. Other unit values are excluded from volume totals.</p>
+      <p style="margin-bottom:12px;"><strong>Operator names:</strong> Operator names in the WOGCC source data include legal suffixes and spelling variations. Names are standardized by stripping common suffixes (LLC, LP, INC, ENERGY, RESOURCES, OPERATING, CO, COMPANY, and variants) and applying manual corrections for known cases including CITATION, CONTANGO, and PEAK POWDER RIVER.</p>
+      <p style="margin-bottom:0;"><strong>County maps:</strong> 2024 and 2025 county-level spill counts are displayed as side-by-side choropleth maps using a shared color scale, so shading is directly comparable across years. The shared maximum is the highest county count across both years combined.</p>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="inner">
     <img src="https://westernpriorities.org/images/CWP-logo-white.svg" alt="Center for Western Priorities" onerror="this.style.display='none'">
