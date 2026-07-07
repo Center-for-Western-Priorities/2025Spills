@@ -19,7 +19,7 @@ Interactive HTML reports covering spills reported January 1 – December 31, 202
 **Data sources:**
 - Colorado: COGCC / ECMC (`2025/ColoradoSpills.xlsm`) — filtered to Spill Type = "Recent"
 - Wyoming: WOGCC (`2025/WyomingSpills2025.xlsx`, `2025/WyomingSpills2024.xlsx`)
-- New Mexico: NM OCD (`2025/newmexico/nm_spills.xls`, downloaded from OCD permitting portal)
+- New Mexico: NM OCD (`2025/newmexico/NM-spills-7-7-26.xls`, downloaded from OCD permitting portal July 7, 2026)
 
 **Charts included per state:**
 - Colorado (13 charts): spills per year (2016–2025), volume per year, top operators (donut + bar), county heat map, surface owner, volume by fluid type, distance to surface water / water wells / occupied buildings, operator volume year-over-year, biggest increases and decreases
@@ -58,7 +58,7 @@ Analysis follows the methodology in `CWP Oil and Gas Spills Tracker.ipynb`.
 
 **New Mexico:**
 - Source: NM OCD HTML download (~104 MB), parsed with custom regex
-- Incidents classified as gas (natural gas flared/vented) or liquid (produced water, crude oil, condensate, etc.) via `materialtype()`
+- Incidents classified as gas or liquid via `materialtype()`. Gas materials: Natural Gas Flared, Natural Gas Vented, [OBSOLETE] Natural Gas (Methane), and Carbon Dioxide. Carbon Dioxide is treated as a gas release, not a liquid spill. "Other (Specify)" rows are classified as gas if Incident Type is Flare, Vent with Flaring, Natural Gas Release, or Vent; otherwise liquid.
 - Deduplicated by Incident Number; volume converted via `togallons()` (BBL × 42) and `to_cf()` (Mcf × 1,000)
 
 ---
