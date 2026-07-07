@@ -580,9 +580,10 @@ a:hover { text-decoration: underline; }
 </div>
 
 <!-- Methodology -->
-<section class="section" style="background:#f5f5f3;border-top:2px solid #e0ddd8;margin-top:0;">
+<section style="background:#f5f5f3;border-top:2px solid #e0ddd8;">
+  <div style="max-width:960px;margin:0 auto;padding:48px 32px;">
   <p class="section-eyebrow">Methodology</p>
-  <h2 class="section-title" style="font-size:1.15rem;margin-bottom:16px;">Data and methods</h2>
+  <h2 class="section-title" style="font-size:1.15rem;margin-bottom:16px;">Data and methodology</h2>
   <div class="section-body" style="font-size:0.9rem;line-height:1.7;color:#465050;max-width:720px;">
     <p style="margin-bottom:12px;"><strong>Data source:</strong> ECMC (Energy and Carbon Management Commission, formerly COGCC). Source file: <code>ColoradoSpills.xlsm</code>, downloaded from the ECMC online spill database.</p>
     <p style="margin-bottom:12px;"><strong>Record selection:</strong> Filtered to rows where Spill Type = "Historical" and Date of Discovery falls between January 1, 2016 and December 31, 2025. Records with a Date of Discovery before 2016 (9 records) or in 2026 (674 records bearing future-dated entries present in the source file) are excluded. Each unique Tracking # is counted as one spill event; where multiple rows share a Tracking #, the first occurrence by row order is used for categorical fields.</p>
