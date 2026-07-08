@@ -35,6 +35,7 @@ body{font-family:'Source Sans 3','Open Sans',system-ui,sans-serif;font-size:17px
 .stat-card.orange .num{color:var(--cwp-orange)}
 .stat-card.gold .num{color:var(--cwp-gold)}
 .stat-card .label{font-family:'Open Sans',sans-serif;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--cwp-mid-gray)}
+.stat-card .sub{font-family:'Open Sans',sans-serif;font-size:11px;color:var(--cwp-mid-gray);margin-top:4px;font-style:italic}
 .section-block{margin-bottom:48px}
 .section-block .eyebrow{font-family:'Open Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cwp-green);margin-bottom:6px}
 .section-block h2{font-family:'Bitter',Georgia,serif;font-weight:600;font-size:21px;color:var(--cwp-dark);margin-bottom:16px;border-bottom:1px solid var(--cwp-rule);padding-bottom:10px}
@@ -67,9 +68,9 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 
 <div class="stat-row">
   <div class="stat-card"><div class="num">38,364</div><div class="label">Total Incidents in 2025</div></div>
-  <div class="stat-card blue"><div class="num">1,329</div><div class="label">Liquid Spills</div></div>
-  <div class="stat-card orange"><div class="num">37,035</div><div class="label">Gas Releases</div></div>
-  <div class="stat-card gold"><div class="num">5.38M</div><div class="label">Gallons of Liquid Spilled</div></div>
+  <div class="stat-card blue"><div class="num">1,277</div><div class="label">Liquid Spills</div></div>
+  <div class="stat-card orange"><div class="num">37,160</div><div class="label">Gas Releases</div></div>
+  <div class="stat-card gold"><div class="num">3.52M</div><div class="label">Gallons of Liquid Spilled</div></div>
 </div>
 
 <div class="callout">
@@ -80,7 +81,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 <div class="section-block">
   <div class="eyebrow">Trend</div>
   <h2>Total Incidents Per Year, 2022–2025</h2>
-  <p>New Mexico reported 38,364 incidents in 2025, down from 42,213 in 2024 and well below the 2023 peak of 54,622. The 2023 spike reflected expanded reporting requirements. Incidents include both liquid spills and gas (vented/flared) releases.</p>
+  <p>New Mexico reported 38,364 incidents in 2025, down from 41,571 in 2024 and well below the 2023 peak of 53,101. The 2023 spike reflected expanded reporting requirements. Incidents include both liquid spills and gas (vented/flared) releases.</p>
   <div class="chart-wrap"><canvas id="nmTrendChart"></canvas><div class="chart-source">Source: New Mexico OCD, 2022–2025. Deduped by Incident Number.</div></div>
 </div>
 
@@ -88,10 +89,10 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 <div class="section-block">
   <div class="eyebrow">By Type</div>
   <h2>Incident Type and Volume, 2025</h2>
-  <p>Liquid spills totaled 1,329 incidents and 5.38 million gallons. Gas releases totaled 37,035 incidents and 9.4 billion cubic feet. Produced water was the most common liquid spilled; natural gas flaring accounted for the vast majority of gas volume.</p>
+  <p>Liquid spills totaled 1,277 incidents and 3.52 million gallons. Gas releases totaled 37,160 incidents and 9,725,851 MCF. Produced water was the most common liquid spilled; natural gas flaring accounted for the vast majority of gas volume.</p>
   <div class="chart-pair">
     <div class="chart-wrap"><canvas id="nmLiquidMat"></canvas><div class="chart-source">Liquid spills by material (gallons). Source: NM OCD, 2025.</div></div>
-    <div class="chart-wrap"><canvas id="nmGasMat"></canvas><div class="chart-source">Gas releases by material (billion cubic feet). Source: NM OCD, 2025.</div></div>
+    <div class="chart-wrap"><canvas id="nmGasMat"></canvas><div class="chart-source">Gas releases by material (MCF). Source: NM OCD, 2025.</div></div>
   </div>
 </div>
 
@@ -99,7 +100,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 <div class="section-block">
   <div class="eyebrow">Causes</div>
   <h2>Causes of Liquid Spills, 2025</h2>
-  <p>Equipment failure was the leading cause of liquid spills with 651 incidents (49%), followed by corrosion at 309 (23%). Human error accounted for 83 incidents. Together, equipment failure and corrosion represent nearly three-quarters of all liquid spills.</p>
+  <p>Equipment failure was the leading cause of liquid spills with 593 incidents (46%), followed by corrosion at 311 (24%). Human error accounted for 83 incidents. Together, equipment failure and corrosion represent nearly three-quarters of all liquid spills.</p>
   <div class="chart-wrap" style="max-width:480px"><canvas id="nmLiqCauses"></canvas><div class="chart-source">Top 5 causes plus all others. Source: NM OCD, 2025.</div></div>
 </div>
 
@@ -107,23 +108,23 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 <div class="section-block">
   <div class="eyebrow">Causes</div>
   <h2>Causes of Gas Releases, 2025</h2>
-  <p>High line pressure was the most common cause of gas releases with 9,003 incidents (24%), followed by equipment failure (8,383) and repair and maintenance (5,736). Midstream emergency maintenance accounted for 4,148 releases. Pipeline quality specifications issues totaled 2,647.</p>
+  <p>High line pressure was the most common cause of gas releases with 9,004 incidents (24%), followed by equipment failure (8,450) and repair and maintenance (5,737). Midstream emergency maintenance accounted for 4,148 releases. Pipeline quality specifications issues totaled 2,647.</p>
   <div class="chart-wrap" style="max-width:540px"><canvas id="nmGasCauses"></canvas><div class="chart-source">Top 5 causes plus all others. Source: NM OCD, 2025.</div></div>
 </div>
 
 <!-- 5. Spill sources -->
 <div class="section-block">
   <div class="eyebrow">Sources</div>
-  <h2>Sources of All Incidents, 2025</h2>
-  <p>Producing wells were the most common incident source with 8,169 reports, followed by separators (5,990) and pipelines (5,008). Tanks of all types accounted for roughly 4,900 combined incidents.</p>
-  <div class="chart-wrap"><canvas id="nmSources"></canvas><div class="chart-source">Top 6 spill sources by incident count. Source: NM OCD, 2025.</div></div>
+  <h2>Sources of Liquid Spills, 2025</h2>
+  <p>Pipelines were the most common source of liquid spills with 191 incidents, followed by pumps (176) and tanks (128). Flow lines, valves, and other specified equipment each accounted for roughly 100–120 incidents. All remaining sources are combined into "Other."</p>
+  <div class="chart-wrap"><canvas id="nmSources"></canvas><div class="chart-source">Top 6 liquid spill sources by incident count. Source: NM OCD, 2025.</div></div>
 </div>
 
 <!-- 6. Top liquid spillers -->
 <div class="section-block">
   <div class="eyebrow">Operators</div>
   <h2>Top Liquid Spillers: 2024 vs. 2025 (Gallons)</h2>
-  <p>Devon Energy Production led all operators with 1.02 million gallons of liquid spilled in 2025, up from 343,000 in 2024. EOG Resources ranked second at 460,000 gallons. OXY USA, which led in 2024 with 491,000 gallons, fell to sixth place in 2025 at 272,000.</p>
+  <p>OXY USA led all operators with 1.74 million gallons of liquid spilled in 2025. EOG Resources ranked second at 241,000 gallons, followed by XTO Energy at 209,000 gallons.</p>
   <div class="chart-wrap"><canvas id="nmLiqSpillers"></canvas><div class="chart-source">Top 6 operators by 2025 liquid volume. Source: NM OCD, 2025.</div></div>
 </div>
 
@@ -131,15 +132,15 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 <div class="section-block">
   <div class="eyebrow">Methane Waste</div>
   <h2>Top Methane Waste Operators: 2024 vs. 2025 (Billion Cubic Feet)</h2>
-  <p>EOG Resources led all operators in methane waste with 1.38 billion cubic feet in 2025, down slightly from 1.58 billion in 2024. Matador Production ranked second. Civitas Permian and Permian Resources Operating were new entrants to the top five.</p>
-  <div class="chart-wrap"><canvas id="nmMethaneSpillers"></canvas><div class="chart-source">Top 5 operators by 2025 methane volume (flared and vented). Source: NM OCD, 2025.</div></div>
+  <p>EOG Resources led all operators in methane waste with 1,380,000 MCF in 2025, down slightly from 1,579,000 MCF in 2024. Matador Production ranked second. Civitas Permian and Permian Resources Operating were new entrants to the top five.</p>
+  <div class="chart-wrap"><canvas id="nmMethaneSpillers"></canvas><div class="chart-source">Top 5 operators by 2025 methane volume (flared and vented), in MCF. Source: NM OCD, 2025.</div></div>
 </div>
 
 <!-- 8. County liquid count + volume -->
 <div class="section-block">
   <div class="eyebrow">Geography</div>
   <h2>Liquid Spills by County, 2025</h2>
-  <p>Lea and Eddy counties in the Permian Basin dominated, accounting for nearly all liquid spills. Lea County recorded 605 incidents and 2.84 million gallons. Eddy County had 594 incidents and 2.22 million gallons. San Juan County in the northwest was a distant third.</p>
+  <p>Lea and Eddy counties in the Permian Basin dominated, accounting for nearly all liquid spills. Lea County recorded 547 incidents and 2.60 million gallons. Eddy County had 598 incidents and 623,000 gallons. San Juan County in the northwest was a distant third.</p>
   <div class="chart-pair">
     <div class="chart-wrap"><svg id="nmCountyCount" viewBox="0 0 560 400" width="100%" style="display:block"></svg><div class="chart-source">Liquid spills by county (count). Source: NM OCD, 2025. Hover for details.</div></div>
     <div class="chart-wrap"><svg id="nmCountyVol" viewBox="0 0 560 400" width="100%" style="display:block"></svg><div class="chart-source">Liquid volume by county (gallons). Source: NM OCD, 2025. Hover for details.</div></div>
@@ -152,6 +153,18 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <h2>Gas Releases by County, 2025</h2>
   <p>Lea County reported 21,559 gas releases, more than all other counties combined. Eddy County had 14,935. The Permian Basin's two core counties accounted for 98% of all New Mexico gas release incidents.</p>
   <div class="chart-wrap" style="max-width:540px"><svg id="nmGasCounty" viewBox="0 0 560 400" width="100%" style="display:block"></svg><div class="chart-source">Gas releases by county (incident count). Source: NM OCD, 2025. Hover for details.</div></div>
+</div>
+
+<!-- Methodology -->
+<div class="section-block">
+  <div class="eyebrow">Methodology</div>
+  <h2>How this report was calculated</h2>
+  <ul style="margin-top:12px;padding-left:20px;line-height:1.8;font-size:15px;color:var(--cwp-dark)">
+    <li><strong>Data source:</strong> New Mexico Oil Conservation Division (OCD), downloaded July 7, 2026.</li>
+    <li><strong>Incident count:</strong> Deduplicated by Incident Number. Each unique Incident Number is counted once toward the total, regardless of how many material rows it contains.</li>
+    <li><strong>Liquid vs. gas classification:</strong> Each incident is classified based on its material type(s). Gas materials include Natural Gas Flared, Natural Gas Vented, [OBSOLETE] Natural Gas (Methane), and Carbon Dioxide. All other materials are classified as liquid. Incidents with "Other (Specify)" as the material are classified as gas if the Incident Type is Flare, Vent with Flaring, Natural Gas Release, or Vent; otherwise liquid. Incidents involving both gas and liquid materials are counted in both categories but only once in the total incident count.</li>
+    <li><strong>Gallons of liquid spilled:</strong> Reflects the Volume Lost field. Volumes reported in barrels (BBL) are converted to gallons by multiplying by 42. Incidents with multiple liquid material rows contribute each row's volume separately to the total.</li>
+  </ul>
 </div>
 
 </main>
@@ -184,21 +197,21 @@ const SEQ=[C.green,C.blue4,C.orange,C.gold,C.teal];
 Chart.defaults.font={family:"'Open Sans',sans-serif",size:12};
 Chart.defaults.color=C.dark;
 
-new Chart('nmTrendChart',{type:'bar',data:{labels:['2022','2023','2024','2025'],datasets:[{data:[42725,54622,42213,38364],backgroundColor:['2022','2023','2024','2025'].map(y=>y==='2025'?C.blue5:C.blue4),borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y.toLocaleString()} incidents`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}}}}});
+new Chart('nmTrendChart',{type:'bar',data:{labels:['2022','2023','2024','2025'],datasets:[{data:[41087,53101,41571,38364],backgroundColor:['2022','2023','2024','2025'].map(y=>y==='2025'?C.blue5:C.blue4),borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y.toLocaleString()} incidents`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}}}}});
 
-new Chart('nmLiquidMat',{type:'doughnut',data:{labels:['Produced Water','Crude Oil','Condensate','Other'],datasets:[{data:[4591944,667632,89250,36162],backgroundColor:SEQ,borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{title:{display:true,text:'Liquid Spills by Material (Gallons)',font:{family:"'Bitter',serif",size:13},color:C.dark},legend:{position:'right',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed.toLocaleString()} gal`}}}}});
+new Chart('nmLiquidMat',{type:'doughnut',data:{labels:['Produced Water','Crude Oil','Condensate','Other'],datasets:[{data:[3190236,273840,41958,29274],backgroundColor:SEQ,borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{title:{display:true,text:'Liquid Spills by Material (Gallons)',font:{family:"'Bitter',serif",size:13},color:C.dark},legend:{position:'right',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed.toLocaleString()} gal`}}}}});
 
-new Chart('nmGasMat',{type:'doughnut',data:{labels:['Flared','Vented','Other'],datasets:[{data:[9169760,208111,6243],backgroundColor:[C.orange,C.gold,C.gray],borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{title:{display:true,text:'Gas Releases by Material (Million CF)',font:{family:"'Bitter',serif",size:13},color:C.dark},legend:{position:'right',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.label}: ${(c.parsed/1000).toFixed(1)}B cf`}}}}});
+new Chart('nmGasMat',{type:'doughnut',data:{labels:['Flared','Vented','Carbon Dioxide'],datasets:[{data:[9425315,257508,43028],backgroundColor:[C.orange,C.gold,C.gray],borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{title:{display:true,text:'Gas Releases by Material (MCF)',font:{family:"'Bitter',serif",size:13},color:C.dark},legend:{position:'right',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed.toLocaleString()} MCF`}}}}});
 
-new Chart('nmLiqCauses',{type:'doughnut',data:{labels:['Equipment Failure','Corrosion','Human Error','Other','Overflow'],datasets:[{data:[651,309,83,73,53],backgroundColor:SEQ,borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}`}}}}});
+new Chart('nmLiqCauses',{type:'doughnut',data:{labels:['Equipment Failure','Corrosion','Human Error','Other','Overflow'],datasets:[{data:[593,311,83,236,54],backgroundColor:SEQ,borderWidth:1,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.label}: ${c.parsed}`}}}}});
 
-new Chart('nmGasCauses',{type:'bar',data:{labels:['High Line Pressure','Equipment Failure','Repair & Maintenance','Midstream Emergency','Pipeline Quality','Other'],datasets:[{data:[9003,8383,5736,4148,2647,7118],backgroundColor:[C.green,C.blue4,C.orange,C.gold,C.teal,C.gray],borderRadius:2}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x.toLocaleString()} incidents`}}},scales:{x:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}},y:{ticks:{font:{size:11}}}}}});
+new Chart('nmGasCauses',{type:'bar',data:{labels:['High Line Pressure','Equipment Failure','Repair & Maintenance','Midstream Emergency','Pipeline Quality Specs','Other'],datasets:[{data:[9004,8450,5737,4148,2647,7177],backgroundColor:[C.green,C.blue4,C.orange,C.gold,C.teal,C.gray],borderRadius:2}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x.toLocaleString()} liquid spills`}}},scales:{x:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}},y:{ticks:{font:{size:11}}}}}});
 
-new Chart('nmSources',{type:'bar',data:{labels:['Producing Well','Other','Separator','Pipeline','Tank (Any)','Gas Compressor Station'],datasets:[{data:[8169,7970,5990,5008,3479,3321],backgroundColor:[C.green,C.gray,C.blue4,C.orange,C.gold,C.teal],borderRadius:2}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x.toLocaleString()} incidents`}}},scales:{x:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}},y:{ticks:{font:{size:11}}}}}});
+new Chart('nmSources',{type:'bar',data:{labels:['Pipeline (Any)','Pump','Tank (Any)','Flow Line','Other (Specify)','Valve','Other'],datasets:[{data:[191,176,128,118,118,113,433],backgroundColor:[C.green,C.gray,C.blue4,C.orange,C.gold,C.teal,C.rule],borderRadius:2}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x.toLocaleString()} liquid spills`}}},scales:{x:{grid:{color:C.rule},ticks:{stepSize:50}},y:{ticks:{font:{size:11}}}}}});
 
 new Chart('nmLiqSpillers',{type:'bar',data:{labels:['Devon Energy','EOG Resources','Solaris Water','XTO Energy','Matador','OXY USA'],datasets:[{label:'2024',data:[343140,0,0,254772,220080,490644],backgroundColor:C.blue4,borderRadius:2},{label:'2025',data:[1018752,460152,368130,335076,321594,272286],backgroundColor:C.green,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(2)+'M':(v/1000).toFixed(0)+'K'}}}}});
 
-new Chart('nmMethaneSpillers',{type:'bar',data:{labels:['EOG Resources','Matador','Civitas Permian','Permian Resources','XTO Permian'],datasets:[{label:'2024 (BCF)',data:[1.579,1.120,0,0.983,0.566],backgroundColor:C.blue4,borderRadius:2},{label:'2025 (BCF)',data:[1.380,1.357,0.902,0.666,0.593],backgroundColor:C.orange,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toFixed(3)} BCF`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>v.toFixed(1)+' BCF'}}}}});
+new Chart('nmMethaneSpillers',{type:'bar',data:{labels:['EOG Resources','Matador','Civitas Permian','Permian Resources','XTO Permian'],datasets:[{label:'2024 (MCF)',data:[1579000,1120000,0,983000,566000],backgroundColor:C.blue4,borderRadius:2},{label:'2025 (MCF)',data:[1380000,1357000,902000,666000,593000],backgroundColor:C.orange,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} MCF`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K MCF'}}}}});
 
 
 function makeCountyMap(id,stateFips,fipsToName,data,metric,opts){
