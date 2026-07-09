@@ -143,8 +143,12 @@ a:hover { text-decoration: underline; }
   background: var(--cwp-white);
   border: 1px solid var(--cwp-rule);
   border-radius: 4px;
-  padding: 20px;
+  padding: 20px 20px 16px;
   border-top: 3px solid var(--cwp-green);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: auto;
 }
 .metric-card.blue { border-top-color: var(--cwp-blue-4); }
 .metric-card .label {
@@ -372,10 +376,9 @@ a:hover { text-decoration: underline; }
     <img src="https://westernpriorities.org/images/CWP-logo-white.svg"
          alt="Center for Western Priorities" class="cwp-logo"
          onerror="this.style.display='none'">
-    <p class="report-eyebrow">Data Analysis · Colorado Oil &amp; Gas</p>
-    <h1 class="report-title">Colorado Historic Oil &amp; Gas Spills</h1>
-    <p class="report-subtitle">An analysis of 6,084 unique historical spill records from Colorado's Colorado Energy &amp; Carbon Management Commission database, deduplicated by tracking number. Covers 2016–2025; excludes pre-2016 records and 2026-dated entries.</p>
-    <p class="report-meta">Data source: ECMC (ColoradoSpills.xlsm) &nbsp;·&nbsp; Spill type: Historical &nbsp;·&nbsp; Analysis prepared June 2026</p>
+    <p class="report-eyebrow">Center for Western Priorities · Western oil and gas spills tracker</p>
+    <h1 class="report-title">Contamination country:<br><span style="font-size:0.7em;">An invisible environmental disaster is buried in Weld County, Colorado</span></h1>
+
   </div>
 </header>
 
@@ -384,24 +387,20 @@ a:hover { text-decoration: underline; }
   <!-- Metrics -->
   <div class="metrics">
     <div class="metric-card">
-      <div class="label">Unique spills</div>
+      <div class="label">Historic spills</div>
       <div class="value">6,084</div>
-      <div class="sub">deduplicated by tracking #</div>
     </div>
     <div class="metric-card blue">
       <div class="label">Peak year</div>
       <div class="value">2025</div>
-      <div class="sub">1,948 unique spills</div>
     </div>
     <div class="metric-card">
       <div class="label">Top county</div>
       <div class="value">Weld</div>
-      <div class="sub">88% of all spills</div>
     </div>
     <div class="metric-card blue">
       <div class="label">Top operator</div>
       <div class="value">Noble</div>
-      <div class="sub">2,301 spills on record</div>
     </div>
   </div>
 
@@ -409,9 +408,9 @@ a:hover { text-decoration: underline; }
   <section class="section">
     <p class="section-eyebrow">Introduction</p>
     <h2 class="section-title">A legacy of pollution</h2>
-    <p class="section-body">A growing number of old drilling-related spills are being discovered in Colorado each year. These spills are a silent epidemic plaguing Colorado’s top oil-producing county. Most are found when operators arrive to shut in wells that are no longer producing oil and find contaminated soil around the well or nearby equipment, indicating a leak or spill occurred at some unknown point in the past. Regulators classify these as “historical” spills, contamination discovered after the original release, often years or decades later. In most cases, neither the date of the release nor its volume can be determined.</p>
-    <p class="section-body">This report analyzes 6,084 unique historical spill records filed with Colorado’s Energy and Carbon Management Commission (ECMC) between 2016 and 2025. The analysis finds that historical spill filings increased more than fifteenfold between 2020 and 2025, reaching 1,948 in 2025. This increase does not primarily indicate a rise in spill incidents. Rather, it reflects a combination of regulatory changes and tapering production in the Denver-Julesburg Basin.</p>
-    <p class="section-body">Weld County accounts for 87 percent of all filings, while just three operators—Noble Energy, Kerr McGee, and PDC Energy—account for 76 percent of historical spills. Perhaps most significantly, active detection played almost no role in these discoveries. State field inspections account for less than one percent of records, while decommissioning-related activities account for the overwhelming majority. Colorado’s historical spill record is a ledger of legacy contamination surfaced by regulatory requirements, evidence that both the state’s new rules are working as intended and that considerable contamination remains embedded in the landscape.</p>
+    <p class="section-body">A growing number of old drilling-related spills are being discovered in Colorado each year, revealing an invisible environmental disaster in Colorado’s top oil-producing county. Most of these spills are found when operators arrive to shut in wells that are no longer producing oil and find contaminated soil around the well or nearby equipment, indicating a leak or spill occurred at some unknown point in the past. Regulators classify these as “historical” spills, contamination discovered after the original release, often years or decades later. In most cases, neither the date of the spill nor its volume can be determined.</p>
+    <p class="section-body">This report analyzes 6,084 unique historical spill records filed with Colorado’s Energy and Carbon Management Commission (ECMC) between 2016 and 2025. The analysis finds that historical spill discoveries increased more than fifteenfold between 2020 and 2025, reaching 1,948 in 2025. This increase does not primarily indicate a rise in new spill incidents. Rather, it reflects a combination of regulatory changes and tapering production in the Denver-Julesburg Basin.</p>
+    <p class="section-body">Weld County accounts for 87 percent of all historical spill reports, while just three operators—Noble Energy, Kerr McGee, and PDC Energy—account for 76 percent of historical spills. Significantly, active detection played almost no role in these discoveries. State field inspections account for less than one percent of recorded spills, while decommissioning-related activities account for the overwhelming majority. The spills analyzed in this report represent legacy of industry contamination that is only coming to light because of Colorado’s strong reporting requirements.</p>
   </section>
 
   <!-- Trend -->
@@ -616,7 +615,7 @@ a:hover { text-decoration: underline; }
   <p class="section-eyebrow">Methodology</p>
   <h2 class="section-title" style="font-size:1.15rem;margin-bottom:16px;">Data and methodology</h2>
   <div class="section-body" style="font-size:0.9rem;line-height:1.7;color:#465050;max-width:720px;">
-    <p style="margin-bottom:12px;"><strong>Data source:</strong> ECMC (Energy and Carbon Management Commission, formerly COGCC). Source file: <code>ColoradoSpills.xlsm</code>, downloaded from the ECMC online spill database.</p>
+    <p style="margin-bottom:12px;"><strong>Data source:</strong> ECMC (Energy and Carbon Management Commission, formerly COGCC). Source file: ColoradoSpills.xlsm, downloaded from the ECMC online spill database.</p>
     <p style="margin-bottom:12px;"><strong>Record selection:</strong> Filtered to rows where Spill Type = "Historical" and Date of Discovery falls between January 1, 2016 and December 31, 2025. Records with a Date of Discovery before 2016 (9 records) or in 2026 (674 records bearing future-dated entries present in the source file) are excluded. Each unique Tracking # is counted as one spill event; where multiple rows share a Tracking #, the first occurrence by row order is used for categorical fields.</p>
     <p style="margin-bottom:12px;"><strong>Spill count:</strong> 6,084 unique historical spill records after deduplication and date filtering.</p>
     <p style="margin-bottom:12px;"><strong>Volume:</strong> Most historical spill records do not include a reported volume; the release typically occurred years or decades before discovery, making volume estimation impossible. Volume figures are not reported in this analysis.</p>
