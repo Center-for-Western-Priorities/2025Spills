@@ -132,7 +132,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 <div class="section-block">
   <div class="eyebrow">Methane Waste</div>
   <h2>Top Methane Waste Operators: 2024 vs. 2025 (Billion Cubic Feet)</h2>
-  <p>EOG Resources led all operators in methane waste with 1,380,000 MCF in 2025, down slightly from 1,579,000 MCF in 2024. Matador Production ranked second. Civitas Permian and Permian Resources Operating were new entrants to the top five.</p>
+  <p>EOG Resources led all operators in methane waste with 1,394,000 MCF in 2025, down from 1,595,000 MCF in 2024. Matador Production ranked second at 1,362,000 MCF. XTO Energy ranked third, followed closely by Civitas Permian at 904,000 MCF.</p>
   <div class="chart-wrap"><canvas id="nmMethaneSpillers"></canvas><div class="chart-source">Top 5 operators by 2025 methane volume (flared and vented), in MCF. Source: NM OCD, 2025.</div></div>
 </div>
 
@@ -211,7 +211,7 @@ new Chart('nmSources',{type:'bar',data:{labels:['Pipeline (Any)','Pump','Tank (A
 
 new Chart('nmLiqSpillers',{type:'bar',data:{labels:['OXY USA','EOG Resources','XTO Energy','DKL Energy','Mewbourne Oil','Dugan Production'],datasets:[{label:'2024',data:[270900,81312,89418,2604,144942,27090],backgroundColor:C.blue4,borderRadius:2},{label:'2025',data:[1738338,239736,208404,169092,134022,133686],backgroundColor:C.green,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(2)+'M':(v/1000).toFixed(0)+'K'}}}}});
 
-new Chart('nmMethaneSpillers',{type:'bar',data:{labels:['EOG Resources','Matador','Civitas Permian','Permian Resources','XTO Permian'],datasets:[{label:'2024 (MCF)',data:[1579000,1120000,0,983000,566000],backgroundColor:C.blue4,borderRadius:2},{label:'2025 (MCF)',data:[1380000,1357000,902000,666000,593000],backgroundColor:C.orange,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} MCF`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K MCF'}}}}});
+new Chart('nmMethaneSpillers',{type:'bar',data:{labels:['EOG Resources','Matador','XTO Energy','Civitas Permian','Permian Resources'],datasets:[{label:'2024 (MCF)',data:[1595185,1120635,969008,413701,996791],backgroundColor:C.blue4,borderRadius:2},{label:'2025 (MCF)',data:[1394468,1362301,920432,903657,670224],backgroundColor:C.orange,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} MCF`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K MCF'}}}}});
 
 
 function makeCountyMap(id,stateFips,fipsToName,data,metric,opts){
