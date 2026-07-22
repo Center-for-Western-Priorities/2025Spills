@@ -151,7 +151,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 <div class="section-block">
   <div class="eyebrow">Geography</div>
   <h2>Gas Releases by County, 2025</h2>
-  <p>Lea County reported 21,559 gas releases, more than all other counties combined. Eddy County had 14,935. The Permian Basin's two core counties accounted for 98% of all New Mexico gas release incidents.</p>
+  <p>Lea County reported 21,464 gas releases, more than all other counties combined. Eddy County had 14,667. The Permian Basin's two core counties accounted for 98% of all New Mexico gas release incidents.</p>
   <div class="chart-wrap" style="max-width:540px"><svg id="nmGasCounty" viewBox="0 0 560 400" width="100%" style="display:block"></svg><div class="chart-source">Gas releases by county (incident count). Source: NM OCD, 2025. Hover for details.</div></div>
 </div>
 
@@ -260,7 +260,7 @@ function makeCountyMap(id,stateFips,fipsToName,data,metric,opts){
   const nmFips={'35001':'Bernalillo','35003':'Catron','35005':'Chaves','35006':'Cibola','35007':'Colfax','35009':'Curry','35011':'De Baca','35013':'Dona Ana','35015':'Eddy','35017':'Grant','35019':'Guadalupe','35021':'Harding','35023':'Hidalgo','35025':'Lea','35027':'Lincoln','35028':'Los Alamos','35029':'Luna','35031':'McKinley','35033':'Mora','35035':'Otero','35037':'Quay','35039':'Rio Arriba','35041':'Roosevelt','35043':'Sandoval','35045':'San Juan','35047':'San Miguel','35049':'Santa Fe','35051':'Sierra','35053':'Socorro','35055':'Taos','35057':'Torrance','35059':'Union','35061':'Valencia'};
   const nmLiqCount={Eddy:598,Lea:547,'San Juan':85,'Rio Arriba':32,Chaves:4,Sandoval:3,Roosevelt:3,Harding:2,Union:2};
   const nmLiqVol={Lea:3192840,Eddy:1491714,'San Juan':425838,'Rio Arriba':29442,Sandoval:11046,Chaves:2058,Roosevelt:3024,Harding:294,Union:1008};
-  const nmGas={Lea:21464,Eddy:14667,Chaves:364,'San Juan':122,'Rio Arriba':72,Roosevelt:2,Otero:1,Torrance:1};
+  const nmGas={Lea:21464,Eddy:14667,Chaves:364,'San Juan':122,'Rio Arriba':72,Roosevelt:2,Sandoval:1,Otero:1,Torrance:1};
   makeCountyMap('nmCountyCount','35',nmFips,nmLiqCount,'spills');
   makeCountyMap('nmCountyVol','35',nmFips,nmLiqVol,'gal',{fmt:v=>v>=1e6?(v/1e6).toFixed(2)+' M gal':v>=1000?(v/1000).toFixed(1)+' K gal':v+' gal'});
   makeCountyMap('nmGasCounty','35',nmFips,nmGas,'releases');
