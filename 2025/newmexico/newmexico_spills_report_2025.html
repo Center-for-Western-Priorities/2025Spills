@@ -140,7 +140,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 <div class="section-block">
   <div class="eyebrow">Geography</div>
   <h2>Liquid Spills by County, 2025</h2>
-  <p>Lea and Eddy counties in the Permian Basin dominated, accounting for nearly all liquid spills. Lea County recorded 547 incidents and 2.60 million gallons. Eddy County had 598 incidents and 623,000 gallons. San Juan County in the northwest was a distant third.</p>
+  <p>Lea and Eddy counties in the Permian Basin dominated, accounting for nearly all liquid spills. Lea County recorded 547 incidents and 3.19 million gallons. Eddy County had 598 incidents and 1.49 million gallons. San Juan County in the northwest was a distant third at 426,000 gallons.</p>
   <div class="chart-pair">
     <div class="chart-wrap"><svg id="nmCountyCount" viewBox="0 0 560 400" width="100%" style="display:block"></svg><div class="chart-source">Liquid spills by county (count). Source: NM OCD, 2025. Hover for details.</div></div>
     <div class="chart-wrap"><svg id="nmCountyVol" viewBox="0 0 560 400" width="100%" style="display:block"></svg><div class="chart-source">Liquid volume by county (gallons). Source: NM OCD, 2025. Hover for details.</div></div>
@@ -163,7 +163,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
     <li><strong>Data source:</strong> New Mexico Oil Conservation Division (OCD), downloaded July 7, 2026.</li>
     <li><strong>Incident count:</strong> Deduplicated by Incident Number. Each unique Incident Number is counted once toward the total, regardless of how many material rows it contains.</li>
     <li><strong>Liquid vs. gas classification:</strong> Each incident is classified based on its material type(s). Gas materials include Natural Gas Flared, Natural Gas Vented, [OBSOLETE] Natural Gas (Methane), and Carbon Dioxide. All other materials are classified as liquid. Incidents with "Other (Specify)" as the material are classified as gas if the Incident Type is Flare, Vent with Flaring, Natural Gas Release, or Vent; otherwise liquid. Incidents involving both gas and liquid materials are counted in both categories but only once in the total incident count.</li>
-    <li><strong>Gallons of liquid spilled:</strong> Reflects the Volume Lost field. Volumes reported in barrels (BBL) are converted to gallons by multiplying by 42. Incidents with multiple liquid material rows contribute each row's volume separately to the total.</li>
+    <li><strong>Gallons of liquid spilled:</strong> Reflects the Volume Lost field (total released minus recovered). Volumes reported in barrels (BBL) are converted to gallons by multiplying by 42. A single Incident Number may have multiple rows when multiple materials were released simultaneously; all rows sharing an Incident Number are summed to produce the total volume for that incident.</li>
   </ul>
 </div>
 
@@ -178,7 +178,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
       <p style="margin-bottom:12px;"><strong>Parsing:</strong> The source file is an HTML table export rather than a true spreadsheet. It is parsed using a custom regular expression routine to extract incident records.</p>
       <p style="margin-bottom:12px;"><strong>Incident classification:</strong> Each incident is classified as either a liquid release (produced water, crude oil, condensate, drilling fluid, or other liquid oilfield fluids) or a gas release (natural gas, flared gas, or vented gas) using a classification function applied to the material description field. Incidents with ambiguous or mixed materials are assigned to the dominant type by volume.</p>
       <p style="margin-bottom:12px;"><strong>Deduplication:</strong> Records are deduplicated by Incident Number. Liquid and gas incident sets are deduplicated separately to avoid cross-type collisions.</p>
-      <p style="margin-bottom:12px;"><strong>Volume:</strong> All liquid volume figures use the Volume Lost field (total released minus recovered), converted from barrels to gallons by multiplying by 42. Gas volumes use the Volume Lost field in Mcf, multiplied by 1,000 to convert to cubic feet. Volume Released is not used.</p>
+      <p style="margin-bottom:12px;"><strong>Volume:</strong> All liquid volume figures use the Volume Lost field (total released minus recovered), converted from barrels to gallons by multiplying by 42. A single Incident Number may have multiple rows when multiple materials were released simultaneously; all rows sharing an Incident Number are summed to produce the total volume for that incident. Gas volumes use the Volume Lost field in Mcf, multiplied by 1,000 to convert to cubic feet. Volume Released is not used.</p>
       <p style="margin-bottom:0;"><strong>Date parsing:</strong> Dates in the source file are formatted as MM/DD/YYYY strings. Year is extracted from the final four characters of the date string.</p>
     </div>
   </div>
@@ -258,8 +258,8 @@ function makeCountyMap(id,stateFips,fipsToName,data,metric,opts){
 
 (function(){
   const nmFips={'35001':'Bernalillo','35003':'Catron','35005':'Chaves','35006':'Cibola','35007':'Colfax','35009':'Curry','35011':'De Baca','35013':'Dona Ana','35015':'Eddy','35017':'Grant','35019':'Guadalupe','35021':'Harding','35023':'Hidalgo','35025':'Lea','35027':'Lincoln','35028':'Los Alamos','35029':'Luna','35031':'McKinley','35033':'Mora','35035':'Otero','35037':'Quay','35039':'Rio Arriba','35041':'Roosevelt','35043':'Sandoval','35045':'San Juan','35047':'San Miguel','35049':'Santa Fe','35051':'Sierra','35053':'Socorro','35055':'Taos','35057':'Torrance','35059':'Union','35061':'Valencia'};
-  const nmLiqCount={Eddy:890,Lea:870,'San Juan':87,'Rio Arriba':35,Chaves:4,Sandoval:3,Roosevelt:3,Union:2};
-  const nmLiqVol={Lea:1041983,Eddy:557452,'San Juan':199997,'Rio Arriba':21000,Sandoval:8652,Chaves:2058,Roosevelt:1932,Union:1008};
+  const nmLiqCount={Eddy:598,Lea:547,'San Juan':85,'Rio Arriba':32,Chaves:4,Sandoval:3,Roosevelt:3,Harding:2,Union:2};
+  const nmLiqVol={Lea:3192840,Eddy:1491714,'San Juan':425838,'Rio Arriba':29442,Sandoval:11046,Chaves:2058,Roosevelt:3024,Harding:294,Union:1008};
   const nmGas={Lea:21464,Eddy:14667,Chaves:364,'San Juan':122,'Rio Arriba':72,Roosevelt:2,Otero:1,Torrance:1};
   makeCountyMap('nmCountyCount','35',nmFips,nmLiqCount,'spills');
   makeCountyMap('nmCountyVol','35',nmFips,nmLiqVol,'gal',{fmt:v=>v>=1e6?(v/1e6).toFixed(2)+' M gal':v>=1000?(v/1000).toFixed(1)+' K gal':v+' gal'});
