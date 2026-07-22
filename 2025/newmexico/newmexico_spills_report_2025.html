@@ -124,7 +124,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 <div class="section-block">
   <div class="eyebrow">Operators</div>
   <h2>Top Liquid Spillers: 2024 vs. 2025 (Gallons)</h2>
-  <p>Devon Energy led all operators with 1.02 million gallons of liquid spilled in 2025, a dramatic increase from 62,000 gallons in 2024. EOG Resources ranked second at 460,000 gallons, followed by Solaris Water at 368,000 gallons.</p>
+  <p>OXY USA led all operators with 1.74 million gallons of liquid lost in 2025, up from 271,000 gallons in 2024. EOG Resources ranked second at 240,000 gallons, followed by XTO Energy at 208,000 gallons.</p>
   <div class="chart-wrap"><canvas id="nmLiqSpillers"></canvas><div class="chart-source">Top 6 operators by 2025 liquid volume. Source: NM OCD, 2025.</div></div>
 </div>
 
@@ -178,7 +178,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
       <p style="margin-bottom:12px;"><strong>Parsing:</strong> The source file is an HTML table export rather than a true spreadsheet. It is parsed using a custom regular expression routine to extract incident records.</p>
       <p style="margin-bottom:12px;"><strong>Incident classification:</strong> Each incident is classified as either a liquid release (produced water, crude oil, condensate, drilling fluid, or other liquid oilfield fluids) or a gas release (natural gas, flared gas, or vented gas) using a classification function applied to the material description field. Incidents with ambiguous or mixed materials are assigned to the dominant type by volume.</p>
       <p style="margin-bottom:12px;"><strong>Deduplication:</strong> Records are deduplicated by Incident Number. Liquid and gas incident sets are deduplicated separately to avoid cross-type collisions.</p>
-      <p style="margin-bottom:12px;"><strong>Volume conversion:</strong> Liquid volumes reported in barrels are multiplied by 42 to convert to gallons. Gas volumes reported in Mcf (thousand cubic feet) are multiplied by 1,000 to convert to cubic feet.</p>
+      <p style="margin-bottom:12px;"><strong>Volume:</strong> All liquid volume figures use the Volume Lost field (total released minus recovered), converted from barrels to gallons by multiplying by 42. Gas volumes use the Volume Lost field in Mcf, multiplied by 1,000 to convert to cubic feet. Volume Released is not used.</p>
       <p style="margin-bottom:0;"><strong>Date parsing:</strong> Dates in the source file are formatted as MM/DD/YYYY strings. Year is extracted from the final four characters of the date string.</p>
     </div>
   </div>
@@ -209,7 +209,7 @@ new Chart('nmGasCauses',{type:'bar',data:{labels:['High Line Pressure','Equipmen
 
 new Chart('nmSources',{type:'bar',data:{labels:['Pipeline (Any)','Pump','Tank (Any)','Flow Line','Other (Specify)','Valve','Other'],datasets:[{data:[191,176,128,118,118,113,433],backgroundColor:[C.green,C.gray,C.blue4,C.orange,C.gold,C.teal,C.rule],borderRadius:2}]},options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.x.toLocaleString()} liquid spills`}}},scales:{x:{grid:{color:C.rule},ticks:{stepSize:50}},y:{ticks:{font:{size:11}}}}}});
 
-new Chart('nmLiqSpillers',{type:'bar',data:{labels:['Devon Energy','EOG Resources','Solaris Water','XTO Energy','Matador','OXY USA'],datasets:[{label:'2024',data:[61698,81312,4200,89418,135954,270900],backgroundColor:C.blue4,borderRadius:2},{label:'2025',data:[1018752,460152,368130,335076,321594,272286],backgroundColor:C.green,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(2)+'M':(v/1000).toFixed(0)+'K'}}}}});
+new Chart('nmLiqSpillers',{type:'bar',data:{labels:['OXY USA','EOG Resources','XTO Energy','DKL Energy','Mewbourne Oil','Dugan Production'],datasets:[{label:'2024',data:[270900,81312,89418,2604,144942,27090],backgroundColor:C.blue4,borderRadius:2},{label:'2025',data:[1738338,239736,208404,169092,134022,133686],backgroundColor:C.green,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(2)+'M':(v/1000).toFixed(0)+'K'}}}}});
 
 new Chart('nmMethaneSpillers',{type:'bar',data:{labels:['EOG Resources','Matador','Civitas Permian','Permian Resources','XTO Permian'],datasets:[{label:'2024 (MCF)',data:[1579000,1120000,0,983000,566000],backgroundColor:C.blue4,borderRadius:2},{label:'2025 (MCF)',data:[1380000,1357000,902000,666000,593000],backgroundColor:C.orange,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} MCF`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K MCF'}}}}});
 

@@ -88,7 +88,7 @@ Full analysis code is in `CWP Oil and Gas Spills Tracker.ipynb`.
 
 **Deduplication:** Records are deduplicated by Incident Number. Liquid and gas incident sets are deduplicated separately to avoid cross-type collisions.
 
-**Volume conversion:** Liquid volumes reported in barrels are multiplied by 42 to convert to gallons. Gas volumes reported in Mcf (thousand cubic feet) are multiplied by 1,000 to convert to cubic feet.
+**Volume:** All liquid volume figures use the Volume Lost field (total released minus recovered), converted from barrels to gallons by multiplying by 42. Gas volumes use the Volume Lost field in Mcf, multiplied by 1,000 to convert to cubic feet. Volume Released is not used.
 
 **Date parsing:** Dates in the source file are formatted as MM/DD/YYYY strings. Year is extracted from the final four characters of the date string.
 
