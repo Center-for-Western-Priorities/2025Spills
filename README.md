@@ -44,22 +44,69 @@ Analysis of historical spill records (Spill Type = "Historical") filed with COGC
 
 ## Methodology
 
-Analysis follows the methodology in `CWP Oil and Gas Spills Tracker.ipynb`.
+Full analysis code is in `CWP Oil and Gas Spills Tracker.ipynb`.
 
-**Colorado 2025:**
-- Filter to Spill Type = "Recent", Date of Discovery 2016–2025; deduplicate by Tracking #
-- Volume: for each Tracking #, take MAX value per liquid column across all rows; sum all six columns; multiply by 42. Fluid types: oil, condensate, produced water, drilling fluid, flowback fluid, other E&P waste
-- Distance analysis: Surface Water Near, Water Wells, Occupied Buildings columns; for each Tracking #, use the minimum reported distance across all rows; filter ≤ 5,280 ft; bucket into 500 ft ranges
-- Data source: ECMC (formerly COGCC)
+---
 
-**Wyoming:**
-- Unit conversion via `togallons()`: rows with Unit = "Bbls" multiply by 42; "Gal" rows kept as-is
-- Operator name cleaning: legal suffixes (LLC, LP, ENERGY, RESOURCES, OPERATING, etc.) stripped iteratively, with manual fixups for CITATION, CONTANGO, PEAK POWDER RIVER, etc.
+### Colorado 2025 Spills Report
 
-**New Mexico:**
-- Source: NM OCD HTML download (~104 MB), parsed with custom regex
-- Incidents classified as gas or liquid via `materialtype()`. Gas materials: Natural Gas Flared, Natural Gas Vented, [OBSOLETE] Natural Gas (Methane), and Carbon Dioxide. Carbon Dioxide is treated as a gas release, not a liquid spill. "Other (Specify)" rows are classified as gas if Incident Type is Flare, Vent with Flaring, Natural Gas Release, or Vent; otherwise liquid.
-- Deduplicated by Incident Number; volume converted via `togallons()` (BBL × 42) and `to_cf()` (Mcf × 1,000)
+**Data source:** Energy and Carbon Management Commission (ECMC), formerly the Colorado Oil and Gas Conservation Commission (COGCC), renamed in 2023. Source file: `2025/ColoradoSpills.xlsm`, downloaded from the ECMC online spill database.
+
+**Record selection:** Filtered to rows where Spill Type = "Recent" and Date of Discovery falls between January 1 and December 31, 2025. Each unique Tracking # is counted as one spill event; where multiple rows share a Tracking #, the first occurrence is used for categorical fields (operator, county, facility type, surface owner).
+
+**Spill count:** 338 unique spills. Trend chart covers 2016–2025; the 2014 data point (2 spills) was excluded as an isolated outlier predating the continuous reporting series. Total since 2016: 3,890.
+
+**Volume:** ECMC records volume across six liquid columns: Oil BBLs Spilled, Condensate BBLs Spilled, Produced Water BBLs Spilled, Drilling Fluid BBLs Spilled, Flow Back Fluid BBLs Spilled, and Other E&P Waste BBLs Spilled. For each Tracking #, the maximum reported value per column is taken across all associated rows (to avoid double-counting supplemental filings), then all six column maxima are summed and multiplied by 42 to convert barrels to gallons. Volume figures are minimums based on operator self-reporting; a substantial share of spills list unknown volume.
+
+**Distance to sensitive resources:** ECMC records the distance in feet from the spill site to the nearest surface water body, water well, and occupied building. These values are location-level properties and may appear on only one of several rows associated with a Tracking #. For each spill, the minimum reported distance across all rows is used. Only spills reporting a non-zero distance of 5,280 feet (one mile) or less are included. Results are bucketed into six 500-foot ranges.
+
+**Inorganic-only filings:** This analysis includes all Form 19 filings meeting the date and spill-type criteria. It does not filter out filings where detected contamination consists solely of inorganic parameters — such as pH, sodium adsorption ratio (SAR), electrical conductivity, or arsenic — that may reflect naturally occurring soil chemistry rather than a hydrocarbon release. ECMC does not provide a formal flag for these cases; the determination appears, when made, only in free-text supplemental report fields. These filings represent less than 0.5% of the 2025 recent record and have no material effect on any figure in this report.
+
+---
+
+### Wyoming 2025 Spills Report
+
+**Data source:** Wyoming Oil and Gas Conservation Commission (WOGCC). Source files: `2025/WyomingSpills2025.xlsx` (2025 spills) and `2025/WyomingSpills2024.xlsx` (2024 spills, used for year-over-year comparisons).
+
+**Record selection:** All spill records in the source files are included; no spill-type filter is applied (WOGCC data does not use the Recent/Historical distinction used by ECMC). Each row represents one reported spill event.
+
+**Volume:** Volume units vary by row. Rows where Unit = "Bbls" are converted to gallons by multiplying by 42; rows where Unit = "Gal" are used as reported. Other unit values are excluded from volume totals.
+
+**Operator names:** Operator names in the WOGCC source data include legal suffixes and spelling variations. Names are standardized by stripping common suffixes (LLC, LP, INC, ENERGY, RESOURCES, OPERATING, CO, COMPANY, and variants) and applying manual corrections for known cases including CITATION, CONTANGO, and PEAK POWDER RIVER.
+
+**County maps:** 2024 and 2025 county-level spill counts are displayed as side-by-side choropleth maps using a shared color scale, so shading is directly comparable across years. The shared maximum is the highest county count across both years combined.
+
+---
+
+### New Mexico 2025 Spills Report
+
+**Data source:** New Mexico Oil Conservation Division (OCD), downloaded from the OCD permitting and reporting portal as an HTML file (`2025/newmexico/nm_spills.xls`, approximately 104 MB). Records cover 2022–2025.
+
+**Parsing:** The source file is an HTML table export rather than a true spreadsheet. It is parsed using a custom regular expression routine to extract incident records.
+
+**Incident classification:** Each incident is classified as either a liquid release (produced water, crude oil, condensate, drilling fluid, or other liquid oilfield fluids) or a gas release (natural gas, flared gas, or vented gas) using a `materialtype()` function applied to the material description field. Incidents with ambiguous or mixed materials are assigned to the dominant type by volume.
+
+**Deduplication:** Records are deduplicated by Incident Number. Liquid and gas incident sets are deduplicated separately to avoid cross-type collisions.
+
+**Volume conversion:** Liquid volumes reported in barrels are multiplied by 42 to convert to gallons. Gas volumes reported in Mcf (thousand cubic feet) are multiplied by 1,000 to convert to cubic feet.
+
+**Date parsing:** Dates in the source file are formatted as MM/DD/YYYY strings. Year is extracted from the final four characters of the date string.
+
+---
+
+### Colorado Historical Spills Report
+
+**Data source:** ECMC. Source file: `2025/ColoradoSpills.xlsm`, the same file used for the 2025 recent spills report.
+
+**Record selection:** Filtered to rows where Spill Type = "Historical" and Date of Discovery falls between January 1, 2016 and December 31, 2025. Records with a Date of Discovery before 2016 (9 records) or in 2026 (674 records bearing future-dated entries present in the source file) are excluded. Each unique Tracking # is counted as one spill event; where multiple rows share a Tracking #, the first occurrence by row order is used for categorical fields.
+
+**Spill count:** 6,084 unique historical spill records after deduplication and date filtering.
+
+**Volume:** Most historical spill records do not include a reported volume; the release typically occurred years or decades before discovery, making volume estimation impossible. Volume figures are not reported in this analysis.
+
+**Discovery reason classification:** The Root Cause and Spill Description fields were analyzed using keyword text classification to categorize each spill by the activity that led to its discovery. Categories and counts: plugging, abandonment, and cut-and-cap operations (41%); tank battery deconstruction (22%); flowline decommissioning (13%); facility decommissioning (7%); construction and excavation (6%); site reclamation and pit closure (2%); ECMC field inspection (<1%); unknown or not reported (7%). Percentages are of 6,084 unique tracking numbers.
+
+**Inorganic-only filings:** Approximately 28 of the 6,084 records (less than 0.5%) appear to involve inorganic-only soil parameter exceedances — such as elevated pH, SAR, or arsenic — rather than hydrocarbon releases, based on zero reported liquid volume combined with descriptions referencing inorganic constituents or background-level determinations. These records are retained in the dataset because ECMC does not provide a formal mechanism to distinguish them from confirmed hydrocarbon releases. Their inclusion has no material effect on any figure in this report.
 
 ---
 
