@@ -155,18 +155,6 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <div class="chart-wrap" style="max-width:540px"><svg id="nmGasCounty" viewBox="0 0 560 400" width="100%" style="display:block"></svg><div class="chart-source">Gas releases by county (incident count). Source: NM OCD, 2025. Hover for details.</div></div>
 </div>
 
-<!-- Methodology -->
-<div class="section-block">
-  <div class="eyebrow">Methodology</div>
-  <h2>How this report was calculated</h2>
-  <ul style="margin-top:12px;padding-left:20px;line-height:1.8;font-size:15px;color:var(--cwp-dark)">
-    <li><strong>Data source:</strong> New Mexico Oil Conservation Division (OCD), downloaded July 7, 2026.</li>
-    <li><strong>Incident count:</strong> Deduplicated by Incident Number. Each unique Incident Number is counted once toward the total, regardless of how many material rows it contains.</li>
-    <li><strong>Liquid vs. gas classification:</strong> Each incident is classified based on its material type(s). Gas materials include Natural Gas Flared, Natural Gas Vented, [OBSOLETE] Natural Gas (Methane), and Carbon Dioxide. All other materials are classified as liquid. Incidents with "Other (Specify)" as the material are classified as gas if the Incident Type is Flare, Vent with Flaring, Natural Gas Release, or Vent; otherwise liquid. Incidents involving both gas and liquid materials are counted in both categories but only once in the total incident count.</li>
-    <li><strong>Gallons of liquid spilled:</strong> Reflects the Volume Lost field (total released minus recovered). Volumes reported in barrels (BBL) are converted to gallons by multiplying by 42. A single Incident Number may have multiple rows when multiple materials were released simultaneously; all rows sharing an Incident Number are summed to produce the total volume for that incident.</li>
-  </ul>
-</div>
-
 </main>
 
 <section style="background:#f5f5f3;border-top:2px solid #e0ddd8;padding:48px 32px;">
