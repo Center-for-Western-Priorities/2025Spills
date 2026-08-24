@@ -77,6 +77,21 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <div class="stat-card orange"><div class="num">1.19M</div><div class="label">Gallons of Produced Water Spilled</div></div>
 </div>
 
+<!-- 0. Historical trends -->
+<div class="section-block">
+  <div class="eyebrow">Historical Trends</div>
+  <h2>Spills Per Year, 2018–2025</h2>
+  <p>Wyoming recorded 786 spills in 2025, continuing a pattern of year-to-year variation with no clear long-term trend. Incident counts peaked in 2019 and 2024 (both 825) and fell to a low of 487 in 2022. Note: the 2018 figure (722) reflects incidents with a report date in 2018 only; the source file also contains records from 2016 and 2017.</p>
+  <div class="chart-wrap"><canvas id="wyYearCount"></canvas><div class="chart-source">Source: WOGCC, 2018–2025. Filtered by report date.</div></div>
+</div>
+
+<div class="section-block">
+  <div class="eyebrow">Historical Trends</div>
+  <h2>Total Volume Spilled Per Year, 2018–2025 (Gallons)</h2>
+  <p>Total spill volume has varied significantly year to year, with 2018 the highest on record at 3.49 million gallons and 2022 the lowest at 1.15 million. The 2018 figure is influenced by several large produced-water incidents. Volume in 2025 (1.43 million gallons) was the second-lowest in the series.</p>
+  <div class="chart-wrap"><canvas id="wyYearVolume"></canvas><div class="chart-source">Combined oil, produced water, and other. Source: WOGCC, 2018–2025. Filtered by report date.</div></div>
+</div>
+
 <!-- 1. Material type count -->
 <div class="section-block">
   <div class="eyebrow">By Substance</div>
@@ -176,6 +191,10 @@ Chart.defaults.font={family:"'Open Sans',sans-serif",size:12};
 Chart.defaults.color=C.dark;
 
 new Chart('wyMatCount',{type:'bar',data:{labels:['Produced Water','Oil','Other'],datasets:[{data:[511,336,66],backgroundColor:[C.blue4,C.green,C.gold],borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},title:{display:true,text:'Number of Spills by Type',font:{family:"'Bitter',serif",size:14},color:C.dark},tooltip:{callbacks:{label:c=>` ${c.parsed.y} spills`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule}}}}});
+
+new Chart('wyYearCount',{type:'bar',data:{labels:['2018','2019','2020','2021','2022','2023','2024','2025'],datasets:[{data:[722,825,613,642,487,730,825,786],backgroundColor:['2018','2019','2020','2021','2022','2023','2024','2025'].map(y=>y==='2025'?C.blue5:C.blue4),borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y} spills`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},beginAtZero:true}}}});
+
+new Chart('wyYearVolume',{type:'bar',data:{labels:['2018','2019','2020','2021','2022','2023','2024','2025'],datasets:[{data:[3488225,2408112,1592273,1642213,1153472,1403440,1811517,1429658],backgroundColor:['2018','2019','2020','2021','2022','2023','2024','2025'].map(y=>y==='2025'?C.blue5:C.blue4),borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${(c.parsed.y/1e6).toFixed(2)}M gal`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},beginAtZero:true,ticks:{callback:v=>(v/1e6).toFixed(1)+'M'}}}}});
 
 new Chart('wyVolTotal',{type:'bar',data:{labels:['Produced Water','Oil','Other'],datasets:[{label:'2024',data:[1527063,190520,93934],backgroundColor:C.blue4,borderRadius:2},{label:'2025',data:[1185342,190808,53508],backgroundColor:C.green,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(2)+'M':(v/1000).toFixed(0)+'K'}}}}});
 
