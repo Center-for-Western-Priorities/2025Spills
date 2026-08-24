@@ -117,6 +117,14 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <div class="chart-wrap"><canvas id="wyOpsVolume"></canvas><div class="chart-source">Combined oil, produced water, and other. Source: WOGCC, 2025.</div></div>
 </div>
 
+<!-- 4b. Total volume year-over-year by material -->
+<div class="section-block">
+  <div class="eyebrow">Year-Over-Year</div>
+  <h2>Total Volume Spilled: 2024 vs. 2025 (Gallons)</h2>
+  <p>Total spill volume fell 21 percent from 2024 to 2025, dropping from 1.81 million gallons to 1.43 million gallons. The decline was driven almost entirely by a reduction in produced water discharge, which fell from 1.53 million gallons in 2024 to 1.19 million in 2025—a drop of roughly 340,000 gallons. Oil volume held essentially flat at about 191,000 gallons in both years. The "other" category, which includes drilling fluid and other materials, fell by about 40,000 gallons. Incident count also declined, from 825 in 2024 to 786 in 2025.</p>
+  <div class="chart-wrap"><canvas id="wyVolTotal"></canvas><div class="chart-source">Combined discharge by material type. Source: WOGCC, 2024 and 2025.</div></div>
+</div>
+
 <!-- 5. Volume year-over-year -->
 <div class="section-block">
   <div class="eyebrow">Year-Over-Year</div>
@@ -175,6 +183,8 @@ Chart.defaults.font={family:"'Open Sans',sans-serif",size:12};
 Chart.defaults.color=C.dark;
 
 new Chart('wyMatCount',{type:'bar',data:{labels:['Produced Water','Oil','Other'],datasets:[{data:[511,336,66],backgroundColor:[C.blue4,C.green,C.gold],borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},title:{display:true,text:'Number of Spills by Type',font:{family:"'Bitter',serif",size:14},color:C.dark},tooltip:{callbacks:{label:c=>` ${c.parsed.y} spills`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule}}}}});
+
+new Chart('wyVolTotal',{type:'bar',data:{labels:['Produced Water','Oil','Other'],datasets:[{label:'2024',data:[1527063,190520,93934],backgroundColor:C.blue4,borderRadius:2},{label:'2025',data:[1185342,190808,53508],backgroundColor:C.green,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(2)+'M':(v/1000).toFixed(0)+'K'}}}}});
 
 new Chart('wyMatVolume',{type:'bar',data:{labels:['Produced Water','Oil','Other'],datasets:[{data:[1185342,190808,53508],backgroundColor:[C.blue4,C.green,C.gold],borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},title:{display:true,text:'Volume Discharged (Gallons)',font:{family:"'Bitter',serif",size:14},color:C.dark},tooltip:{callbacks:{label:c=>` ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(1)+'M':(v/1000).toFixed(0)+'K'}}}}});
 
