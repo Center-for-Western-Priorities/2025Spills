@@ -67,7 +67,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 <div style="max-width:720px;margin-bottom:40px;font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.75;color:var(--cwp-dark);">
   <p style="margin-bottom:1em;">Wyoming averaged roughly <a href="https://www.eia.gov/dnav/pet/pet_crd_crpdn_adc_mbblpd_a.htm" target="_blank" rel="noopener">289,000 barrels of crude oil per day</a> in 2025, down slightly from 292,000 in 2024 and a fraction of New Mexico's output but enough to make the state one of the top ten oil producers in the country. The Powder River Basin in the northeast, anchored by Converse and Campbell counties, drives the bulk of Wyoming's production and accounts for the majority of its spills.</p>
   <p style="margin-bottom:1em;">The Wyoming Oil and Gas Conservation Commission recorded 786 spill incidents in 2025, down 39 from 825 in 2024. Total volume fell 21% from 1.81 million gallons in 2024 to 1.43 million gallons in 2025, with produced water accounting for nearly all of the decline—dropping from 1.53 million gallons to 1.19 million. Oil volume held essentially flat at about 191,000 gallons in both years. Converse County led the state with 172 spills, followed by Campbell at 137. Together, the two Powder River Basin counties accounted for 39% of all incidents statewide.</p>
-  <p style="margin-bottom:0;">The volume figures were shaped significantly by a handful of large events. Merit Energy reported the highest operator volume at 304,000 gallons despite ranking only seventh in spill count, reflecting a pattern of low-frequency, high-volume incidents. Crowheart Energy led all operators in count with 102 spills but ranked fifth in volume at 62,000 gallons. Spills peaked in February with 119 incidents, consistent with freeze-thaw stress on pipelines and equipment during winter months.</p>
+  <p style="margin-bottom:0;">The volume figures were shaped significantly by a handful of large events. Merit Energy reported the highest operator volume at 304,000 gallons despite ranking only seventh in spill count, reflecting a pattern of low-frequency, high-volume incidents. Crowheart Energy led all operators in count with 102 spills but ranked fifth in volume at 62,000 gallons.</p>
 </div>
 
 <div class="stat-row">
@@ -133,13 +133,6 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <div class="chart-wrap"><canvas id="wyVolYoY"></canvas><div class="chart-source">Top 5 operators by 2025 volume. Source: WOGCC, 2025.</div></div>
 </div>
 
-<!-- 6. Monthly -->
-<div class="section-block">
-  <div class="eyebrow">Seasonality</div>
-  <h2>Spills by Month, 2025</h2>
-  <p>February was Wyoming's peak month with 119 spills. Winter months (January–March) accounted for a disproportionate share of incidents, likely reflecting freeze-thaw stress on pipelines and equipment. Spill frequency dropped steadily through spring and summer.</p>
-  <div class="chart-wrap"><canvas id="wyMonthChart"></canvas><div class="chart-source">Source: WOGCC, 2025. Filtered by report date.</div></div>
-</div>
 
 </main>
 
@@ -195,7 +188,6 @@ new Chart('wyOpsVolume',{type:'bar',data:{labels:['Merit','Continental','Contang
 
 new Chart('wyVolYoY',{type:'bar',data:{labels:['Merit','Continental','Contango','Barn Owls','Crowheart'],datasets:[{label:'2024',data:[102751,143559,53126,36246,120847],backgroundColor:C.blue4,borderRadius:2},{label:'2025',data:[303565,176964,133795,63888,61598],backgroundColor:C.green,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},ticks:{callback:v=>(v/1000).toFixed(0)+'K'}}}}});
 
-new Chart('wyMonthChart',{type:'bar',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],datasets:[{data:[92,119,80,66,57,52,57,52,58,46,47,60],backgroundColor:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'].map(m=>m==='Feb'?C.blue5:C.blue4),borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y} spills`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule}}}}});
 
 function makeCountyMap(id,stateFips,fipsToName,data,metric,opts){
   opts=opts||{};
