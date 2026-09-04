@@ -66,21 +66,21 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
 <!-- OVERVIEW INTRO -->
 <div style="max-width:720px;margin-bottom:40px;font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.75;color:var(--cwp-dark);">
   <p style="margin-bottom:1em;">Colorado averaged <a href="https://www.eia.gov/dnav/pet/pet_crd_crpdn_adc_mbblpd_a.htm" target="_blank" rel="noopener">467,000 barrels of crude oil per day</a> in 2025, essentially flat from 465,000 in 2024. Production is concentrated in the Denver-Julesburg Basin, with Weld County in northeastern Colorado accounting for the vast majority of the state's output and the overwhelming share of its spill record.</p>
-  <p style="margin-bottom:1em;">The Energy and Carbon Management Commission recorded 338 spills in 2025, the lowest annual count in the data series going back to 2016. Incident counts have fluctuated year to year without a clear long-term trend, peaking at 457 in 2022 and 455 in 2019 before declining to 378 in 2024 and 338 in 2025. Despite the decline in incidents, reported volume spilled nearly doubled in 2025, rising from 436,000 gallons in 2024 to 794,000 gallons. These figures are minimums based on operator self-reporting; many spills list an unknown volume and are not reflected in the totals. Scout Energy Management, which reported multiple spills in Rio Blanco County, and Laramie Energy in Garfield County accounted for a disproportionate share of that volume. Unlike New Mexico, where a single catastrophic tank failure drove the statewide increase, Colorado's jump reflects several moderate-sized spills across different operators. Weld County accounted for the majority of incidents, as it has in every year on record.</p>
+  <p style="margin-bottom:1em;">The Energy and Carbon Management Commission recorded 338 spills in 2025, the lowest annual count in the data series going back to 2018. Incident counts have fluctuated year to year without a clear long-term trend, peaking at 457 in 2022 and 455 in 2019 before declining to 378 in 2024 and 338 in 2025. Despite the decline in incidents, reported volume spilled nearly doubled in 2025, rising from 436,000 gallons in 2024 to 794,000 gallons. These figures are minimums based on operator self-reporting; many spills list an unknown volume and are not reflected in the totals. Scout Energy Management, which reported multiple spills in Rio Blanco County, and Laramie Energy in Garfield County accounted for a disproportionate share of that volume. Unlike New Mexico, where a single catastrophic tank failure drove the statewide increase, Colorado's jump reflects several moderate-sized spills across different operators. Weld County accounted for the majority of incidents, as it has in every year on record.</p>
 </div>
 
 <div class="stat-row">
   <div class="stat-card"><div class="num">338</div><div class="label">Total Spills in 2025</div></div>
   <div class="stat-card blue"><div class="num">-40</div><div class="label">Change from 2024 (378)</div></div>
   <div class="stat-card"><div class="num">794K</div><div class="label">Gallons Spilled</div></div>
-  <div class="stat-card orange"><div class="num">3,890</div><div class="label">Total Spills Since 2016</div></div>
+  <div class="stat-card orange"><div class="num">3,205</div><div class="label">Total Spills Since 2018</div></div>
 </div>
 
 <!-- 1. Spills per year -->
 <div class="section-block">
   <div class="eyebrow">Trend</div>
-  <h2>Spills Per Year, 2016–2025</h2>
-  <p>Colorado reported 338 oil and gas spills in 2025, a decrease from 378 in 2024. Spill counts rose sharply from 2016 to 2017 and have remained elevated. The state has recorded 3,890 spills since 2016.</p>
+  <h2>Spills Per Year, 2018–2025</h2>
+  <p>Colorado reported 338 oil and gas spills in 2025, a decrease from 378 in 2024. Spill counts have fluctuated year to year without a clear long-term trend. The state has recorded 3,205 spills since 2018.</p>
   <div class="chart-wrap"><canvas id="coYearChart"></canvas><div class="chart-source">Source: ECMC, 2025. Spill Type: Recent. Deduped by Tracking #.</div></div>
 </div>
 
@@ -182,7 +182,7 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
     <div style="font-family:'Source Sans 3','Open Sans',sans-serif;font-size:0.9rem;line-height:1.7;color:#465050;max-width:720px;">
       <p style="margin-bottom:12px;"><strong>Data source:</strong> Energy and Carbon Management Commission (ECMC), formerly COGCC, renamed in 2023. Source file: <code>ColoradoSpills.xlsm</code>, downloaded from the ECMC online spill database.</p>
       <p style="margin-bottom:12px;"><strong>Record selection:</strong> Filtered to rows where Spill Type = "Recent" and Date of Discovery falls between January 1 and December 31, 2025. Each unique Tracking # is counted as one spill event; where multiple rows share a Tracking #, the first occurrence is used for categorical fields (operator, county, facility type, surface owner). Spill count: 338 unique spills.</p>
-      <p style="margin-bottom:12px;"><strong>Trend chart:</strong> Covers 2016–2025. The 2014 data point (2 spills) was excluded as an isolated outlier predating the continuous reporting series. Total since 2016: 3,890.</p>
+      <p style="margin-bottom:12px;"><strong>Trend chart:</strong> Covers 2018–2025. Total since 2018: 3,205.</p>
       <p style="margin-bottom:12px;"><strong>Volume:</strong> ECMC records volume across six liquid columns (Oil, Condensate, Produced Water, Drilling Fluid, Flow Back Fluid, and Other E&amp;P Waste BBLs Spilled). For each Tracking #, the maximum reported value per column is taken across all associated rows (to avoid double-counting supplemental filings), then all six column maxima are summed and multiplied by 42 to convert barrels to gallons. Volume figures are minimums based on operator self-reporting; a substantial share of spills list unknown volume.</p>
       <p style="margin-bottom:12px;"><strong>Distance to sensitive resources:</strong> ECMC records the distance in feet from the spill site to the nearest surface water body, water well, and occupied building. For each spill, the minimum reported distance across all rows is used. Only spills reporting a non-zero distance of 5,280 feet (one mile) or less are included. Results are bucketed into six 500-foot ranges.</p>
       <p style="margin-bottom:0;"><strong>Inorganic-only filings:</strong> This analysis includes all Form 19 filings meeting the date and spill-type criteria. It does not filter out filings where detected contamination consists solely of inorganic parameters — such as pH, sodium adsorption ratio (SAR), electrical conductivity, or arsenic — that may reflect naturally occurring soil chemistry rather than a hydrocarbon release. ECMC does not provide a formal flag for these cases; the determination appears, when made, only in free-text supplemental report fields. These filings represent less than 0.5% of the 2025 recent record and have no material effect on any figure in this report.</p>
@@ -204,7 +204,7 @@ Chart.defaults.font={family:"'Open Sans',sans-serif",size:12};
 Chart.defaults.color=C.dark;
 const bOpts=(ia='x')=>({indexAxis:ia,responsive:true,maintainAspectRatio:true,plugins:{legend:{display:false}},scales:{x:{grid:{color:C.rule},ticks:{font:{size:11}}},y:{grid:{display:ia==='x'},ticks:{font:{size:11}}}}});
 
-new Chart('coYearChart',{type:'bar',data:{labels:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],datasets:[{data:[248,437,400,455,349,409,457,419,378,338],backgroundColor:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'].map(y=>y==='2025'?C.blue5:C.blue4),borderRadius:2}]},options:{...bOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y} spills`}}}}});
+new Chart('coYearChart',{type:'bar',data:{labels:['2018','2019','2020','2021','2022','2023','2024','2025'],datasets:[{data:[400,455,349,409,457,419,378,338],backgroundColor:['2018','2019','2020','2021','2022','2023','2024','2025'].map(y=>y==='2025'?C.blue5:C.blue4),borderRadius:2}]},options:{...bOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y} spills`}}}}});
 
 new Chart('coVolumeChart',{type:'bar',data:{labels:['2021','2022','2023','2024','2025'],datasets:[{data:[723744,1460340,1050714,436128,794472],backgroundColor:['2021','2022','2023','2024','2025'].map(y=>y==='2025'?C.green:C.green2),borderRadius:2}]},options:{...bOpts(),plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y.toLocaleString()} gal`}}},scales:{x:{grid:{color:C.rule}},y:{grid:{color:C.rule},ticks:{callback:v=>v>=1e6?(v/1e6).toFixed(1)+'M':(v/1000).toFixed(0)+'K'}}}}});
 
