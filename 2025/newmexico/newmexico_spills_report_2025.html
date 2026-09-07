@@ -88,13 +88,6 @@ footer p{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--cwp-mid-g
   <strong>New Mexico tracks two types of incidents:</strong> liquid spills (produced water, crude oil, condensate) and gas releases (natural gas vented or flared). Gas releases dominate the count. Liquid and gas totals are analyzed separately throughout this report.
 </div>
 
-<!-- 1. Trend since 2022 -->
-<div class="section-block">
-  <div class="eyebrow">Trend</div>
-  <h2>Incidents Per Year by Type, 2022–2025</h2>
-  <p>Gas releases dominate New Mexico's incident count in every year. Total incidents peaked at 53,101 in 2023—driven by a spike in gas releases to over 51,000—before falling to about 38,400 in 2025. Liquid spills have been more stable, ranging from about 1,100 to 1,400 annually since 2022. The 2023 gas spike likely reflects expanded reporting requirements rather than a real increase in releases.</p>
-  <div class="chart-wrap"><canvas id="nmTrendChart"></canvas><div class="chart-source">Source: New Mexico OCD, 2022–2025. Deduped by Incident Number.</div></div>
-</div>
 
 <!-- 1b. Historical liquid trends -->
 <div class="section-block">
@@ -231,7 +224,6 @@ const SEQ=[C.green,C.blue4,C.orange,C.gold,C.teal];
 Chart.defaults.font={family:"'Open Sans',sans-serif",size:12};
 Chart.defaults.color=C.dark;
 
-new Chart('nmTrendChart',{type:'bar',data:{labels:['2022','2023','2024','2025'],datasets:[{label:'Gas Releases',data:[39694,51816,40438,37172],backgroundColor:C.orange,borderRadius:2},{label:'Liquid Spills',data:[1393,1285,1133,1237],backgroundColor:C.blue4,borderRadius:2}]},options:{responsive:true,plugins:{legend:{position:'top',labels:{font:{size:12},boxWidth:12}},tooltip:{callbacks:{label:c=>` ${c.dataset.label}: ${c.parsed.y.toLocaleString()} incidents`}}},scales:{x:{grid:{display:false},stacked:true},y:{grid:{color:C.rule},stacked:true,ticks:{callback:v=>(v/1000).toFixed(0)+'K'}}}}});
 
 new Chart('nmLiqCountHist',{type:'bar',data:{labels:['2018','2019','2020','2021','2022','2023','2024','2025'],datasets:[{data:[1147,1159,984,1092,1393,1285,1133,1237],backgroundColor:C.blue4,borderRadius:2}]},options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.parsed.y.toLocaleString()} liquid spill incidents`}}},scales:{x:{grid:{display:false}},y:{grid:{color:C.rule},beginAtZero:true,ticks:{stepSize:200}}}}});
 
