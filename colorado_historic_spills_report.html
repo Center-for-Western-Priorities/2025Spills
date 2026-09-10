@@ -388,7 +388,7 @@ a:hover { text-decoration: underline; }
   <div class="metrics">
     <div class="metric-card">
       <div class="label">Historical spills</div>
-      <div class="value">6,082</div>
+      <div class="value">6,084</div>
     </div>
     <div class="metric-card blue">
       <div class="label">Peak year</div>
@@ -409,7 +409,7 @@ a:hover { text-decoration: underline; }
     <p class="section-eyebrow">Introduction</p>
     <h2 class="section-title">A legacy of pollution</h2>
     <p class="section-body">A growing number of old drilling-related spills are being discovered in Colorado each year, revealing an environmental disaster in Colorado’s top oil-producing county. Most of these spills are found when operators arrive to shut in wells that are no longer producing oil and find contaminated soil around the well or nearby equipment, indicating a leak or spill occurred at some unknown point in the past. Regulators classify these as “historical” spills, contamination discovered after the original release, often years or decades later. In most cases, neither the date of the spill nor its volume can be determined.</p>
-    <p class="section-body">This report analyzes 6,082 unique historical spill records filed by operators with Colorado’s Energy and Carbon Management Commission (ECMC) between 2016 and 2025. The analysis finds that historical spill discoveries increased more than fifteenfold between 2020 and 2025, reaching 1,948 in 2025. This increase does not primarily indicate a rise in new spill incidents. Rather, it reflects a combination of regulatory changes and an uptick in reclamation activity in the Denver-Julesburg Basin as production there declines.</p>
+    <p class="section-body">This report analyzes 6,084 unique historical spill records filed by operators with Colorado’s Energy and Carbon Management Commission (ECMC) between 2016 and 2025. The analysis finds that historical spill discoveries increased more than fifteenfold between 2020 and 2025, reaching 1,948 in 2025. This increase does not primarily indicate a rise in new spill incidents. Rather, it reflects a combination of regulatory changes and an uptick in reclamation activity in the Denver-Julesburg Basin as production there declines.</p>
     <p class="section-body">Weld County accounts for 87 percent of all historical spill reports, while just three operators—Noble Energy, Kerr McGee, and PDC Energy—account for 76 percent of historical spill reports. Significantly, active detection played almost no role in these discoveries. State field inspections account for less than one percent of recorded spills, while decommissioning-related activities account for the overwhelming majority. The spills analyzed in this report represent a legacy of industry contamination that is only coming to light because of Colorado’s strong reporting requirements.</p>
   </section>
 
@@ -423,7 +423,7 @@ a:hover { text-decoration: underline; }
       <p class="chart-title">Unique historical spills filed per year, 2016–2025</p>
       <p class="chart-note">Unique spills by date of discovery, deduplicated by tracking number. Covers 2016–2025; pre-2016 records and 2026-dated entries excluded.</p>
       <div class="chart-container" style="height:240px;">
-        <canvas id="yearChart" role="img" aria-label="Bar chart showing unique historical spill counts rising from 102 in 2016 to a peak of 1,948 in 2025.">2016: 102, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374, 2025: 1948.</canvas>
+        <canvas id="yearChart" role="img" aria-label="Bar chart showing unique historical spill counts rising from 104 in 2016 to a peak of 1,948 in 2025.">2016: 104, 2017: 181, 2018: 201, 2019: 188, 2020: 125, 2021: 466, 2022: 667, 2023: 830, 2024: 1374, 2025: 1948.</canvas>
       </div>
       <p class="chart-source">Source: ECMC, ColoradoSpills.xlsm</p>
     </div>
@@ -433,7 +433,7 @@ a:hover { text-decoration: underline; }
   <section class="section">
     <p class="section-eyebrow">Geography</p>
     <h2 class="section-title">Weld County accounts for 87 percent of all historical spills</h2>
-    <p class="section-body">The geographic distribution of historical spills is highly concentrated. Weld County, the heart of Colorado's Denver-Julesburg Basin oil and gas activity, is where 5,303 of the 6,082 total historical spills reported occurred. The next largest county, Adams, has just 187. This reflects both the density of oil and gas development in the Denver-Julesburg Basin and the scale of ongoing abandonment and reclamation activity there.</p>
+    <p class="section-body">The geographic distribution of historical spills is highly concentrated. Weld County, the heart of Colorado's Denver-Julesburg Basin oil and gas activity, is where 5,303 of the 6,084 total historical spills reported occurred. The next largest county, Adams, has just 187. This reflects both the density of oil and gas development in the Denver-Julesburg Basin and the scale of ongoing abandonment and reclamation activity there.</p>
 
     <div class="chart-wrap">
       <p class="chart-title">Historical spills by county, 2016–2025</p>
@@ -500,7 +500,7 @@ a:hover { text-decoration: underline; }
     <h2 class="section-title">Why are historical spills being discovered now?</h2>
 
     <div class="section-body">
-      <p>Analysis of the "spill description" and "root cause" fields across all 6,082 records, beginning in 2016, reveals that nearly every historical spill was found years or decades after it happened, when someone arrived to shut in the well. Active leak detection during operations accounts for less than one percent of discoveries. The vast majority are uncovered by decommissioning, plugging, or regulatory closure work.</p>
+      <p>Analysis of the "spill description" and "root cause" fields across all 6,084 records, beginning in 2016, reveals that nearly every historical spill was found years or decades after it happened, when someone arrived to shut in the well. Active leak detection during operations accounts for less than one percent of discoveries. The vast majority are uncovered by decommissioning, plugging, or regulatory closure work.</p>
     </div>
 
     <ul class="reasons-list">
@@ -613,11 +613,11 @@ a:hover { text-decoration: underline; }
   <h2 class="section-title" style="font-size:1.15rem;margin-bottom:16px;">Data and methodology</h2>
   <div class="section-body" style="font-size:0.9rem;line-height:1.7;color:#465050;max-width:720px;">
     <p style="margin-bottom:12px;"><strong>Data source:</strong> ECMC (Energy and Carbon Management Commission, formerly COGCC). Source file: ColoradoSpills.xlsm, downloaded from the <a href="https://ecmc.colorado.gov/data-maps-reports/downloadable-data-documents" target="_blank" rel="noopener">ECMC online spill database</a>.</p>
-    <p style="margin-bottom:12px;"><strong>Record selection:</strong> Filtered to rows where Spill Type = "Historical" and Date of Discovery falls between January 1, 2016 and December 31, 2025. Records with a Date of Discovery before 2016 (9 records) or in 2026 (674 records bearing future-dated entries present in the source file) are excluded. Each unique Tracking # is counted as one spill event; where multiple rows share a Tracking #, the first occurrence by row order is used for categorical fields. Note: the 2016 data begins in May; January through April have no records, likely reflecting the period before ECMC's historical spill reporting requirements took effect. The 2016 count (102 unique spills) therefore represents a partial year.</p>
-    <p style="margin-bottom:12px;"><strong>Spill count:</strong> 6,082 unique historical spill records after deduplication and date filtering.</p>
+    <p style="margin-bottom:12px;"><strong>Record selection:</strong> Filtered to rows where Spill Type = "Historical" and Date of Discovery falls between January 1, 2016 and December 31, 2025. Records with a Date of Discovery before 2016 (9 records) or in 2026 (674 records bearing future-dated entries present in the source file) are excluded. Each unique Tracking # is counted as one spill event; where multiple rows share a Tracking #, the first occurrence by row order is used for categorical fields. Note: the 2016 data begins in May; January through April have no records, likely reflecting the period before ECMC's historical spill reporting requirements took effect. The 2016 count therefore represents a partial year.</p>
+    <p style="margin-bottom:12px;"><strong>Spill count:</strong> 6,084 unique historical spill records after deduplication and date filtering.</p>
     <p style="margin-bottom:12px;"><strong>Volume:</strong> Most historical spill records do not include a reported volume; the release typically occurred years or decades before discovery, making volume estimation impossible. Volume figures are not reported in this analysis.</p>
-    <p style="margin-bottom:12px;"><strong>Discovery reason classification:</strong> The Root Cause and Spill Description fields were analyzed using keyword text classification to categorize each spill by the activity that led to its discovery. Categories and counts: plugging, abandonment, and cut-and-cap operations (41%); tank battery deconstruction (22%); flowline decommissioning (13%); facility decommissioning (7%); construction and excavation (6%); site reclamation and pit closure (2%); ECMC field inspection (&lt;1%); unknown or not reported (7%). Percentages are of 6,082 unique tracking numbers.</p>
-    <p style="margin-bottom:0;"><strong>Inorganic-only filings:</strong> Approximately 28 of the 6,082 records (less than 0.5%) appear to involve inorganic-only soil parameter exceedances — such as elevated pH, sodium adsorption ratio (SAR), or arsenic — rather than hydrocarbon releases, based on zero reported liquid volume combined with descriptions referencing inorganic constituents or background-level determinations. These records are retained in the dataset because ECMC does not provide a formal mechanism to distinguish them from confirmed hydrocarbon releases. Their inclusion has no material effect on any figure in this report.</p>
+    <p style="margin-bottom:12px;"><strong>Discovery reason classification:</strong> The Root Cause and Spill Description fields were analyzed using keyword text classification to categorize each spill by the activity that led to its discovery. Categories and counts: plugging, abandonment, and cut-and-cap operations (41%); tank battery deconstruction (22%); flowline decommissioning (13%); facility decommissioning (7%); construction and excavation (6%); site reclamation and pit closure (2%); ECMC field inspection (&lt;1%); unknown or not reported (7%). Percentages are of 6,084 unique tracking numbers.</p>
+    <p style="margin-bottom:0;"><strong>Inorganic-only filings:</strong> Approximately 28 of the 6,084 records (less than 0.5%) appear to involve inorganic-only soil parameter exceedances — such as elevated pH, sodium adsorption ratio (SAR), or arsenic — rather than hydrocarbon releases, based on zero reported liquid volume combined with descriptions referencing inorganic constituents or background-level determinations. These records are retained in the dataset because ECMC does not provide a formal mechanism to distinguish them from confirmed hydrocarbon releases. Their inclusion has no material effect on any figure in this report.</p>
   </div>
 </section>
 
@@ -627,7 +627,7 @@ a:hover { text-decoration: underline; }
        alt="Center for Western Priorities"
        onerror="this.style.display='none'">
   <p>Center for Western Priorities · westernpriorities.org</p>
-  <p style="margin-top:4px;">Data: ECMC · Analysis: June 2026 · 6,082 unique historical spill records (2016–2025) deduplicated by tracking number</p>
+  <p style="margin-top:4px;">Data: ECMC · Analysis: June 2026 · 6,084 unique historical spill records (2016–2025) deduplicated by tracking number</p>
 </footer>
 
 <script>
@@ -650,7 +650,7 @@ const baseOpts = {
 };
 
 /* Year chart */
-const yearData = [102,181,201,188,125,466,667,830,1374,1948];
+const yearData = [104,181,201,188,125,466,667,830,1374,1948];
 new Chart(document.getElementById('yearChart'), {
   type: 'bar',
   data: {
