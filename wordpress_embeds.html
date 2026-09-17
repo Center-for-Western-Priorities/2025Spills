@@ -39,6 +39,7 @@
   <a href="#nm-methane-spillers">NM — Top Methane Spillers YoY</a>
   <a href="#nm-county-liq">NM — County Map (Liquid)</a>
   <a href="#nm-county-gas">NM — County Map (Gas)</a>
+  <a href="#nm-lease-type">NM — Spills by Lease Type</a>
   <a href="#wy-stat">Wyoming — Stat Cards</a>
   <a href="#wy-count-hist">WY — Annual Spill Count</a>
   <a href="#wy-vol-hist">WY — Annual Spill Volume</a>
@@ -509,6 +510,45 @@
     t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';
     t.onload=drawCwpNmGasMap;document.head.appendChild(t);
   }else{loadD3();}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-lease-type">Spills by Lease Type</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div id="cwp-nm-lease-wrap" style="max-width:460px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-nm-lease-type"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Liquid spill incidents by lease type (n=1,274 reporting). Source: NM OCD, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  var COLORS={blue4:'#4398b5',green:'#78b43c',orange:'#d2781e',gold:'#96782d'};
+  function initCwpNmLease(){
+    new Chart('cwp-nm-lease-type',{
+      type:'doughnut',
+      data:{
+        labels:['Federal','State','Private','Tribal'],
+        datasets:[{
+          data:[717,280,268,9],
+          backgroundColor:[COLORS.blue4,COLORS.green,COLORS.orange,COLORS.gold],
+          borderWidth:1,
+          borderColor:'#fff'
+        }]
+      },
+      options:{
+        responsive:true,
+        plugins:{
+          legend:{position:'right',labels:{font:{size:12},boxWidth:14}},
+          tooltip:{callbacks:{label:function(c){return ' '+c.label+': '+c.parsed+' ('+( c.parsed/1274*100).toFixed(1)+'%)'}}}
+        }
+      }
+    });
+  }
+  if(window.Chart){initCwpNmLease();}
+  else{
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpNmLease;document.head.appendChild(s);
+  }
 })();
 &lt;/script&gt;</pre>
 
