@@ -1,0 +1,1344 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CWP 2025 Spills — WordPress Embeds Reference</title>
+<style>
+  body { font-family: sans-serif; max-width: 960px; margin: 0 auto; padding: 24px; background: #f5f5f3; }
+  h1 { color: #2a2a28; }
+  h2 { color: #4398b5; border-bottom: 2px solid #4398b5; padding-bottom: 8px; margin-top: 48px; }
+  h3 { color: #78b43c; margin-top: 32px; }
+  .embed-block { background: #fff; border: 1px solid #e0ddd8; border-radius: 4px; margin: 16px 0; padding: 16px; }
+  .embed-label { font-size: 11px; color: #9a9590; font-family: monospace; margin-bottom: 8px; background: #f5f5f3; padding: 4px 8px; border-radius: 2px; }
+  pre { background: #1e2624; color: #f5f5f3; padding: 16px; border-radius: 4px; overflow-x: auto; font-size: 12px; line-height: 1.5; white-space: pre-wrap; word-break: break-all; }
+  .instructions { background: #fff8e6; border-left: 3px solid #96782d; padding: 12px 16px; margin: 16px 0; font-size: 14px; }
+  .toc { background: #fff; border: 1px solid #e0ddd8; padding: 16px 24px; margin: 24px 0; border-radius: 4px; }
+  .toc a { color: #4398b5; text-decoration: none; display: block; margin: 4px 0; }
+  .toc a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<h1>CWP 2025 Spills — WordPress Embed Code</h1>
+<div class="instructions">
+  <strong>How to use:</strong> Copy the code block for each chart and paste it into a WordPress <strong>Custom HTML</strong> block. Each embed is fully self-contained — it loads Chart.js and D3 only if they aren't already on the page. You can place multiple embeds on the same page without conflicts.
+</div>
+
+<div class="toc">
+  <strong>Contents</strong>
+  <a href="#nm-stat">New Mexico — Stat Cards</a>
+  <a href="#nm-liq-count-hist">NM — Liquid Spill Count History</a>
+  <a href="#nm-liq-vol-hist">NM — Liquid Spill Volume History</a>
+  <a href="#nm-gas-count-hist">NM — Gas Release Count History</a>
+  <a href="#nm-gas-vol-hist">NM — Gas Release Volume History</a>
+  <a href="#nm-liq-mat">NM — Liquid Material Types</a>
+  <a href="#nm-gas-mat">NM — Gas Release Types</a>
+  <a href="#nm-liq-causes">NM — Liquid Spill Causes</a>
+  <a href="#nm-gas-causes">NM — Gas Release Causes</a>
+  <a href="#nm-sources">NM — Spill Sources</a>
+  <a href="#nm-liq-spillers">NM — Top Liquid Spillers YoY</a>
+  <a href="#nm-methane-spillers">NM — Top Methane Spillers YoY</a>
+  <a href="#nm-county-liq">NM — County Map (Liquid)</a>
+  <a href="#nm-county-gas">NM — County Map (Gas)</a>
+  <a href="#wy-stat">Wyoming — Stat Cards</a>
+  <a href="#wy-count-hist">WY — Annual Spill Count</a>
+  <a href="#wy-vol-hist">WY — Annual Spill Volume</a>
+  <a href="#wy-mat-count">WY — Material Count</a>
+  <a href="#wy-mat-vol">WY — Material Volume</a>
+  <a href="#wy-vol-yoy">WY — Volume YoY by Material</a>
+  <a href="#wy-ops-count">WY — Operator Count</a>
+  <a href="#wy-ops-vol">WY — Operator Volume</a>
+  <a href="#wy-vol-yoy-ops">WY — Operator Volume YoY</a>
+  <a href="#wy-county-2024">WY — County Map 2024</a>
+  <a href="#wy-county-2025">WY — County Map 2025</a>
+  <a href="#co-stat">Colorado 2025 — Stat Cards</a>
+  <a href="#co-count-hist">CO — Annual Spill Count</a>
+  <a href="#co-vol-hist">CO — Annual Spill Volume</a>
+  <a href="#co-top5-donut">CO — Top 5 Operators (Donut)</a>
+  <a href="#co-operators-bar">CO — Top 10 Operators (Bar)</a>
+  <a href="#co-surface-owner">CO — Surface Ownership</a>
+  <a href="#co-fluid-vol">CO — Fluid Type Volume</a>
+  <a href="#co-surface-water">CO — Surface Water Distance</a>
+  <a href="#co-water-wells">CO — Water Wells Distance</a>
+  <a href="#co-buildings">CO — Buildings Distance</a>
+  <a href="#co-op-vol-yy">CO — Operator Volume YoY</a>
+  <a href="#co-increases">CO — Top Volume Increases</a>
+  <a href="#co-decreases">CO — Top Volume Decreases</a>
+  <a href="#co-county">CO — County Map</a>
+  <a href="#coh-stat">CO Historic — Stat Cards</a>
+  <a href="#coh-year">CO Historic — Spills by Year</a>
+  <a href="#coh-operators">CO Historic — Top Operators</a>
+  <a href="#coh-facility">CO Historic — Facility Types</a>
+  <a href="#coh-owner">CO Historic — Surface Ownership</a>
+  <a href="#coh-county">CO Historic — County Map</a>
+</div>
+
+<!-- ================================================================ -->
+<h2 id="overview">Overview (All States)</h2>
+<!-- ================================================================ -->
+
+<h3 id="overview-stat">Overview Stat Cards</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;style&gt;
+.cwp-ov-stats{display:flex;flex-wrap:wrap;gap:16px;font-family:'Open Sans',sans-serif;margin:24px 0;}
+.cwp-ov-stat{flex:1;min-width:180px;background:#fff;border:1px solid #e0ddd8;border-radius:4px;border-top:3px solid #e0ddd8;padding:20px;}
+.cwp-ov-stat.blue{border-top-color:#4398b5;}
+.cwp-ov-stat.green{border-top-color:#78b43c;}
+.cwp-ov-stat.orange{border-top-color:#d2781e;}
+.cwp-ov-stat.gold{border-top-color:#96782d;}
+.cwp-ov-stat .state{font-family:'Raleway',sans-serif;font-weight:700;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#9a9590;margin-bottom:10px;}
+.cwp-ov-stat .num{font-size:2em;font-weight:700;line-height:1;}
+.cwp-ov-stat.blue .num{color:#4398b5;}
+.cwp-ov-stat.green .num{color:#78b43c;}
+.cwp-ov-stat.orange .num{color:#d2781e;}
+.cwp-ov-stat.gold .num{color:#96782d;}
+.cwp-ov-stat .lbl{font-size:0.7em;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:#9a9590;margin-top:4px;}
+.cwp-ov-stat .chg{font-size:0.8em;color:#9a9590;margin-top:8px;}
+&lt;/style&gt;
+&lt;div class="cwp-ov-stats"&gt;
+  &lt;div class="cwp-ov-stat blue"&gt;
+    &lt;div class="state"&gt;Colorado 2025&lt;/div&gt;
+    &lt;div class="num"&gt;338&lt;/div&gt;
+    &lt;div class="lbl"&gt;Liquid Spills&lt;/div&gt;
+    &lt;div class="chg"&gt;&#9660; from 378 in 2024&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="cwp-ov-stat green"&gt;
+    &lt;div class="state"&gt;Wyoming 2025&lt;/div&gt;
+    &lt;div class="num"&gt;786&lt;/div&gt;
+    &lt;div class="lbl"&gt;Liquid Spills&lt;/div&gt;
+    &lt;div class="chg"&gt;&#9660; from 825 in 2024&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="cwp-ov-stat orange"&gt;
+    &lt;div class="state"&gt;New Mexico 2025&lt;/div&gt;
+    &lt;div class="num"&gt;1,277&lt;/div&gt;
+    &lt;div class="lbl"&gt;Liquid Spills&lt;/div&gt;
+    &lt;div class="chg"&gt;&#9650; from 1,133 in 2024&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="cwp-ov-stat gold"&gt;
+    &lt;div class="state"&gt;Colorado Historic&lt;/div&gt;
+    &lt;div class="num"&gt;6,084&lt;/div&gt;
+    &lt;div class="lbl"&gt;Historical Spills&lt;/div&gt;
+    &lt;div class="chg"&gt;2016&ndash;2025, rising since 2021&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<!-- ================================================================ -->
+<h2 id="nm">New Mexico</h2>
+<!-- ================================================================ -->
+
+<h3 id="nm-stat">Stat Cards</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;style&gt;
+.cwp-nm-stats{display:flex;flex-wrap:wrap;gap:16px;font-family:'Open Sans',sans-serif;margin:24px 0;}
+.cwp-nm-stat{flex:1;min-width:160px;background:#fff;border:1px solid #e0ddd8;border-radius:4px;padding:20px;text-align:center;}
+.cwp-nm-stat .num{font-size:2.2em;font-weight:700;line-height:1;}
+.cwp-nm-stat .lbl{font-size:0.75em;color:#9a9590;margin-top:6px;text-transform:uppercase;letter-spacing:.04em;}
+.cwp-nm-c1 .num{color:#4398b5;}
+.cwp-nm-c2 .num{color:#d2781e;}
+.cwp-nm-c3 .num{color:#96782d;}
+.cwp-nm-c4 .num{color:#78b43c;}
+&lt;/style&gt;
+&lt;div class="cwp-nm-stats"&gt;
+  &lt;div class="cwp-nm-stat cwp-nm-c1"&gt;&lt;div class="num"&gt;1,277&lt;/div&gt;&lt;div class="lbl"&gt;Liquid Spills&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cwp-nm-stat cwp-nm-c2"&gt;&lt;div class="num"&gt;37,207&lt;/div&gt;&lt;div class="lbl"&gt;Gas Releases&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cwp-nm-stat cwp-nm-c3"&gt;&lt;div class="num"&gt;3.56M&lt;/div&gt;&lt;div class="lbl"&gt;Gallons Spilled&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cwp-nm-stat cwp-nm-c4"&gt;&lt;div class="num"&gt;9.77M&lt;/div&gt;&lt;div class="lbl"&gt;MCF Gas Wasted&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<h3 id="nm-liq-count-hist">Liquid Spill Count History (2016–2025)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-nm-liq-count" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Source: New Mexico OCD, 2018-2025. Liquid spills only (produced water, crude oil, condensate, other liquids). Deduped by Incident Number.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpNmLiqCount(){
+    var ctx=document.getElementById('cwp-nm-liq-count').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+      datasets:[{label:'Liquid Spills',data:[1047,1107,1147,1159,984,1092,1393,1285,1133,1277],
+        backgroundColor:['#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#2f5b74'],
+        borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'New Mexico Liquid Spills by Year',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpNmLiqCount();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpNmLiqCount;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-liq-vol-hist">Liquid Spill Volume History (2016–2025)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-nm-liq-vol" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Source: New Mexico OCD, 2016-2025. Volume Lost (released minus recovered), converted to gallons. Liquid spills only.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpNmLiqVol(){
+    var ctx=document.getElementById('cwp-nm-liq-vol').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+      datasets:[{label:'Gallons Spilled',data:[1515230,4565986,3243282,2086969,1312270,1518107,2510834,1863630,2029008,3557461],
+        backgroundColor:['#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#4a7a28'],
+        borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'New Mexico Liquid Spill Volume by Year (Gallons)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'},ticks:{callback:function(v){return(v/1000000).toFixed(1)+'M';}}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpNmLiqVol();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpNmLiqVol;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-gas-count-hist">Gas Release Count History (2022–2025)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-nm-gas-count" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Source: New Mexico OCD, 2022-2025. Gas releases only (natural gas flared or vented). Deduped by Incident Number.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpNmGasCount(){
+    var ctx=document.getElementById('cwp-nm-gas-count').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['2022','2023','2024','2025'],
+      datasets:[{label:'Gas Releases',data:[39705,51828,40467,37207],
+        backgroundColor:['#d2781e','#d2781e','#d2781e','#9a4d0c'],
+        borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'New Mexico Gas Releases by Year',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpNmGasCount();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpNmGasCount;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-gas-vol-hist">Gas Release Volume History (2022–2025)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-nm-gas-vol" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Source: New Mexico OCD, 2022-2025. Volume Lost (MCF). Gas releases only.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpNmGasVol(){
+    var ctx=document.getElementById('cwp-nm-gas-vol').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['2022','2023','2024','2025'],
+      datasets:[{label:'MCF Wasted',data:[16013546,20202980,11694133,9767156],
+        backgroundColor:['#96782d','#96782d','#96782d','#5c4a1a'],
+        borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'New Mexico Gas Released by Year (MCF)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'},ticks:{callback:function(v){return(v/1000000).toFixed(1)+'M';}}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpNmGasVol();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpNmGasVol;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-liq-mat">Liquid Material Types (Donut)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:420px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-nm-liq-mat" height="360"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Liquid spills by material (gallons). Source: NM OCD, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpNmLiqMat(){
+    var ctx=document.getElementById('cwp-nm-liq-mat').getContext('2d');
+    new Chart(ctx,{type:'doughnut',data:{
+      labels:['Produced Water','Crude Oil','Condensate','Other'],
+      datasets:[{data:[3190236,273840,41958,29274],
+        backgroundColor:['#4398b5','#78b43c','#d2781e','#96782d'],borderWidth:1}]
+    },options:{responsive:true,plugins:{
+      title:{display:true,text:'NM Liquid Spills by Material Type (Gallons)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'bottom'}}}});
+  }
+  if(window.Chart){initCwpNmLiqMat();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpNmLiqMat;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-gas-mat">Gas Release Types (Donut)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:420px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-nm-gas-mat" height="360"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Gas releases by material (MCF). Source: NM OCD, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpNmGasMat(){
+    var ctx=document.getElementById('cwp-nm-gas-mat').getContext('2d');
+    new Chart(ctx,{type:'doughnut',data:{
+      labels:['Flared','Vented','CO₂'],
+      datasets:[{data:[9425315,257508,43028],
+        backgroundColor:['#d2781e','#78b43c','#4398b5'],borderWidth:1}]
+    },options:{responsive:true,plugins:{
+      title:{display:true,text:'NM Gas Releases by Type (MCF)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'bottom'}}}});
+  }
+  if(window.Chart){initCwpNmGasMat();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpNmGasMat;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-liq-causes">Liquid Spill Causes (Donut)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:420px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-nm-liq-causes" height="360"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Liquid spills &#8211; top 5 causes plus all others. Source: NM OCD, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpNmLiqCauses(){
+    var ctx=document.getElementById('cwp-nm-liq-causes').getContext('2d');
+    new Chart(ctx,{type:'doughnut',data:{
+      labels:['Equipment Failure','Corrosion','Human Error','Other','Overflow'],
+      datasets:[{data:[593,311,83,236,54],
+        backgroundColor:['#4398b5','#78b43c','#d2781e','#96782d','#63c5d8'],borderWidth:1}]
+    },options:{responsive:true,plugins:{
+      title:{display:true,text:'NM Liquid Spills by Cause',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'bottom'}}}});
+  }
+  if(window.Chart){initCwpNmLiqCauses();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpNmLiqCauses;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-gas-causes">Gas Release Causes (Horizontal Bar)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:600px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-nm-gas-causes" height="350"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Gas releases &#8211; top 5 causes plus all others. Source: NM OCD, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpNmGasCauses(){
+    var ctx=document.getElementById('cwp-nm-gas-causes').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['High Line Pressure','Equipment Failure','Repair &amp; Maintenance','Midstream Emergency','Pipeline Quality Specs','Other'],
+      datasets:[{label:'Gas Releases',data:[9004,8450,5737,4148,2647,7177],
+        backgroundColor:'#d2781e',borderRadius:2}]
+    },options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'NM Gas Releases by Cause',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{x:{beginAtZero:true,grid:{color:'#e0ddd8'}},y:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpNmGasCauses();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpNmGasCauses;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-sources">Spill Sources (Horizontal Bar)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:600px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-nm-sources" height="380"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Top 6 liquid spill sources by incident count. Source: NM OCD, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpNmSources(){
+    var ctx=document.getElementById('cwp-nm-sources').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['Tank (Any)','Pipeline (Any)','Pump','Flow Line','Other (Specify)','Valve','Other'],
+      datasets:[{label:'Incidents',data:[223,191,176,151,118,113,305],
+        backgroundColor:'#4398b5',borderRadius:2}]
+    },options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'NM Liquid Spills by Source',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{x:{beginAtZero:true,grid:{color:'#e0ddd8'}},y:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpNmSources();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpNmSources;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-liq-spillers">Top Liquid Spillers — 2024 vs 2025 (Grouped Bar)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-nm-liq-spillers" height="360"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Top 6 operators by 2025 liquid volume. Source: NM OCD, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpNmLiqSpillers(){
+    var ctx=document.getElementById('cwp-nm-liq-spillers').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['OXY USA','EOG Resources','XTO Energy','DKL Energy','Mewbourne Oil','Dugan Production'],
+      datasets:[
+        {label:'2024',data:[270900,81312,89418,2604,145782,27090],backgroundColor:'#9a9590',borderRadius:2},
+        {label:'2025',data:[1738338,239736,208656,169092,134022,133686],backgroundColor:'#4398b5',borderRadius:2}
+      ]
+    },options:{responsive:true,plugins:{
+      title:{display:true,text:'NM Top Liquid Spillers: 2024 vs 2025 (Gallons)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'bottom'}},
+      scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#e0ddd8'},
+        ticks:{callback:function(v){return(v/1000).toFixed(0)+'K';}}}}}});
+  }
+  if(window.Chart){initCwpNmLiqSpillers();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpNmLiqSpillers;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-methane-spillers">Top Methane Spillers — 2024 vs 2025 (Grouped Bar)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-nm-methane-spillers" height="360"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Top 5 operators by 2025 methane volume (flared and vented), in MCF. Source: NM OCD, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpNmMethaneSpillers(){
+    var ctx=document.getElementById('cwp-nm-methane-spillers').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['EOG Resources','Matador Production','XTO Energy','Civitas Permian','Permian Resources'],
+      datasets:[
+        {label:'2024',data:[1595185,1120635,969008,413701,996791],backgroundColor:'#9a9590',borderRadius:2},
+        {label:'2025',data:[1394468,1362301,920432,903657,670224],backgroundColor:'#d2781e',borderRadius:2}
+      ]
+    },options:{responsive:true,plugins:{
+      title:{display:true,text:'NM Top Methane Releasers: 2024 vs 2025 (MCF)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'bottom'}},
+      scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#e0ddd8'},
+        ticks:{callback:function(v){return(v/1000000).toFixed(1)+'M';}}}}}});
+  }
+  if(window.Chart){initCwpNmMethaneSpillers();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpNmMethaneSpillers;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-county-liq">County Map — Liquid Spill Count</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block — requires D3 + TopoJSON</div>
+<pre>&lt;div id="cwp-nm-county-liq-wrap" style="max-width:700px;margin:24px auto;"&gt;
+&lt;svg id="cwp-nm-county-liq" viewBox="0 0 700 480" width="100%"&gt;&lt;/svg&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Gas releases by county (incident count). Source: NM OCD, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  var data={Eddy:598,Lea:547,'San Juan':85,'Rio Arriba':32,Chaves:8,Sandoval:3,Roosevelt:2,Curry:1,Lincoln:1};
+  function drawCwpNmLiqMap(){
+    Promise.all([
+      fetch('https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js').then(function(){return window.topojson;}),
+      fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json').then(function(r){return r.json();})
+    ]).then(function(results){
+      var topo=results[0],us=results[1];
+      var w=700,h=480,svg=d3.select('#cwp-nm-county-liq').attr('viewBox','0 0 '+w+' '+h).attr('width','100%');
+      var counties=topojson.feature(us,us.objects.counties);
+      var nm=counties.features.filter(function(d){return d.id.toString().startsWith('35');});
+      var maxVal=Math.max.apply(null,Object.values(data));
+      var color=d3.scaleSequential([0,maxVal],d3.interpolate('#e8f4f8','#2f5b74'));
+      var proj=d3.geoAlbers().fitExtent([[20,20],[w-20,h-20]],{type:'FeatureCollection',features:nm});
+      var path=d3.geoPath(proj);
+      svg.selectAll('path').data(nm).enter().append('path')
+        .attr('d',path).attr('fill',function(d){
+          var name=d.properties.name,val=data[name]||0;
+          return val>0?color(val):'#f5f5f3';
+        }).attr('stroke','#fff').attr('stroke-width',0.5)
+        .append('title').text(function(d){return d.properties.name+': '+(data[d.properties.name]||0)+' spills';});
+    });
+  }
+  function loadD3(){
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js';
+    s.onload=function(){
+      var t=document.createElement('script');
+      t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';
+      t.onload=drawCwpNmLiqMap;document.head.appendChild(t);
+    };document.head.appendChild(s);
+  }
+  if(window.d3&&window.topojson){drawCwpNmLiqMap();}
+  else if(window.d3){
+    var t=document.createElement('script');
+    t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';
+    t.onload=drawCwpNmLiqMap;document.head.appendChild(t);
+  }else{loadD3();}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="nm-county-gas">County Map — Gas Release Count</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block — requires D3 + TopoJSON</div>
+<pre>&lt;div id="cwp-nm-county-gas-wrap" style="max-width:700px;margin:24px auto;"&gt;
+&lt;svg id="cwp-nm-county-gas" viewBox="0 0 700 480" width="100%"&gt;&lt;/svg&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Gas releases by county (incident count). Source: NM OCD, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  var data={Lea:21464,Eddy:14667,Chaves:364,'San Juan':122,'Rio Arriba':88,Roosevelt:44,Curry:2,Sandoval:1};
+  function drawCwpNmGasMap(){
+    fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json').then(function(r){return r.json();}).then(function(us){
+      var w=700,h=480,svg=d3.select('#cwp-nm-county-gas').attr('viewBox','0 0 '+w+' '+h).attr('width','100%');
+      var counties=topojson.feature(us,us.objects.counties);
+      var nm=counties.features.filter(function(d){return d.id.toString().startsWith('35');});
+      var maxVal=Math.max.apply(null,Object.values(data));
+      var color=d3.scaleSequential([0,maxVal],d3.interpolate('#fdf0e6','#9a4d0c'));
+      var proj=d3.geoAlbers().fitExtent([[20,20],[w-20,h-20]],{type:'FeatureCollection',features:nm});
+      var path=d3.geoPath(proj);
+      svg.selectAll('path').data(nm).enter().append('path')
+        .attr('d',path).attr('fill',function(d){
+          var name=d.properties.name,val=data[name]||0;
+          return val>0?color(val):'#f5f5f3';
+        }).attr('stroke','#fff').attr('stroke-width',0.5)
+        .append('title').text(function(d){return d.properties.name+': '+(data[d.properties.name]||0)+' releases';});
+    });
+  }
+  function loadD3(){
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js';
+    s.onload=function(){
+      var t=document.createElement('script');
+      t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';
+      t.onload=drawCwpNmGasMap;document.head.appendChild(t);
+    };document.head.appendChild(s);
+  }
+  if(window.d3&&window.topojson){drawCwpNmGasMap();}
+  else if(window.d3){
+    var t=document.createElement('script');
+    t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';
+    t.onload=drawCwpNmGasMap;document.head.appendChild(t);
+  }else{loadD3();}
+})();
+&lt;/script&gt;</pre>
+
+<!-- ================================================================ -->
+<h2 id="wy">Wyoming</h2>
+<!-- ================================================================ -->
+
+<h3 id="wy-stat">Stat Cards</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;style&gt;
+.cwp-wy-stats{display:flex;flex-wrap:wrap;gap:16px;font-family:'Open Sans',sans-serif;margin:24px 0;}
+.cwp-wy-stat{flex:1;min-width:160px;background:#fff;border:1px solid #e0ddd8;border-radius:4px;padding:20px;text-align:center;}
+.cwp-wy-stat .num{font-size:2.2em;font-weight:700;line-height:1;}
+.cwp-wy-stat .lbl{font-size:0.75em;color:#9a9590;margin-top:6px;text-transform:uppercase;letter-spacing:.04em;}
+.cwp-wy-stat .chg{font-size:0.7em;color:#9a9590;margin-top:4px;}
+.cwp-wy-c1 .num{color:#4398b5;}
+.cwp-wy-c2 .num{color:#78b43c;}
+.cwp-wy-c3 .num{color:#d2781e;}
+.cwp-wy-c4 .num{color:#96782d;}
+&lt;/style&gt;
+&lt;div class="cwp-wy-stats"&gt;
+  &lt;div class="cwp-wy-stat cwp-wy-c1"&gt;&lt;div class="num"&gt;786&lt;/div&gt;&lt;div class="lbl"&gt;Total Spills in 2025&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cwp-wy-stat cwp-wy-c2"&gt;&lt;div class="num"&gt;-39&lt;/div&gt;&lt;div class="lbl"&gt;Change from 2024 (825)&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cwp-wy-stat cwp-wy-c3"&gt;&lt;div class="num"&gt;191K&lt;/div&gt;&lt;div class="lbl"&gt;Gallons of Oil Spilled&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cwp-wy-stat cwp-wy-c4"&gt;&lt;div class="num"&gt;1.19M&lt;/div&gt;&lt;div class="lbl"&gt;Gallons of Produced Water Spilled&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<h3 id="wy-count-hist">Annual Spill Count (2017–2025)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-wy-count" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Source: WOGCC, 2018-2025. Filtered by report date. Note: the 2018 figure (722) reflects incidents with a report date in 2018 only; the source file also contains records from 2016 and 2017.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpWyCount(){
+    var ctx=document.getElementById('cwp-wy-count').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+      datasets:[{label:'Spills',data:[629,722,825,613,642,487,730,825,786],
+        backgroundColor:['#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#2f5b74'],
+        borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'Wyoming Spills by Year',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpWyCount();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpWyCount;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="wy-vol-hist">Annual Spill Volume (2017–2025)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-wy-vol" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Combined oil, produced water, and other. Source: WOGCC, 2017-2025. Filtered by report date.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpWyVol(){
+    var ctx=document.getElementById('cwp-wy-vol').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+      datasets:[{label:'Gallons',data:[4407612,3488225,2408112,1592273,1642213,1153472,1403440,1811517,1429658],
+        backgroundColor:['#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#4a7a28'],
+        borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'Wyoming Spill Volume by Year (Gallons)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'},ticks:{callback:function(v){return(v/1000000).toFixed(1)+'M';}}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpWyVol();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpWyVol;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="wy-mat-count">Material Type — Incident Count</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:500px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-wy-mat-count" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Spills with discharge &gt;0 by material. Source: WOGCC, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpWyMatCount(){
+    var ctx=document.getElementById('cwp-wy-mat-count').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['Produced Water','Oil','Other'],
+      datasets:[{label:'Incidents',data:[511,336,66],
+        backgroundColor:['#4398b5','#78b43c','#d2781e'],borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'WY 2025 Spills by Material Type (Count)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpWyMatCount();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpWyMatCount;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="wy-mat-vol">Material Type — Volume</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:500px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-wy-mat-vol" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Volume discharged (gallons). Source: WOGCC, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpWyMatVol(){
+    var ctx=document.getElementById('cwp-wy-mat-vol').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['Produced Water','Oil','Other'],
+      datasets:[{label:'Gallons',data:[1185342,190808,53508],
+        backgroundColor:['#4398b5','#78b43c','#d2781e'],borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'WY 2025 Spills by Material Type (Gallons)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'},ticks:{callback:function(v){return(v/1000).toFixed(0)+'K';}}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpWyMatVol();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpWyMatVol;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="wy-vol-yoy">Volume by Material — 2024 vs 2025</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:600px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-wy-vol-yoy" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Combined discharge by material type. Source: WOGCC, 2024 and 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpWyVolYoY(){
+    var ctx=document.getElementById('cwp-wy-vol-yoy').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['Produced Water','Oil','Other'],
+      datasets:[
+        {label:'2024',data:[1527063,190520,93934],backgroundColor:'#9a9590',borderRadius:2},
+        {label:'2025',data:[1185342,190808,53508],backgroundColor:'#4398b5',borderRadius:2}
+      ]
+    },options:{responsive:true,plugins:{
+      title:{display:true,text:'WY Spill Volume by Material: 2024 vs 2025 (Gallons)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'bottom'}},
+      scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#e0ddd8'},
+        ticks:{callback:function(v){return(v/1000).toFixed(0)+'K';}}}}}});
+  }
+  if(window.Chart){initCwpWyVolYoY();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpWyVolYoY;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="wy-ops-count">Top Operators — Incident Count 2024 vs 2025</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-wy-ops-count" height="400"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Top 8 operators by 2025 spill count. Source: WOGCC, 2025. Operator names are standardized by removing legal suffixes (LLC, LP, ENERGY, RESOURCES, OPERATING, etc.) and applying company-specific corrections, following data clean-up methodology.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpWyOpsCount(){
+    var ctx=document.getElementById('cwp-wy-ops-count').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['Crowheart','Continental','Contango','EOG','Amplify','Barn Owls','Merit','Devon'],
+      datasets:[
+        {label:'2024',data:[145,93,61,59,18,15,35,29],backgroundColor:'#9a9590',borderRadius:2},
+        {label:'2025',data:[102,95,61,46,33,32,30,30],backgroundColor:'#2f5b74',borderRadius:2}
+      ]
+    },options:{indexAxis:'y',responsive:true,plugins:{
+      title:{display:true,text:'WY Top Operators by Incident Count',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'bottom'}},
+      scales:{x:{beginAtZero:true,grid:{color:'#e0ddd8'}},y:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpWyOpsCount();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpWyOpsCount;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="wy-ops-vol">Top Operators — Volume 2025</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-wy-ops-vol" height="400"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Combined oil, produced water, and other spills. Source: WOGCC, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpWyOpsVol(){
+    var ctx=document.getElementById('cwp-wy-ops-vol').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['Merit','Continental','Contango','Barn Owls','Crowheart','Citation','Peak Powder River','Devon'],
+      datasets:[{label:'Gallons',data:[303565,176964,133795,63888,61598,57750,55734,50232],
+        backgroundColor:'#2f5b74',borderRadius:2}]
+    },options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'WY 2025 Top Operators by Volume (Gallons)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{x:{beginAtZero:true,grid:{color:'#e0ddd8'}},y:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpWyOpsVol();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpWyOpsVol;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="wy-vol-yoy-ops">Operator Volume — 2024 vs 2025</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-wy-vol-yoy-ops" height="380"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Top 5 operators by 2025 volume spilled. Source: WOGCC, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpWyVolYoYOps(){
+    var ctx=document.getElementById('cwp-wy-vol-yoy-ops').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['Merit','Continental','Contango','Barn Owls','Crowheart'],
+      datasets:[
+        {label:'2024',data:[102751,143559,53126,36246,120847],backgroundColor:'#9a9590',borderRadius:2},
+        {label:'2025',data:[303565,176964,133795,63888,61598],backgroundColor:'#2f5b74',borderRadius:2}
+      ]
+    },options:{responsive:true,plugins:{
+      title:{display:true,text:'WY Operator Volume Change: 2024 vs 2025 (Gallons)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'bottom'}},
+      scales:{x:{grid:{display:false}},y:{beginAtZero:true,grid:{color:'#e0ddd8'},
+        ticks:{callback:function(v){return(v/1000).toFixed(0)+'K';}}}}}});
+  }
+  if(window.Chart){initCwpWyVolYoYOps();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpWyVolYoYOps;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="wy-county-2024">County Map — 2024</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block — requires D3 + TopoJSON</div>
+<pre>&lt;div id="cwp-wy-county-2024-wrap" style="max-width:700px;margin:24px auto;"&gt;
+&lt;svg id="cwp-wy-county-2024" viewBox="0 0 700 400" width="100%"&gt;&lt;/svg&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;(Interactive county map not available in this static export.) Source: WOGCC. Hover for details.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  var data={Converse:174,Campbell:144,Sweetwater:114,Carbon:73,Laramie:69,Fremont:44,Sublette:39,Natrona:38,'Big Horn':28,Goshen:20};
+  var maxVal=174;
+  function drawCwpWy2024Map(){
+    fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json').then(function(r){return r.json();}).then(function(us){
+      var w=700,h=400,svg=d3.select('#cwp-wy-county-2024').attr('viewBox','0 0 '+w+' '+h).attr('width','100%');
+      var counties=topojson.feature(us,us.objects.counties);
+      var wy=counties.features.filter(function(d){return d.id.toString().startsWith('56');});
+      var color=d3.scaleSequential([0,maxVal],d3.interpolate('#e8f4f8','#2f5b74'));
+      var proj=d3.geoAlbers().fitExtent([[20,20],[w-20,h-20]],{type:'FeatureCollection',features:wy});
+      var path=d3.geoPath(proj);
+      svg.selectAll('path').data(wy).enter().append('path')
+        .attr('d',path).attr('fill',function(d){
+          var name=d.properties.name,val=data[name]||0;
+          return val>0?color(val):'#f5f5f3';
+        }).attr('stroke','#fff').attr('stroke-width',0.5)
+        .append('title').text(function(d){return d.properties.name+': '+(data[d.properties.name]||0)+' spills (2024)';});
+    });
+  }
+  function loadD3(){
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js';
+    s.onload=function(){
+      var t=document.createElement('script');
+      t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';
+      t.onload=drawCwpWy2024Map;document.head.appendChild(t);
+    };document.head.appendChild(s);
+  }
+  if(window.d3&&window.topojson){drawCwpWy2024Map();}
+  else if(window.d3){var t=document.createElement('script');t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';t.onload=drawCwpWy2024Map;document.head.appendChild(t);}
+  else{loadD3();}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="wy-county-2025">County Map — 2025</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block — requires D3 + TopoJSON</div>
+<pre>&lt;div id="cwp-wy-county-2025-wrap" style="max-width:700px;margin:24px auto;"&gt;
+&lt;svg id="cwp-wy-county-2025" viewBox="0 0 700 400" width="100%"&gt;&lt;/svg&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;(Interactive county map not available in this static export.) Source: WOGCC. Hover for details.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  var data={Converse:172,Campbell:137,Sweetwater:110,Carbon:83,Sublette:52,Natrona:44,Fremont:41,Laramie:30,'Big Horn':24,Goshen:18};
+  var maxVal=174;
+  function drawCwpWy2025Map(){
+    fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json').then(function(r){return r.json();}).then(function(us){
+      var w=700,h=400,svg=d3.select('#cwp-wy-county-2025').attr('viewBox','0 0 '+w+' '+h).attr('width','100%');
+      var counties=topojson.feature(us,us.objects.counties);
+      var wy=counties.features.filter(function(d){return d.id.toString().startsWith('56');});
+      var color=d3.scaleSequential([0,maxVal],d3.interpolate('#e8f4f8','#2f5b74'));
+      var proj=d3.geoAlbers().fitExtent([[20,20],[w-20,h-20]],{type:'FeatureCollection',features:wy});
+      var path=d3.geoPath(proj);
+      svg.selectAll('path').data(wy).enter().append('path')
+        .attr('d',path).attr('fill',function(d){
+          var name=d.properties.name,val=data[name]||0;
+          return val>0?color(val):'#f5f5f3';
+        }).attr('stroke','#fff').attr('stroke-width',0.5)
+        .append('title').text(function(d){return d.properties.name+': '+(data[d.properties.name]||0)+' spills (2025)';});
+    });
+  }
+  function loadD3(){
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js';
+    s.onload=function(){
+      var t=document.createElement('script');
+      t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';
+      t.onload=drawCwpWy2025Map;document.head.appendChild(t);
+    };document.head.appendChild(s);
+  }
+  if(window.d3&&window.topojson){drawCwpWy2025Map();}
+  else if(window.d3){var t=document.createElement('script');t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';t.onload=drawCwpWy2025Map;document.head.appendChild(t);}
+  else{loadD3();}
+})();
+&lt;/script&gt;</pre>
+
+<!-- ================================================================ -->
+<h2 id="co">Colorado 2025</h2>
+<!-- ================================================================ -->
+
+<h3 id="co-stat">Stat Cards</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;style&gt;
+.cwp-co-stats{display:flex;flex-wrap:wrap;gap:16px;font-family:'Open Sans',sans-serif;margin:24px 0;}
+.cwp-co-stat{flex:1;min-width:160px;background:#fff;border:1px solid #e0ddd8;border-radius:4px;padding:20px;text-align:center;}
+.cwp-co-stat .num{font-size:2.2em;font-weight:700;line-height:1;color:#78b43c;}
+.cwp-co-stat.cwp-co-blue .num{color:#4398b5;}
+.cwp-co-stat.cwp-co-orange .num{color:#d2781e;}
+.cwp-co-stat .lbl{font-size:0.75em;color:#9a9590;margin-top:6px;text-transform:uppercase;letter-spacing:.04em;}
+&lt;/style&gt;
+&lt;div class="cwp-co-stats"&gt;
+  &lt;div class="cwp-co-stat"&gt;&lt;div class="num"&gt;338&lt;/div&gt;&lt;div class="lbl"&gt;Total Spills in 2025&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cwp-co-stat cwp-co-blue"&gt;&lt;div class="num"&gt;-40&lt;/div&gt;&lt;div class="lbl"&gt;Change from 2024 (378)&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cwp-co-stat"&gt;&lt;div class="num"&gt;794K&lt;/div&gt;&lt;div class="lbl"&gt;Gallons Spilled&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cwp-co-stat cwp-co-orange"&gt;&lt;div class="num"&gt;3,642&lt;/div&gt;&lt;div class="lbl"&gt;Total Spills Since 2017&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<h3 id="co-count-hist">Annual Spill Count (2017–2025)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-co-count" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Source: ECMC, 2025. Spill Type: Recent. Deduped by Tracking #. Data prior to 2017 was not available for download and therefore was not included in this report.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCoCount(){
+    var ctx=document.getElementById('cwp-co-count').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+      datasets:[{label:'Spills',data:[437,400,455,349,409,457,419,378,338],
+        backgroundColor:['#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#2f5b74'],
+        borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'Colorado Spills by Year',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpCoCount();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCoCount;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="co-vol-hist">Annual Spill Volume (2017–2025)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-co-vol" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Source: ECMC, 2025. Oil, condensate, produced water, E&amp;P waste, flowback fluid, and drilling fluid combined.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCoVol(){
+    var ctx=document.getElementById('cwp-co-vol').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+      datasets:[{label:'Gallons',data:[832146,830928,2328774,817362,723744,1460340,1050714,436128,794472],
+        backgroundColor:['#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#78b43c','#4a7a28'],
+        borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'Colorado Spill Volume by Year (Gallons)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'},ticks:{callback:function(v){return(v/1000000).toFixed(1)+'M';}}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpCoVol();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCoVol;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="co-top5-donut">Top 5 Operators — Donut</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:420px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-co-top5" height="380"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Top 5 vs. all others. Source: ECMC, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCoTop5(){
+    var ctx=document.getElementById('cwp-co-top5').getContext('2d');
+    new Chart(ctx,{type:'doughnut',data:{
+      labels:['QB Energy Operating','Kerr McGee','PDC Energy','Noble','TEP Rocky Mountain','Other'],
+      datasets:[{data:[46,35,30,29,15,183],
+        backgroundColor:['#2f5b74','#4398b5','#78b43c','#d2781e','#96782d','#e0ddd8'],borderWidth:1}]
+    },options:{responsive:true,plugins:{
+      title:{display:true,text:'CO 2025 Spills by Operator (Count)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'bottom'}}}});
+  }
+  if(window.Chart){initCwpCoTop5();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCoTop5;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="co-operators-bar">Top 10 Operators — Bar Chart</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-co-ops" height="420"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Top 10 operators by spill count. Source: ECMC, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCoOps(){
+    var ctx=document.getElementById('cwp-co-ops').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['QB Energy Operating','Kerr McGee','PDC Energy Inc','Noble','TEP Rocky Mountain','DCP Operating','Bison IV Operating','KP Kauffman','Laramie Energy','Fulcrum Energy'],
+      datasets:[{label:'Spills',data:[46,35,30,29,15,13,13,13,11,8],
+        backgroundColor:'#2f5b74',borderRadius:2}]
+    },options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'CO 2025 Top 10 Operators by Spill Count',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{x:{beginAtZero:true,grid:{color:'#e0ddd8'}},y:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpCoOps();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCoOps;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="co-surface-owner">Surface Ownership</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:420px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-co-surface" height="360"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Source: ECMC, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCoSurface(){
+    var ctx=document.getElementById('cwp-co-surface').getContext('2d');
+    new Chart(ctx,{type:'doughnut',data:{
+      labels:['Private','Federal','Other','State','Tribal'],
+      datasets:[{data:[276,31,23,7,1],
+        backgroundColor:['#4398b5','#78b43c','#d2781e','#96782d','#63c5d8'],borderWidth:1}]
+    },options:{responsive:true,plugins:{
+      title:{display:true,text:'CO 2025 Spills by Surface Ownership',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'bottom'}}}});
+  }
+  if(window.Chart){initCwpCoSurface();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCoSurface;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="co-fluid-vol">Fluid Type — Volume</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:600px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-co-fluid" height="320"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Total gallons by fluid type, deduplicated by Tracking #. Source: ECMC, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCoFluid(){
+    var ctx=document.getElementById('cwp-co-fluid').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['Produced Water','E&amp;P Waste','Oil','Condensate','Drilling Fluid'],
+      datasets:[{label:'Gallons',data:[682122,57540,37884,14448,2478],
+        backgroundColor:['#4398b5','#78b43c','#d2781e','#96782d','#63c5d8'],borderRadius:2}]
+    },options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'CO 2025 Spill Volume by Fluid Type (Gallons)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{x:{beginAtZero:true,grid:{color:'#e0ddd8'}},y:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpCoFluid();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCoFluid;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="co-surface-water">Distance to Surface Water</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-co-sw" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Surface Water (n=263 reporting, 78 percent of spills). Spills within one mile of surface water, by distance bucket (feet). Source: ECMC, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCoSW(){
+    var ctx=document.getElementById('cwp-co-sw').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['0\u2013500 ft','500\u20131,000 ft','1,000\u20131,500 ft','1,500\u20132,000 ft','2,000\u20132,500 ft','2,500\u20135,280 ft'],
+      datasets:[{label:'Spills by distance bucket',data:[71,56,43,26,18,49],
+        backgroundColor:'#4398b5',borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'CO Spills by Distance to Surface Water',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpCoSW();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCoSW;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="co-water-wells">Distance to Water Wells</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-co-ww" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Water Wells (n=280 reporting, 83 percent of spills). Spills within one mile of a water well, by distance bucket (feet). Source: ECMC, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCoWW(){
+    var ctx=document.getElementById('cwp-co-ww').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['0\u2013500 ft','500\u20131,000 ft','1,000\u20131,500 ft','1,500\u20132,000 ft','2,000\u20132,500 ft','2,500\u20135,280 ft'],
+      datasets:[{label:'Spills by distance bucket',data:[51,54,60,29,28,57],
+        backgroundColor:'#78b43c',borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'CO Spills by Distance to Water Wells',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpCoWW();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCoWW;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="co-buildings">Distance to Buildings</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-co-bld" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Occupied Buildings (n=196 reporting, 58 percent of spills). Spills within one mile of an occupied building, by distance bucket (feet). Source: ECMC, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCoBld(){
+    var ctx=document.getElementById('cwp-co-bld').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['0\u2013500 ft','500\u20131,000 ft','1,000\u20131,500 ft','1,500\u20132,000 ft','2,000\u20132,500 ft','2,500\u20135,280 ft'],
+      datasets:[{label:'Spills by distance bucket',data:[27,52,41,25,15,34],
+        backgroundColor:'#d2781e',borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'CO Spills by Distance to Occupied Buildings',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpCoBld();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCoBld;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+
+<h3 id="co-op-vol-yy">Operator Volume — 2024 vs 2025</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;position:relative;height:460px;"&gt;
+&lt;canvas id="cwp-co-op-vol-yy"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Source: ECMC, 2025. Volumes in gallons (combined liquids, deduped by Tracking #).&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCoOpVolYY(){
+    var ctx=document.getElementById('cwp-co-op-vol-yy').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['Scout Energy','Caerus Piceance','Kerr McGee','PDC Energy','Fulcrum Energy','Fundare Resources','Noble','Laramie Energy','NGL Water Solutions','TEP Rocky Mountain'],
+      datasets:[
+        {label:'2024',data:[155526,49518,26502,32046,11592,24570,16422,8484,14700,4200],backgroundColor:'#9a9590',borderRadius:2,maxBarThickness:28},
+        {label:'2025',data:[57078,714,25494,26208,4536,8064,28476,42210,31458,67284],backgroundColor:'#4398b5',borderRadius:2,maxBarThickness:28}
+      ]
+    },options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{
+      title:{display:true,text:'CO Operator Volume: 2024 vs 2025 (Gallons)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'top',labels:{font:{size:12},boxWidth:12}},
+      tooltip:{callbacks:{label:function(c){return ' '+c.dataset.label+': '+c.parsed.x.toLocaleString()+' gal';}}}},
+      scales:{x:{grid:{color:'#e0ddd8'},ticks:{callback:function(v){return(v/1000).toFixed(0)+'K';}}},y:{ticks:{font:{size:11}}}}}});
+  }
+  if(window.Chart){initCwpCoOpVolYY();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCoOpVolYY;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+<h3 id="co-increases">Top Volume Increases — Operators</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:600px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-co-inc" height="320"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Source: ECMC, 2025. Volumes in gallons (combined liquids, deduped by Tracking #).&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCoInc(){
+    var ctx=document.getElementById('cwp-co-inc').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['TEP Rocky Mountain','Laramie Energy','NGL Water Solutions','Noble','DCP Operating'],
+      datasets:[{label:'Volume Increase (Gallons)',data:[63084,33726,16758,12054,3864],
+        backgroundColor:'#d2781e',borderRadius:2}]
+    },options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'CO 2025 Operators with Largest Volume Increases',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{x:{beginAtZero:true,grid:{color:'#e0ddd8'}},y:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpCoInc();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCoInc;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="co-decreases">Top Volume Decreases — Operators</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:600px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-co-dec" height="320"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Source: ECMC, 2025. Volumes in gallons (combined liquids, deduped by Tracking #).&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCoDec(){
+    var ctx=document.getElementById('cwp-co-dec').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['Scout Energy','Caerus Oil &amp; Gas','Fundare Resources','Citation Oil &amp; Gas','Fulcrum Energy'],
+      datasets:[{label:'Volume Decrease (Gallons)',data:[98448,48804,16506,11718,7056],
+        backgroundColor:'#78b43c',borderRadius:2}]
+    },options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'CO 2025 Operators with Largest Volume Decreases',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{x:{beginAtZero:true,grid:{color:'#e0ddd8'}},y:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpCoDec();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCoDec;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="co-county">County Map — 2025</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block — requires D3 + TopoJSON</div>
+<pre>&lt;div id="cwp-co-county-wrap" style="max-width:700px;margin:24px auto;"&gt;
+&lt;svg id="cwp-co-county" viewBox="0 0 700 420" width="100%"&gt;&lt;/svg&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;(Interactive county map not available in this static export.) Source: ECMC, 2025.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  var data={Weld:170,Garfield:61,'Rio Blanco':19,Adams:20,Larimer:8,Mesa:6,Moffat:5,Boulder:5,Broomfield:3,Arapahoe:3};
+  function drawCwpCoMap(){
+    fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json').then(function(r){return r.json();}).then(function(us){
+      var w=700,h=420,svg=d3.select('#cwp-co-county').attr('viewBox','0 0 '+w+' '+h).attr('width','100%');
+      var counties=topojson.feature(us,us.objects.counties);
+      var co=counties.features.filter(function(d){return d.id.toString().startsWith('08');});
+      var maxVal=Math.max.apply(null,Object.values(data));
+      var color=d3.scaleSequential([0,maxVal],d3.interpolate('#e8f4f8','#2f5b74'));
+      var proj=d3.geoAlbers().fitExtent([[20,20],[w-20,h-20]],{type:'FeatureCollection',features:co});
+      var path=d3.geoPath(proj);
+      svg.selectAll('path').data(co).enter().append('path')
+        .attr('d',path).attr('fill',function(d){
+          var name=d.properties.name,val=data[name]||0;
+          return val>0?color(val):'#f5f5f3';
+        }).attr('stroke','#fff').attr('stroke-width',0.5)
+        .append('title').text(function(d){return d.properties.name+': '+(data[d.properties.name]||0)+' spills';});
+    });
+  }
+  function loadD3(){
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js';
+    s.onload=function(){
+      var t=document.createElement('script');
+      t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';
+      t.onload=drawCwpCoMap;document.head.appendChild(t);
+    };document.head.appendChild(s);
+  }
+  if(window.d3&&window.topojson){drawCwpCoMap();}
+  else if(window.d3){var t=document.createElement('script');t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';t.onload=drawCwpCoMap;document.head.appendChild(t);}
+  else{loadD3();}
+})();
+&lt;/script&gt;</pre>
+
+<!-- ================================================================ -->
+<h2 id="coh">Colorado Historic</h2>
+<!-- ================================================================ -->
+
+<h3 id="coh-stat">Stat Cards</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;style&gt;
+.cwp-coh-stats{display:flex;flex-wrap:wrap;gap:16px;font-family:'Open Sans',sans-serif;margin:24px 0;}
+.cwp-coh-stat{flex:1;min-width:160px;background:#fff;border:1px solid #e0ddd8;border-radius:4px;padding:20px;text-align:center;}
+.cwp-coh-stat .num{font-size:2.2em;font-weight:700;line-height:1;color:#2f5b74;}
+.cwp-coh-stat .lbl{font-size:0.75em;color:#9a9590;margin-top:6px;text-transform:uppercase;letter-spacing:.04em;}
+&lt;/style&gt;
+&lt;div class="cwp-coh-stats"&gt;
+  &lt;div class="cwp-coh-stat"&gt;&lt;div class="num"&gt;6,084&lt;/div&gt;&lt;div class="lbl"&gt;Historical Spills&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cwp-coh-stat"&gt;&lt;div class="num"&gt;2025&lt;/div&gt;&lt;div class="lbl"&gt;Peak Year&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cwp-coh-stat"&gt;&lt;div class="num"&gt;Weld&lt;/div&gt;&lt;div class="lbl"&gt;Top County&lt;/div&gt;&lt;/div&gt;
+  &lt;div class="cwp-coh-stat"&gt;&lt;div class="num"&gt;Noble&lt;/div&gt;&lt;div class="lbl"&gt;Top Operator&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+
+<h3 id="coh-year">Spills by Year (2016–2025)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-coh-year" height="300"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Unique historical spills filed per year, 2016-2025. Unique spills by date of discovery, deduplicated by tracking number. Covers 2016-2025; pre-2016 records and 2026-dated entries excluded. Source: ECMC, ColoradoSpills.xlsm&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCohYear(){
+    var ctx=document.getElementById('cwp-coh-year').getContext('2d');
+    new Chart(ctx,{type:'bar',data:{
+      labels:['2016','2017','2018','2019','2020','2021','2022','2023','2024','2025'],
+      datasets:[{label:'Spills',data:[104,181,201,188,125,466,667,830,1374,1948],
+        backgroundColor:['#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#4398b5','#2f5b74'],
+        borderRadius:2}]
+    },options:{responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'Colorado Historical Spills by Year (All Years)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{y:{beginAtZero:true,grid:{color:'#e0ddd8'}},x:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpCohYear();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCohYear;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="coh-operators">Top Operators — Historical</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:700px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-coh-ops" height="440"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Top 10 operators by unique historical spill count. Source: ECMC, ColoradoSpills.xlsm&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCohOps(){
+    var ctx=document.getElementById('cwp-coh-ops').getContext('2d');
+    var colors=['#2f5b74','#2f5b74','#2f5b74','#d2781e','#d2781e','#d2781e','#d2781e','#d2781e','#d2781e','#d2781e'];
+    new Chart(ctx,{type:'bar',data:{
+      labels:['Noble','Kerr McGee','PDC','Crestone','Extraction','Bonanza','Caerus','KP Kauffman','Highpoint','Great Western'],
+      datasets:[{label:'Spills',data:[2301,1672,665,279,156,103,86,56,40,39],
+        backgroundColor:colors,borderRadius:2}]
+    },options:{indexAxis:'y',responsive:true,plugins:{legend:{display:false},
+      title:{display:true,text:'CO Historical Top Operators (2016–2025)',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'}},
+      scales:{x:{beginAtZero:true,grid:{color:'#e0ddd8'}},y:{grid:{display:false}}}}});
+  }
+  if(window.Chart){initCwpCohOps();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCohOps;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="coh-facility">Facility Types</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:420px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-coh-facility" height="380"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Spills by facility type: tank battery (33 percent), well (30 percent), flowline (19 percent), well site (7 percent), other (11 percent). Source: ECMC, ColoradoSpills.xlsm&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCohFacility(){
+    var ctx=document.getElementById('cwp-coh-facility').getContext('2d');
+    new Chart(ctx,{type:'doughnut',data:{
+      labels:['Tank Battery','Well','Flowline','Well Site','Other'],
+      datasets:[{data:[2028,1815,1149,397,695],
+        backgroundColor:['#2f5b74','#4398b5','#78b43c','#d2781e','#e0ddd8'],borderWidth:1}]
+    },options:{responsive:true,plugins:{
+      title:{display:true,text:'CO Historical Spills by Facility Type',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'bottom'}}}});
+  }
+  if(window.Chart){initCwpCohFacility();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCohFacility;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="coh-owner">Surface Ownership — Historical</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block</div>
+<pre>&lt;div style="max-width:420px;margin:24px auto;"&gt;
+&lt;canvas id="cwp-coh-owner" height="360"&gt;&lt;/canvas&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Spills by surface owner: private (96 percent), federal (2 percent), other (2 percent), state (&lt;1 percent). Source: ECMC, ColoradoSpills.xlsm&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  function initCwpCohOwner(){
+    var ctx=document.getElementById('cwp-coh-owner').getContext('2d');
+    new Chart(ctx,{type:'doughnut',data:{
+      labels:['Private','Federal','Other','State','Tribal'],
+      datasets:[{data:[5819,123,111,29,2],
+        backgroundColor:['#4398b5','#78b43c','#d2781e','#96782d','#63c5d8'],borderWidth:1}]
+    },options:{responsive:true,plugins:{
+      title:{display:true,text:'CO Historical Spills by Surface Ownership',font:{size:16,family:"'Bitter',Georgia,serif"},color:'#2a2a28'},
+      legend:{position:'bottom'}}}});
+  }
+  if(window.Chart){initCwpCohOwner();}
+  else{var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js';
+    s.onload=initCwpCohOwner;document.head.appendChild(s);}
+})();
+&lt;/script&gt;</pre>
+
+<h3 id="coh-county">County Map — Historical (2016–2025)</h3>
+<div class="embed-label">Paste into WordPress Custom HTML block — requires D3 + TopoJSON</div>
+<pre>&lt;div id="cwp-coh-county-wrap" style="max-width:800px;margin:24px auto;"&gt;
+&lt;svg id="cwp-coh-county" viewBox="0 0 800 400" width="100%"&gt;&lt;/svg&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;(Interactive county map not available in this static export.) Source: ECMC, ColoradoSpills.xlsm. Hover over a county for spill count.&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(function(){
+  var data={Adams:187,Weld:5303,'Rio Blanco':97,Garfield:85,Larimer:39,Mesa:25,Moffat:18,Boulder:15,Broomfield:10,Arapahoe:8,Denver:7,Jefferson:5,Elbert:3,Morgan:3};
+  function drawCwpCohMap(){
+    fetch('https://cdn.jsdelivr.net/npm/us-atlas@3/counties-10m.json').then(function(r){return r.json();}).then(function(us){
+      var w=800,h=400,svg=d3.select('#cwp-coh-county').attr('viewBox','0 0 '+w+' '+h).attr('width','100%');
+      var counties=topojson.feature(us,us.objects.counties);
+      var co=counties.features.filter(function(d){return d.id.toString().startsWith('08');});
+      var maxVal=Math.max.apply(null,Object.values(data));
+      var color=d3.scaleSequential([0,maxVal],d3.interpolate('#e8f4f8','#2f5b74'));
+      var proj=d3.geoAlbers().fitExtent([[20,20],[w-20,h-20]],{type:'FeatureCollection',features:co});
+      var path=d3.geoPath(proj);
+      svg.selectAll('path').data(co).enter().append('path')
+        .attr('d',path).attr('fill',function(d){
+          var name=d.properties.name,val=data[name]||0;
+          return val>0?color(val):'#f5f5f3';
+        }).attr('stroke','#fff').attr('stroke-width',0.5)
+        .append('title').text(function(d){return d.properties.name+': '+(data[d.properties.name]||0)+' historical spills';});
+    });
+  }
+  function loadD3(){
+    var s=document.createElement('script');
+    s.src='https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js';
+    s.onload=function(){
+      var t=document.createElement('script');
+      t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';
+      t.onload=drawCwpCohMap;document.head.appendChild(t);
+    };document.head.appendChild(s);
+  }
+  if(window.d3&&window.topojson){drawCwpCohMap();}
+  else if(window.d3){var t=document.createElement('script');t.src='https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js';t.onload=drawCwpCohMap;document.head.appendChild(t);}
+  else{loadD3();}
+})();
+&lt;/script&gt;</pre>
+
+<footer style="margin-top:64px;padding-top:16px;border-top:1px solid #e0ddd8;font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;">
+  Center for Western Priorities · westernpriorities.org
+</footer>
+</body>
+</html>
