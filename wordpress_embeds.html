@@ -425,7 +425,7 @@
 <div class="embed-label">Paste into WordPress Custom HTML block — requires D3 + TopoJSON</div>
 <pre>&lt;div id="cwp-nm-county-liq-wrap" style="max-width:700px;margin:24px auto;"&gt;
 &lt;svg id="cwp-nm-county-liq" viewBox="0 0 700 480" width="100%"&gt;&lt;/svg&gt;
-&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Gas releases by county (incident count). Source: NM OCD, 2025.&lt;/div&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Liquid spills by county (count). Source: NM OCD, 2025.&lt;/div&gt;
 &lt;/div&gt;
 &lt;script&gt;
 (function(){
@@ -443,12 +443,22 @@
       var color=d3.scaleSequential([0,maxVal],d3.interpolate('#e8f4f8','#2f5b74'));
       var proj=d3.geoAlbers().fitExtent([[20,20],[w-20,h-20]],{type:'FeatureCollection',features:nm});
       var path=d3.geoPath(proj);
+      var tip=d3.select('body').append('div').style('position','fixed').style('pointer-events','none')
+        .style('background','rgba(30,38,36,.92)').style('color','#fff').style('padding','6px 10px')
+        .style('border-radius','4px').style('font-family',"'Open Sans',sans-serif").style('font-size','12px')
+        .style('white-space','nowrap').style('z-index','99999').style('opacity',0).style('transition','opacity .1s');
       svg.selectAll('path').data(nm).enter().append('path')
         .attr('d',path).attr('fill',function(d){
           var name=d.properties.name,val=data[name]||0;
           return val>0?color(val):'#f5f5f3';
         }).attr('stroke','#fff').attr('stroke-width',0.5)
-        .append('title').text(function(d){return d.properties.name+': '+(data[d.properties.name]||0)+' spills';});
+        .on('mouseover',function(ev,d){
+          d3.select(this).attr('stroke','#2a2a28').attr('stroke-width',1.5);
+          var name=d.properties.name,val=data[name]||0;
+          tip.html('<strong>'+name+'</strong><br>'+val.toLocaleString()+' spills').style('opacity',1);
+        })
+        .on('mousemove',function(ev){tip.style('left',(ev.clientX+14)+'px').style('top',(ev.clientY-40)+'px');})
+        .on('mouseout',function(){d3.select(this).attr('stroke','#fff').attr('stroke-width',0.5);tip.style('opacity',0);});
     });
   }
   function loadD3(){
@@ -487,12 +497,22 @@
       var color=d3.scaleSequential([0,maxVal],d3.interpolate('#fdf0e6','#9a4d0c'));
       var proj=d3.geoAlbers().fitExtent([[20,20],[w-20,h-20]],{type:'FeatureCollection',features:nm});
       var path=d3.geoPath(proj);
+      var tip=d3.select('body').append('div').style('position','fixed').style('pointer-events','none')
+        .style('background','rgba(30,38,36,.92)').style('color','#fff').style('padding','6px 10px')
+        .style('border-radius','4px').style('font-family',"'Open Sans',sans-serif").style('font-size','12px')
+        .style('white-space','nowrap').style('z-index','99999').style('opacity',0).style('transition','opacity .1s');
       svg.selectAll('path').data(nm).enter().append('path')
         .attr('d',path).attr('fill',function(d){
           var name=d.properties.name,val=data[name]||0;
           return val>0?color(val):'#f5f5f3';
         }).attr('stroke','#fff').attr('stroke-width',0.5)
-        .append('title').text(function(d){return d.properties.name+': '+(data[d.properties.name]||0)+' releases';});
+        .on('mouseover',function(ev,d){
+          d3.select(this).attr('stroke','#2a2a28').attr('stroke-width',1.5);
+          var name=d.properties.name,val=data[name]||0;
+          tip.html('<strong>'+name+'</strong><br>'+val.toLocaleString()+' releases').style('opacity',1);
+        })
+        .on('mousemove',function(ev){tip.style('left',(ev.clientX+14)+'px').style('top',(ev.clientY-40)+'px');})
+        .on('mouseout',function(){d3.select(this).attr('stroke','#fff').attr('stroke-width',0.5);tip.style('opacity',0);});
     });
   }
   function loadD3(){
@@ -785,7 +805,7 @@
 <div class="embed-label">Paste into WordPress Custom HTML block — requires D3 + TopoJSON</div>
 <pre>&lt;div id="cwp-wy-county-2024-wrap" style="max-width:700px;margin:24px auto;"&gt;
 &lt;svg id="cwp-wy-county-2024" viewBox="0 0 700 400" width="100%"&gt;&lt;/svg&gt;
-&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;(Interactive county map not available in this static export.) Source: WOGCC. Hover for details.&lt;/div&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Spills by county, 2024. Source: WOGCC.&lt;/div&gt;
 &lt;/div&gt;
 &lt;script&gt;
 (function(){
@@ -799,12 +819,22 @@
       var color=d3.scaleSequential([0,maxVal],d3.interpolate('#e8f4f8','#2f5b74'));
       var proj=d3.geoAlbers().fitExtent([[20,20],[w-20,h-20]],{type:'FeatureCollection',features:wy});
       var path=d3.geoPath(proj);
+      var tip=d3.select('body').append('div').style('position','fixed').style('pointer-events','none')
+        .style('background','rgba(30,38,36,.92)').style('color','#fff').style('padding','6px 10px')
+        .style('border-radius','4px').style('font-family',"'Open Sans',sans-serif").style('font-size','12px')
+        .style('white-space','nowrap').style('z-index','99999').style('opacity',0).style('transition','opacity .1s');
       svg.selectAll('path').data(wy).enter().append('path')
         .attr('d',path).attr('fill',function(d){
           var name=d.properties.name,val=data[name]||0;
           return val>0?color(val):'#f5f5f3';
         }).attr('stroke','#fff').attr('stroke-width',0.5)
-        .append('title').text(function(d){return d.properties.name+': '+(data[d.properties.name]||0)+' spills (2024)';});
+        .on('mouseover',function(ev,d){
+          d3.select(this).attr('stroke','#2a2a28').attr('stroke-width',1.5);
+          var name=d.properties.name,val=data[name]||0;
+          tip.html('<strong>'+name+'</strong><br>'+val.toLocaleString()+' spills (2024)').style('opacity',1);
+        })
+        .on('mousemove',function(ev){tip.style('left',(ev.clientX+14)+'px').style('top',(ev.clientY-40)+'px');})
+        .on('mouseout',function(){d3.select(this).attr('stroke','#fff').attr('stroke-width',0.5);tip.style('opacity',0);});
     });
   }
   function loadD3(){
@@ -826,7 +856,7 @@
 <div class="embed-label">Paste into WordPress Custom HTML block — requires D3 + TopoJSON</div>
 <pre>&lt;div id="cwp-wy-county-2025-wrap" style="max-width:700px;margin:24px auto;"&gt;
 &lt;svg id="cwp-wy-county-2025" viewBox="0 0 700 400" width="100%"&gt;&lt;/svg&gt;
-&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;(Interactive county map not available in this static export.) Source: WOGCC. Hover for details.&lt;/div&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Spills by county, 2025. Source: WOGCC.&lt;/div&gt;
 &lt;/div&gt;
 &lt;script&gt;
 (function(){
@@ -840,12 +870,22 @@
       var color=d3.scaleSequential([0,maxVal],d3.interpolate('#e8f4f8','#2f5b74'));
       var proj=d3.geoAlbers().fitExtent([[20,20],[w-20,h-20]],{type:'FeatureCollection',features:wy});
       var path=d3.geoPath(proj);
+      var tip=d3.select('body').append('div').style('position','fixed').style('pointer-events','none')
+        .style('background','rgba(30,38,36,.92)').style('color','#fff').style('padding','6px 10px')
+        .style('border-radius','4px').style('font-family',"'Open Sans',sans-serif").style('font-size','12px')
+        .style('white-space','nowrap').style('z-index','99999').style('opacity',0).style('transition','opacity .1s');
       svg.selectAll('path').data(wy).enter().append('path')
         .attr('d',path).attr('fill',function(d){
           var name=d.properties.name,val=data[name]||0;
           return val>0?color(val):'#f5f5f3';
         }).attr('stroke','#fff').attr('stroke-width',0.5)
-        .append('title').text(function(d){return d.properties.name+': '+(data[d.properties.name]||0)+' spills (2025)';});
+        .on('mouseover',function(ev,d){
+          d3.select(this).attr('stroke','#2a2a28').attr('stroke-width',1.5);
+          var name=d.properties.name,val=data[name]||0;
+          tip.html('<strong>'+name+'</strong><br>'+val.toLocaleString()+' spills (2025)').style('opacity',1);
+        })
+        .on('mousemove',function(ev){tip.style('left',(ev.clientX+14)+'px').style('top',(ev.clientY-40)+'px');})
+        .on('mouseout',function(){d3.select(this).attr('stroke','#fff').attr('stroke-width',0.5);tip.style('opacity',0);});
     });
   }
   function loadD3(){
@@ -1182,7 +1222,7 @@
 <div class="embed-label">Paste into WordPress Custom HTML block — requires D3 + TopoJSON</div>
 <pre>&lt;div id="cwp-co-county-wrap" style="max-width:700px;margin:24px auto;"&gt;
 &lt;svg id="cwp-co-county" viewBox="0 0 700 420" width="100%"&gt;&lt;/svg&gt;
-&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;(Interactive county map not available in this static export.) Source: ECMC, 2025.&lt;/div&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Spills by county, 2025. Source: ECMC, 2025.&lt;/div&gt;
 &lt;/div&gt;
 &lt;script&gt;
 (function(){
@@ -1196,12 +1236,22 @@
       var color=d3.scaleSequential([0,maxVal],d3.interpolate('#e8f4f8','#2f5b74'));
       var proj=d3.geoAlbers().fitExtent([[20,20],[w-20,h-20]],{type:'FeatureCollection',features:co});
       var path=d3.geoPath(proj);
+      var tip=d3.select('body').append('div').style('position','fixed').style('pointer-events','none')
+        .style('background','rgba(30,38,36,.92)').style('color','#fff').style('padding','6px 10px')
+        .style('border-radius','4px').style('font-family',"'Open Sans',sans-serif").style('font-size','12px')
+        .style('white-space','nowrap').style('z-index','99999').style('opacity',0).style('transition','opacity .1s');
       svg.selectAll('path').data(co).enter().append('path')
         .attr('d',path).attr('fill',function(d){
           var name=d.properties.name,val=data[name]||0;
           return val>0?color(val):'#f5f5f3';
         }).attr('stroke','#fff').attr('stroke-width',0.5)
-        .append('title').text(function(d){return d.properties.name+': '+(data[d.properties.name]||0)+' spills';});
+        .on('mouseover',function(ev,d){
+          d3.select(this).attr('stroke','#2a2a28').attr('stroke-width',1.5);
+          var name=d.properties.name,val=data[name]||0;
+          tip.html('<strong>'+name+'</strong><br>'+val.toLocaleString()+' spills').style('opacity',1);
+        })
+        .on('mousemove',function(ev){tip.style('left',(ev.clientX+14)+'px').style('top',(ev.clientY-40)+'px');})
+        .on('mouseout',function(){d3.select(this).attr('stroke','#fff').attr('stroke-width',0.5);tip.style('opacity',0);});
     });
   }
   function loadD3(){
@@ -1340,7 +1390,7 @@
 <div class="embed-label">Paste into WordPress Custom HTML block — requires D3 + TopoJSON</div>
 <pre>&lt;div id="cwp-coh-county-wrap" style="max-width:800px;margin:24px auto;"&gt;
 &lt;svg id="cwp-coh-county" viewBox="0 0 800 400" width="100%"&gt;&lt;/svg&gt;
-&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;(Interactive county map not available in this static export.) Source: ECMC, ColoradoSpills.xlsm. Hover over a county for spill count.&lt;/div&gt;
+&lt;div style="font-size:11px;color:#9a9590;font-family:'Open Sans',sans-serif;margin-top:4px;"&gt;Historical spills by county, 2016–2025. Source: ECMC, ColoradoSpills.xlsm.&lt;/div&gt;
 &lt;/div&gt;
 &lt;script&gt;
 (function(){
@@ -1354,12 +1404,22 @@
       var color=d3.scaleSequential([0,maxVal],d3.interpolate('#e8f4f8','#2f5b74'));
       var proj=d3.geoAlbers().fitExtent([[20,20],[w-20,h-20]],{type:'FeatureCollection',features:co});
       var path=d3.geoPath(proj);
+      var tip=d3.select('body').append('div').style('position','fixed').style('pointer-events','none')
+        .style('background','rgba(30,38,36,.92)').style('color','#fff').style('padding','6px 10px')
+        .style('border-radius','4px').style('font-family',"'Open Sans',sans-serif").style('font-size','12px')
+        .style('white-space','nowrap').style('z-index','99999').style('opacity',0).style('transition','opacity .1s');
       svg.selectAll('path').data(co).enter().append('path')
         .attr('d',path).attr('fill',function(d){
           var name=d.properties.name,val=data[name]||0;
           return val>0?color(val):'#f5f5f3';
         }).attr('stroke','#fff').attr('stroke-width',0.5)
-        .append('title').text(function(d){return d.properties.name+': '+(data[d.properties.name]||0)+' historical spills';});
+        .on('mouseover',function(ev,d){
+          d3.select(this).attr('stroke','#2a2a28').attr('stroke-width',1.5);
+          var name=d.properties.name,val=data[name]||0;
+          tip.html('<strong>'+name+'</strong><br>'+val.toLocaleString()+' historical spills').style('opacity',1);
+        })
+        .on('mousemove',function(ev){tip.style('left',(ev.clientX+14)+'px').style('top',(ev.clientY-40)+'px');})
+        .on('mouseout',function(){d3.select(this).attr('stroke','#fff').attr('stroke-width',0.5);tip.style('opacity',0);});
     });
   }
   function loadD3(){
